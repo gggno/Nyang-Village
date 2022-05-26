@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="0qE-Yt-T3E">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina5_5" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
@@ -122,9 +122,44 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ListMainImage" translatesAutoresizingMaskIntoConstraints="NO" id="BiS-i5-zkH">
+                                <rect key="frame" x="87" y="30" width="240" height="120"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="120" id="6gD-U0-wyT"/>
+                                    <constraint firstAttribute="width" constant="240" id="92L-OS-fXD"/>
+                                </constraints>
+                            </imageView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DvS-jz-mLj">
+                                <rect key="frame" x="0.0" y="185" width="414" height="551"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tIa-Wb-uYn">
+                                <rect key="frame" x="365" y="5" width="44" height="34"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" image="SettingButton"/>
+                                <connections>
+                                    <action selector="settingBtnClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="uYL-c9-s4c"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" systemColor="systemYellowColor"/>
+                        <constraints>
+                            <constraint firstItem="DvS-jz-mLj" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="3TH-MZ-hRj"/>
+                            <constraint firstItem="BiS-i5-zkH" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="6P9-pD-aat"/>
+                            <constraint firstAttribute="bottom" secondItem="DvS-jz-mLj" secondAttribute="bottom" id="B1S-14-HRO"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="tIa-Wb-uYn" secondAttribute="trailing" constant="5" id="OGz-fP-cmu"/>
+                            <constraint firstItem="BiS-i5-zkH" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="30" id="UXc-T0-gYk"/>
+                            <constraint firstItem="tIa-Wb-uYn" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="5" id="UaM-Wf-mcv"/>
+                            <constraint firstItem="DvS-jz-mLj" firstAttribute="top" secondItem="BiS-i5-zkH" secondAttribute="bottom" constant="35" id="XPB-9f-scw"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="DvS-jz-mLj" secondAttribute="trailing" id="m0a-rR-S7R"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="settingBtn" destination="tIa-Wb-uYn" id="zvm-xj-GGu"/>
+                        <outlet property="tableBackgroundView" destination="DvS-jz-mLj" id="00F-ki-3u3"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
@@ -132,7 +167,9 @@
         </scene>
     </scenes>
     <resources>
+        <image name="ListMainImage" width="166" height="93"/>
         <image name="MainImage" width="431" height="403"/>
+        <image name="SettingButton" width="20" height="20"/>
         <namedColor name="MainOrangeColor">
             <color red="1" green="0.51800000667572021" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
