@@ -7,23 +7,60 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6611868728326CFE0002A832 /* LoginViewPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6611868628326CFE0002A832 /* LoginViewPresenter.swift */; };
+		6611868928326D340002A832 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6611868828326D340002A832 /* LoginViewModel.swift */; };
+		661197982831667C0033CB33 /* SCDream2.otf in Resources */ = {isa = PBXBuildFile; fileRef = 6611978F2831667A0033CB33 /* SCDream2.otf */; };
+		661197992831667C0033CB33 /* SCDream1.otf in Resources */ = {isa = PBXBuildFile; fileRef = 661197902831667A0033CB33 /* SCDream1.otf */; };
+		6611979A2831667C0033CB33 /* SCDream6.otf in Resources */ = {isa = PBXBuildFile; fileRef = 661197912831667B0033CB33 /* SCDream6.otf */; };
+		6611979B2831667C0033CB33 /* SCDream4.otf in Resources */ = {isa = PBXBuildFile; fileRef = 661197922831667B0033CB33 /* SCDream4.otf */; };
+		6611979C2831667C0033CB33 /* SCDream8.otf in Resources */ = {isa = PBXBuildFile; fileRef = 661197932831667B0033CB33 /* SCDream8.otf */; };
+		6611979D2831667C0033CB33 /* SCDream5.otf in Resources */ = {isa = PBXBuildFile; fileRef = 661197942831667B0033CB33 /* SCDream5.otf */; };
+		6611979E2831667C0033CB33 /* SCDream9.otf in Resources */ = {isa = PBXBuildFile; fileRef = 661197952831667B0033CB33 /* SCDream9.otf */; };
+		6611979F2831667C0033CB33 /* SCDream3.otf in Resources */ = {isa = PBXBuildFile; fileRef = 661197962831667C0033CB33 /* SCDream3.otf */; };
+		661197A02831667C0033CB33 /* SCDream7.otf in Resources */ = {isa = PBXBuildFile; fileRef = 661197972831667C0033CB33 /* SCDream7.otf */; };
+		661197A2283174FE0033CB33 /* UITextField_Extention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 661197A1283174FE0033CB33 /* UITextField_Extention.swift */; };
 		664B2DAE27FC708D00109DFB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 664B2DAD27FC708D00109DFB /* AppDelegate.swift */; };
 		664B2DB027FC708D00109DFB /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 664B2DAF27FC708D00109DFB /* SceneDelegate.swift */; };
-		664B2DB227FC708D00109DFB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 664B2DB127FC708D00109DFB /* ViewController.swift */; };
 		664B2DB527FC708D00109DFB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 664B2DB327FC708D00109DFB /* Main.storyboard */; };
 		664B2DB727FC708E00109DFB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 664B2DB627FC708E00109DFB /* Assets.xcassets */; };
 		664B2DBA27FC708E00109DFB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 664B2DB827FC708E00109DFB /* LaunchScreen.storyboard */; };
+		66B8D185283DDA76000EB71B /* Protocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66B8D184283DDA76000EB71B /* Protocol.swift */; };
+		66C1F7FC28314949001FD2FE /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66C1F7FB28314949001FD2FE /* MainViewController.swift */; };
+		66C1F7FE28314951001FD2FE /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66C1F7FD28314951001FD2FE /* LoginViewController.swift */; };
+		66C1F80128314A34001FD2FE /* UIView_Extention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66C1F80028314A34001FD2FE /* UIView_Extention.swift */; };
+		66F5BEB72804643D0002240C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 66F5BEB62804643D0002240C /* GoogleService-Info.plist */; };
+		6E7867EFD964041F86EF3311 /* Pods_Nyang_Village.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D894EDED1EF20D4DC2AF2E62 /* Pods_Nyang_Village.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		6611868628326CFE0002A832 /* LoginViewPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewPresenter.swift; sourceTree = "<group>"; };
+		6611868828326D340002A832 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		6611978F2831667A0033CB33 /* SCDream2.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = SCDream2.otf; sourceTree = "<group>"; };
+		661197902831667A0033CB33 /* SCDream1.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = SCDream1.otf; sourceTree = "<group>"; };
+		661197912831667B0033CB33 /* SCDream6.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = SCDream6.otf; sourceTree = "<group>"; };
+		661197922831667B0033CB33 /* SCDream4.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = SCDream4.otf; sourceTree = "<group>"; };
+		661197932831667B0033CB33 /* SCDream8.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = SCDream8.otf; sourceTree = "<group>"; };
+		661197942831667B0033CB33 /* SCDream5.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = SCDream5.otf; sourceTree = "<group>"; };
+		661197952831667B0033CB33 /* SCDream9.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = SCDream9.otf; sourceTree = "<group>"; };
+		661197962831667C0033CB33 /* SCDream3.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = SCDream3.otf; sourceTree = "<group>"; };
+		661197972831667C0033CB33 /* SCDream7.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = SCDream7.otf; sourceTree = "<group>"; };
+		661197A1283174FE0033CB33 /* UITextField_Extention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextField_Extention.swift; sourceTree = "<group>"; };
 		664B2DAA27FC708D00109DFB /* Nyang Village.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Nyang Village.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		664B2DAD27FC708D00109DFB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		664B2DAF27FC708D00109DFB /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		664B2DB127FC708D00109DFB /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		664B2DB427FC708D00109DFB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		664B2DB627FC708E00109DFB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		664B2DB927FC708E00109DFB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		664B2DBB27FC708E00109DFB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		664F296B280469A100F1D43C /* Nyang Village.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Nyang Village.entitlements"; sourceTree = "<group>"; };
+		66B8D184283DDA76000EB71B /* Protocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocol.swift; sourceTree = "<group>"; };
+		66C1F7FB28314949001FD2FE /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		66C1F7FD28314951001FD2FE /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		66C1F80028314A34001FD2FE /* UIView_Extention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIView_Extention.swift; sourceTree = "<group>"; };
+		66F5BEB62804643D0002240C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		859A35855346CD60860891DF /* Pods-Nyang Village.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Nyang Village.release.xcconfig"; path = "Target Support Files/Pods-Nyang Village/Pods-Nyang Village.release.xcconfig"; sourceTree = "<group>"; };
+		D894EDED1EF20D4DC2AF2E62 /* Pods_Nyang_Village.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Nyang_Village.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DCBC9BD51F0D33329EA76414 /* Pods-Nyang Village.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Nyang Village.debug.xcconfig"; path = "Target Support Files/Pods-Nyang Village/Pods-Nyang Village.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,17 +68,47 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6E7867EFD964041F86EF3311 /* Pods_Nyang_Village.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5176C8EA4DE9158BDC87972E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D894EDED1EF20D4DC2AF2E62 /* Pods_Nyang_Village.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		6611977C283164560033CB33 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				661197902831667A0033CB33 /* SCDream1.otf */,
+				6611978F2831667A0033CB33 /* SCDream2.otf */,
+				661197962831667C0033CB33 /* SCDream3.otf */,
+				661197922831667B0033CB33 /* SCDream4.otf */,
+				661197942831667B0033CB33 /* SCDream5.otf */,
+				661197912831667B0033CB33 /* SCDream6.otf */,
+				661197972831667C0033CB33 /* SCDream7.otf */,
+				661197932831667B0033CB33 /* SCDream8.otf */,
+				661197952831667B0033CB33 /* SCDream9.otf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
 		664B2DA127FC708D00109DFB = {
 			isa = PBXGroup;
 			children = (
+				66C1F7FA2831493E001FD2FE /* Model */,
+				66C1F7F928314938001FD2FE /* View */,
+				66C1F7F82831492E001FD2FE /* Presenter */,
 				664B2DAC27FC708D00109DFB /* Nyang Village */,
 				664B2DAB27FC708D00109DFB /* Products */,
+				E15539E4DC57C978CBBE24AB /* Pods */,
+				5176C8EA4DE9158BDC87972E /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -56,15 +123,62 @@
 		664B2DAC27FC708D00109DFB /* Nyang Village */ = {
 			isa = PBXGroup;
 			children = (
+				664F296B280469A100F1D43C /* Nyang Village.entitlements */,
 				664B2DAD27FC708D00109DFB /* AppDelegate.swift */,
 				664B2DAF27FC708D00109DFB /* SceneDelegate.swift */,
-				664B2DB127FC708D00109DFB /* ViewController.swift */,
 				664B2DB327FC708D00109DFB /* Main.storyboard */,
 				664B2DB627FC708E00109DFB /* Assets.xcassets */,
 				664B2DB827FC708E00109DFB /* LaunchScreen.storyboard */,
+				66F5BEB62804643D0002240C /* GoogleService-Info.plist */,
 				664B2DBB27FC708E00109DFB /* Info.plist */,
 			);
 			path = "Nyang Village";
+			sourceTree = "<group>";
+		};
+		66C1F7F82831492E001FD2FE /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				6611868628326CFE0002A832 /* LoginViewPresenter.swift */,
+				66B8D184283DDA76000EB71B /* Protocol.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		66C1F7F928314938001FD2FE /* View */ = {
+			isa = PBXGroup;
+			children = (
+				66C1F7FB28314949001FD2FE /* MainViewController.swift */,
+				66C1F7FD28314951001FD2FE /* LoginViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		66C1F7FA2831493E001FD2FE /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				6611977C283164560033CB33 /* Fonts */,
+				66C1F7FF28314A15001FD2FE /* Extention */,
+				6611868828326D340002A832 /* LoginViewModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		66C1F7FF28314A15001FD2FE /* Extention */ = {
+			isa = PBXGroup;
+			children = (
+				66C1F80028314A34001FD2FE /* UIView_Extention.swift */,
+				661197A1283174FE0033CB33 /* UITextField_Extention.swift */,
+			);
+			path = Extention;
+			sourceTree = "<group>";
+		};
+		E15539E4DC57C978CBBE24AB /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				DCBC9BD51F0D33329EA76414 /* Pods-Nyang Village.debug.xcconfig */,
+				859A35855346CD60860891DF /* Pods-Nyang Village.release.xcconfig */,
+			);
+			path = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -74,9 +188,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 664B2DBE27FC708E00109DFB /* Build configuration list for PBXNativeTarget "Nyang Village" */;
 			buildPhases = (
+				F2F9DE1E979E29FDC1CAE53E /* [CP] Check Pods Manifest.lock */,
 				664B2DA627FC708D00109DFB /* Sources */,
 				664B2DA727FC708D00109DFB /* Frameworks */,
 				664B2DA827FC708D00109DFB /* Resources */,
+				B8E63E0404E17F111DA82370 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -125,22 +241,80 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				661197982831667C0033CB33 /* SCDream2.otf in Resources */,
 				664B2DBA27FC708E00109DFB /* LaunchScreen.storyboard in Resources */,
+				6611979A2831667C0033CB33 /* SCDream6.otf in Resources */,
+				6611979C2831667C0033CB33 /* SCDream8.otf in Resources */,
 				664B2DB727FC708E00109DFB /* Assets.xcassets in Resources */,
+				6611979D2831667C0033CB33 /* SCDream5.otf in Resources */,
+				6611979E2831667C0033CB33 /* SCDream9.otf in Resources */,
+				661197992831667C0033CB33 /* SCDream1.otf in Resources */,
+				661197A02831667C0033CB33 /* SCDream7.otf in Resources */,
 				664B2DB527FC708D00109DFB /* Main.storyboard in Resources */,
+				6611979F2831667C0033CB33 /* SCDream3.otf in Resources */,
+				6611979B2831667C0033CB33 /* SCDream4.otf in Resources */,
+				66F5BEB72804643D0002240C /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		B8E63E0404E17F111DA82370 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Nyang Village/Pods-Nyang Village-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Nyang Village/Pods-Nyang Village-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Nyang Village/Pods-Nyang Village-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F2F9DE1E979E29FDC1CAE53E /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Nyang Village-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		664B2DA627FC708D00109DFB /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				664B2DB227FC708D00109DFB /* ViewController.swift in Sources */,
+				66C1F7FE28314951001FD2FE /* LoginViewController.swift in Sources */,
+				66C1F7FC28314949001FD2FE /* MainViewController.swift in Sources */,
+				66C1F80128314A34001FD2FE /* UIView_Extention.swift in Sources */,
 				664B2DAE27FC708D00109DFB /* AppDelegate.swift in Sources */,
+				6611868928326D340002A832 /* LoginViewModel.swift in Sources */,
+				66B8D185283DDA76000EB71B /* Protocol.swift in Sources */,
+				661197A2283174FE0033CB33 /* UITextField_Extention.swift in Sources */,
 				664B2DB027FC708D00109DFB /* SceneDelegate.swift in Sources */,
+				6611868728326CFE0002A832 /* LoginViewPresenter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -282,9 +456,11 @@
 		};
 		664B2DBF27FC708E00109DFB /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = DCBC9BD51F0D33329EA76414 /* Pods-Nyang Village.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "Nyang Village/Nyang Village.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = VMAWA3XBC6;
@@ -310,9 +486,11 @@
 		};
 		664B2DC027FC708E00109DFB /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 859A35855346CD60860891DF /* Pods-Nyang Village.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "Nyang Village/Nyang Village.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = VMAWA3XBC6;

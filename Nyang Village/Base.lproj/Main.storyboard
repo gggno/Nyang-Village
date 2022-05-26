@@ -1,24 +1,143 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.16" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="0qE-Yt-T3E">
+    <device id="retina5_5" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.12"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="SCDream7.otf">
+            <string>S-CoreDream-7ExtraBold</string>
+        </array>
+    </customFonts>
     <scenes>
-        <!--View Controller-->
+        <!--Login View Controller-->
+        <scene sceneID="HRh-F7-NVz">
+            <objects>
+                <viewController id="0qE-Yt-T3E" customClass="LoginViewController" customModule="Nyang_Village" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="b8r-YD-naU">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="MainImage" translatesAutoresizingMaskIntoConstraints="NO" id="3lR-8S-ZZj">
+                                <rect key="frame" x="127" y="80" width="160" height="160"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="160" id="OMl-8x-Mta"/>
+                                    <constraint firstAttribute="height" constant="160" id="Tl0-yO-9cY"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="#NYANG VILLGAE" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vW5-CE-MER">
+                                <rect key="frame" x="155" y="242" width="104" height="14"/>
+                                <fontDescription key="fontDescription" name="S-CoreDream-7ExtraBold" family="S-Core Dream" pointSize="12"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="WELCOME" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tKe-Zn-qD5">
+                                <rect key="frame" x="103.66666666666669" y="326" width="207" height="46.666666666666686"/>
+                                <fontDescription key="fontDescription" name="S-CoreDream-7ExtraBold" family="S-Core Dream" pointSize="40"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2Je-qq-wXT">
+                                <rect key="frame" x="82" y="392.66666666666669" width="250" height="2"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="250" id="EZL-Tl-hpP"/>
+                                    <constraint firstAttribute="height" constant="2" id="X1e-Ka-H5Q"/>
+                                </constraints>
+                            </view>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="ID" minimumFontSize="16" translatesAutoresizingMaskIntoConstraints="NO" id="HP9-gk-BeE">
+                                <rect key="frame" x="82" y="414.66666666666669" width="250" height="55"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="55" id="Nae-Bz-ZYJ"/>
+                                    <constraint firstAttribute="width" constant="250" id="zDU-He-zw5"/>
+                                </constraints>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <textInputTraits key="textInputTraits" textContentType="one-time-code"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="PASSWORD" minimumFontSize="16" translatesAutoresizingMaskIntoConstraints="NO" id="r9h-f9-nrb">
+                                <rect key="frame" x="82" y="489.66666666666674" width="250" height="55"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="250" id="Itm-Fo-sBj"/>
+                                    <constraint firstAttribute="height" constant="55" id="aCh-bd-1ku"/>
+                                </constraints>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="one-time-code"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" semanticContentAttribute="forceRightToLeft" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Oq1-HM-8lZ">
+                                <rect key="frame" x="82" y="564.66666666666663" width="250" height="55"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="55" id="dRx-xJ-NoB"/>
+                                    <constraint firstAttribute="width" constant="250" id="tL8-nZ-q4T"/>
+                                </constraints>
+                                <color key="tintColor" name="MainOrangeColor"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Login">
+                                    <fontDescription key="titleFontDescription" name="S-CoreDream-7ExtraBold" family="S-Core Dream" pointSize="15"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="LoginBtnClicked:" destination="0qE-Yt-T3E" eventType="touchUpInside" id="5cy-pU-AOE"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="uUJ-4e-ecF"/>
+                        <color key="backgroundColor" systemColor="systemYellowColor"/>
+                        <constraints>
+                            <constraint firstItem="vW5-CE-MER" firstAttribute="centerX" secondItem="b8r-YD-naU" secondAttribute="centerX" id="49H-VU-Egr"/>
+                            <constraint firstItem="tKe-Zn-qD5" firstAttribute="centerX" secondItem="b8r-YD-naU" secondAttribute="centerX" id="8ib-8h-yDV"/>
+                            <constraint firstItem="2Je-qq-wXT" firstAttribute="centerX" secondItem="b8r-YD-naU" secondAttribute="centerX" id="9AK-hI-aaC"/>
+                            <constraint firstItem="3lR-8S-ZZj" firstAttribute="top" secondItem="uUJ-4e-ecF" secondAttribute="top" constant="80" id="9Lo-ld-OJ4"/>
+                            <constraint firstItem="tKe-Zn-qD5" firstAttribute="top" secondItem="vW5-CE-MER" secondAttribute="bottom" constant="70" id="DSx-Og-RGw"/>
+                            <constraint firstItem="r9h-f9-nrb" firstAttribute="top" secondItem="HP9-gk-BeE" secondAttribute="bottom" constant="20" id="L6R-gX-L1V"/>
+                            <constraint firstItem="Oq1-HM-8lZ" firstAttribute="centerX" secondItem="b8r-YD-naU" secondAttribute="centerX" id="R5Y-ri-Qp3"/>
+                            <constraint firstItem="vW5-CE-MER" firstAttribute="top" secondItem="3lR-8S-ZZj" secondAttribute="bottom" constant="2" id="UXI-3E-DMw"/>
+                            <constraint firstItem="2Je-qq-wXT" firstAttribute="top" secondItem="tKe-Zn-qD5" secondAttribute="bottom" constant="20" id="W01-1Q-y70"/>
+                            <constraint firstItem="HP9-gk-BeE" firstAttribute="centerX" secondItem="b8r-YD-naU" secondAttribute="centerX" id="WIf-ji-Uah"/>
+                            <constraint firstItem="HP9-gk-BeE" firstAttribute="top" secondItem="2Je-qq-wXT" secondAttribute="bottom" constant="20" id="Ygc-ut-YX2"/>
+                            <constraint firstItem="r9h-f9-nrb" firstAttribute="centerX" secondItem="b8r-YD-naU" secondAttribute="centerX" id="fif-5K-4K0"/>
+                            <constraint firstItem="Oq1-HM-8lZ" firstAttribute="top" secondItem="r9h-f9-nrb" secondAttribute="bottom" constant="20" id="t9Y-8Q-pKw"/>
+                            <constraint firstItem="3lR-8S-ZZj" firstAttribute="centerX" secondItem="b8r-YD-naU" secondAttribute="centerX" id="u35-YY-phj"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="IDTxt" destination="HP9-gk-BeE" id="IL4-dx-89q"/>
+                        <outlet property="LoginBtn" destination="Oq1-HM-8lZ" id="Htq-eM-QLN"/>
+                        <outlet property="PWDTxt" destination="r9h-f9-nrb" id="bLC-Tv-X5a"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="17k-WI-0bC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-961" y="-549"/>
+        </scene>
+        <!--Main View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="MainViewController" customModule="Nyang_Village" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" xcode11CocoaTouchSystemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="45" y="56"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="MainImage" width="431" height="403"/>
+        <namedColor name="MainOrangeColor">
+            <color red="1" green="0.51800000667572021" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <systemColor name="systemYellowColor">
+            <color red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
 </document>

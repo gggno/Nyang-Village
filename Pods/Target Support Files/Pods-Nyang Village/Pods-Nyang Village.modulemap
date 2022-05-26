@@ -1,0 +1,6 @@
+framework module Pods_Nyang_Village {
+  umbrella header "Pods-Nyang Village-umbrella.h"
+
+  export *
+  module * { export * }
+}
