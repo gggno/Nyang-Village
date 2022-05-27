@@ -24,6 +24,8 @@
 		664B2DB527FC708D00109DFB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 664B2DB327FC708D00109DFB /* Main.storyboard */; };
 		664B2DB727FC708E00109DFB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 664B2DB627FC708E00109DFB /* Assets.xcassets */; };
 		664B2DBA27FC708E00109DFB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 664B2DB827FC708E00109DFB /* LaunchScreen.storyboard */; };
+		66AA9F5B2840B04E00988A60 /* MainTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66AA9F592840B04E00988A60 /* MainTableViewCell.swift */; };
+		66AA9F5C2840B04E00988A60 /* MainTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 66AA9F5A2840B04E00988A60 /* MainTableViewCell.xib */; };
 		66B8D185283DDA76000EB71B /* Protocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66B8D184283DDA76000EB71B /* Protocol.swift */; };
 		66C1F7FC28314949001FD2FE /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66C1F7FB28314949001FD2FE /* MainViewController.swift */; };
 		66C1F7FE28314951001FD2FE /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66C1F7FD28314951001FD2FE /* LoginViewController.swift */; };
@@ -53,6 +55,8 @@
 		664B2DB927FC708E00109DFB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		664B2DBB27FC708E00109DFB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		664F296B280469A100F1D43C /* Nyang Village.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Nyang Village.entitlements"; sourceTree = "<group>"; };
+		66AA9F592840B04E00988A60 /* MainTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTableViewCell.swift; sourceTree = "<group>"; };
+		66AA9F5A2840B04E00988A60 /* MainTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainTableViewCell.xib; sourceTree = "<group>"; };
 		66B8D184283DDA76000EB71B /* Protocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocol.swift; sourceTree = "<group>"; };
 		66C1F7FB28314949001FD2FE /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		66C1F7FD28314951001FD2FE /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -148,6 +152,8 @@
 			isa = PBXGroup;
 			children = (
 				66C1F7FB28314949001FD2FE /* MainViewController.swift */,
+				66AA9F592840B04E00988A60 /* MainTableViewCell.swift */,
+				66AA9F5A2840B04E00988A60 /* MainTableViewCell.xib */,
 				66C1F7FD28314951001FD2FE /* LoginViewController.swift */,
 			);
 			path = View;
@@ -245,6 +251,7 @@
 				664B2DBA27FC708E00109DFB /* LaunchScreen.storyboard in Resources */,
 				6611979A2831667C0033CB33 /* SCDream6.otf in Resources */,
 				6611979C2831667C0033CB33 /* SCDream8.otf in Resources */,
+				66AA9F5C2840B04E00988A60 /* MainTableViewCell.xib in Resources */,
 				664B2DB727FC708E00109DFB /* Assets.xcassets in Resources */,
 				6611979D2831667C0033CB33 /* SCDream5.otf in Resources */,
 				6611979E2831667C0033CB33 /* SCDream9.otf in Resources */,
@@ -310,6 +317,7 @@
 				66C1F7FC28314949001FD2FE /* MainViewController.swift in Sources */,
 				66C1F80128314A34001FD2FE /* UIView_Extention.swift in Sources */,
 				664B2DAE27FC708D00109DFB /* AppDelegate.swift in Sources */,
+				66AA9F5B2840B04E00988A60 /* MainTableViewCell.swift in Sources */,
 				6611868928326D340002A832 /* LoginViewModel.swift in Sources */,
 				66B8D185283DDA76000EB71B /* Protocol.swift in Sources */,
 				661197A2283174FE0033CB33 /* UITextField_Extention.swift in Sources */,

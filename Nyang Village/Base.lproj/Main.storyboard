@@ -132,7 +132,19 @@
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DvS-jz-mLj">
                                 <rect key="frame" x="0.0" y="185" width="414" height="551"/>
+                                <subviews>
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="uDB-vE-7zF">
+                                        <rect key="frame" x="20" y="50" width="374" height="501"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                    </tableView>
+                                </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="uDB-vE-7zF" secondAttribute="bottom" id="OtH-1S-KMu"/>
+                                    <constraint firstItem="uDB-vE-7zF" firstAttribute="leading" secondItem="DvS-jz-mLj" secondAttribute="leading" constant="20" id="Ws8-AX-1PI"/>
+                                    <constraint firstItem="uDB-vE-7zF" firstAttribute="top" secondItem="DvS-jz-mLj" secondAttribute="top" constant="50" id="kOf-PN-5te"/>
+                                    <constraint firstAttribute="trailing" secondItem="uDB-vE-7zF" secondAttribute="trailing" constant="20" id="nec-VL-lhW"/>
+                                </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tIa-Wb-uYn">
                                 <rect key="frame" x="365" y="5" width="44" height="34"/>
@@ -157,6 +169,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="MainTableView" destination="uDB-vE-7zF" id="RAS-FS-6da"/>
                         <outlet property="settingBtn" destination="tIa-Wb-uYn" id="zvm-xj-GGu"/>
                         <outlet property="tableBackgroundView" destination="DvS-jz-mLj" id="00F-ki-3u3"/>
                     </connections>
@@ -173,6 +186,9 @@
         <namedColor name="MainOrangeColor">
             <color red="1" green="0.51800000667572021" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
         <systemColor name="systemYellowColor">
             <color red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
