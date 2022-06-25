@@ -7,6 +7,8 @@ target 'Nyang Village' do
   use_frameworks!
 
   # Pods for Nyang Village
+pod 'Alamofire'
+
 
 # Add the Firebase pod for Google Analytics
 pod 'Firebase/Analytics'

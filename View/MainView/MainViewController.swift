@@ -1,14 +1,19 @@
 import UIKit
+import FirebaseMessaging
 
 class MainViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
-
+    
     //MARK: - IBOutlet
     @IBOutlet weak var tableBackgroundView: UIView!
     @IBOutlet weak var settingBtn: UIButton!
     @IBOutlet weak var MainTableView: UITableView!
     
+    var mainViewPresenter = MainViewPresenter()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        mainViewPresenter.makeView(view: self)
         
         view.GradientColor(color1: UIColor(named: "MainYellowColor")!, color2: UIColor(named: "MainOrangeColor")!)
         
@@ -17,6 +22,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         MainTableView.delegate = self
         MainTableView.dataSource = self
         MainTableView.register(UINib(nibName: "MainTableViewCell", bundle: nil), forCellReuseIdentifier: "MainTableViewCell")
+        
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -29,11 +35,8 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         return cell
     }
     
-    
     @IBAction func settingBtnClicked(_ sender: Any) {
         
     }
     
-    
 }
-

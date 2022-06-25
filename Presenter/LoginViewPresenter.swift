@@ -1,8 +1,14 @@
 import Foundation
+import UIKit
 
-class LoginViewPresenter {
+class LoginViewPresenter: ViewUpdate {
         
     var loginViewModel = LoginViewModel()
-    var loginView: LoginViewController?
+    var loginVC: LoginViewController?
+    
+    func makeView(view: UIViewController) {
+        self.loginVC = view as? LoginViewController
+    }
+    
     
 }

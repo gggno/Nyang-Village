@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="0qE-Yt-T3E">
     <device id="retina5_5" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
@@ -134,16 +134,16 @@
                                 <rect key="frame" x="0.0" y="185" width="414" height="551"/>
                                 <subviews>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="uDB-vE-7zF">
-                                        <rect key="frame" x="20" y="50" width="374" height="501"/>
+                                        <rect key="frame" x="0.0" y="50" width="414" height="501"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     </tableView>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="uDB-vE-7zF" secondAttribute="bottom" id="OtH-1S-KMu"/>
-                                    <constraint firstItem="uDB-vE-7zF" firstAttribute="leading" secondItem="DvS-jz-mLj" secondAttribute="leading" constant="20" id="Ws8-AX-1PI"/>
+                                    <constraint firstItem="uDB-vE-7zF" firstAttribute="leading" secondItem="DvS-jz-mLj" secondAttribute="leading" id="Ws8-AX-1PI"/>
                                     <constraint firstItem="uDB-vE-7zF" firstAttribute="top" secondItem="DvS-jz-mLj" secondAttribute="top" constant="50" id="kOf-PN-5te"/>
-                                    <constraint firstAttribute="trailing" secondItem="uDB-vE-7zF" secondAttribute="trailing" constant="20" id="nec-VL-lhW"/>
+                                    <constraint firstAttribute="trailing" secondItem="uDB-vE-7zF" secondAttribute="trailing" id="nec-VL-lhW"/>
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tIa-Wb-uYn">

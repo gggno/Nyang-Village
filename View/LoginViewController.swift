@@ -1,5 +1,5 @@
 import UIKit
-
+import FirebaseMessaging
 class LoginViewController: UIViewController {    
     
     //MARK: - IBOutlet
@@ -7,8 +7,12 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var PWDTxt: UITextField!
     @IBOutlet weak var LoginBtn: UIButton!
     
+    var loginViewPresenter = LoginViewPresenter()
+
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        loginViewPresenter.makeView(view: self)
         
         view.GradientColor(color1: UIColor(named: "MainYellowColor")!, color2: UIColor(named: "MainOrangeColor")!)
         
