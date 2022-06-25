@@ -86,7 +86,7 @@ class LoginViewController: UIViewController {
     
     // MARK: - IBAction
     @IBAction func LoginBtnClicked(_ sender: Any) {
-        
+        loginViewPresenter.loginTry()
     }
     
     
