@@ -4,6 +4,7 @@ struct SubjectInfo: Decodable {
     var signal: Int?
     var suspendedDate: String?
     var roomInfos: [RoomInfos]?
+    var jwt: String?
 }
 
 struct RoomInfos: Decodable {

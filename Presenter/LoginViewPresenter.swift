@@ -2,8 +2,9 @@ import Foundation
 import Alamofire
 import UIKit
 
-class LoginViewPresenter: ViewUpdate {
+class LoginViewPresenter: ViewUpdate, getAccount {
     
+    // 모델과 뷰를 가지고 있음(연결해주는 중간다리 역할)
     var loginViewModel = LoginViewModel()
     var loginVC: LoginViewController?
     
@@ -11,21 +12,22 @@ class LoginViewPresenter: ViewUpdate {
         self.loginVC = view as? LoginViewController
     }
     
-    // 로그인 통신 함수
-    func loginTry() {
+    func getId() -> String {
+        let id: String
+        id = (loginVC?.IDTxt.text)!
         
-        let loginRequest = LoginRequset(currentDate: loginViewModel.dateSend(), fcm: loginViewModel.fcmTokenSend(), password: (loginVC?.PWDTxt.text)!, studentId: (loginVC?.IDTxt.text)!, version: 1)
-        
-        let url = "http://54.180.114.197:8087/ay/login"
-        
-        AF.request(url, method: .post, parameters: loginRequest, encoder: JSONParameterEncoder(), headers: nil).responseDecodable(of: SubjectInfo.self) { [self] response in
-            switch response.result {
-            case .success(let response):
-                print("Success!")
-                loginViewModel.didSuccess(response)
-            case .failure(let error):
-                print("Failure:", error)
-            }
-        }
+        return id
     }
+    
+    func getPwd() -> String {
+        let pwd: String
+        pwd = (loginVC?.PWDTxt.text)!
+        
+        return pwd
+    }
+    
+    func login() {
+        loginViewModel.loginTry()
+    }
+    
 }

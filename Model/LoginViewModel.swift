@@ -1,16 +1,10 @@
 import Foundation
 import FirebaseMessaging
+import Alamofire
 
 class LoginViewModel {
     
-    // 현재 날짜 전달 함수
-    func dateSend() -> String {
-        let date = DateFormatter()
-        date.dateFormat = "yyMMdd"
-        
-        return date.string(from: Date.now)
-    }
-     // fcm토큰 값 전달 함수
+    // fcm토큰 값 전달 함수
     func fcmTokenSend() -> String {
         guard let fcmToken = Messaging.messaging().fcmToken else { return "fcmtoken send fail"}
         return fcmToken
@@ -18,8 +12,26 @@ class LoginViewModel {
     // 지금은 확인 차 임시 코드 작성함
     func didSuccess(_ response: SubjectInfo) {
         
-        let data = response.roomInfos![0].roomName
+        let data = response.roomInfos![1].roomName
         print(data)
+    }
+    
+    // 로그인 통신 함수
+    func loginTry() {
+        
+        let loginRequest = LoginRequset(fcm: fcmTokenSend(), password: "rmsgh748596.", studentId: "2017E7035", version: 1)
+        
+        let url = "http://54.180.114.197:8087/ay/login"
+        
+        AF.request(url, method: .post, parameters: loginRequest, encoder: JSONParameterEncoder(), headers: nil).responseDecodable(of: SubjectInfo.self) { [self] response in
+            switch response.result {
+            case .success(let response):
+                print("Success!")
+                didSuccess(response)
+            case .failure(let error):
+                print("Failure:", error)
+            }
+        }
     }
     
 }
