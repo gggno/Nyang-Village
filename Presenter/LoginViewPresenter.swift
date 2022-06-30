@@ -26,8 +26,15 @@ class LoginViewPresenter: ViewUpdate, getAccount {
         return pwd
     }
     
-    func login() {
-        loginViewModel.loginTry()
+    func getToken() -> String {
+        let token: String
+        token = loginViewModel.fcmTokenSend()
+        
+        return token
+    }
+    
+    func login(requestData: LoginRequest) {
+        loginViewModel.loginTry(request: requestData)
     }
     
 }

@@ -16,14 +16,12 @@ class LoginViewModel {
         print(data)
     }
     
-    // 로그인 통신 함수
-    func loginTry() {
-        
-        let loginRequest = LoginRequset(fcm: fcmTokenSend(), password: "rmsgh748596.", studentId: "2017E7035", version: 1)
+    // 로그인 통신(post) api 
+    func loginTry(request: LoginRequest) {
         
         let url = "http://54.180.114.197:8087/ay/login"
         
-        AF.request(url, method: .post, parameters: loginRequest, encoder: JSONParameterEncoder(), headers: nil).responseDecodable(of: SubjectInfo.self) { [self] response in
+        AF.request(url, method: .post, parameters: request, encoder: JSONParameterEncoder(), headers: nil).responseDecodable(of: SubjectInfo.self) { [self] response in
             switch response.result {
             case .success(let response):
                 print("Success!")

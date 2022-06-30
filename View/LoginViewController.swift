@@ -1,5 +1,6 @@
 import UIKit
 import FirebaseMessaging
+
 class LoginViewController: UIViewController {    
     
     //MARK: - IBOutlet
@@ -8,7 +9,8 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var LoginBtn: UIButton!
     
     var loginViewPresenter = LoginViewPresenter()
-
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -86,9 +88,8 @@ class LoginViewController: UIViewController {
     
     // MARK: - IBAction
     @IBAction func LoginBtnClicked(_ sender: Any) {
-        loginViewPresenter.getId()
-        loginViewPresenter.getPwd()
-        loginViewPresenter.login()
+                
+        loginViewPresenter.login(requestData: LoginRequest(fcm: loginViewPresenter.getToken(), password: loginViewPresenter.getPwd(), studentId: loginViewPresenter.getId(), version: 1))
     }
     
 }
