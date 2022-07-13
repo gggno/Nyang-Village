@@ -68,7 +68,7 @@ extension AppDelegate: MessagingDelegate {
     func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String?) {
         print("파베 토큰을 받았다.")
         // 받을 값을 서버로 넘겨줘야함
-        print("Appdelegate - firebase registration token: \(String(describing: fcmToken))")
+        // print("Appdelegate - firebase registration token: \(String(describing: fcmToken))")
     }
     
     func application(application: UIApplication,

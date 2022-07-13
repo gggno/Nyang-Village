@@ -10,7 +10,6 @@ class LoginViewController: UIViewController {
     
     var loginViewPresenter = LoginViewPresenter()
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -88,8 +87,21 @@ class LoginViewController: UIViewController {
     
     // MARK: - IBAction
     @IBAction func LoginBtnClicked(_ sender: Any) {
+        
+        loginViewPresenter.login(requestData: LoginRequest(fcm: loginViewPresenter.getToken(), password: loginViewPresenter.getPwd(), studentId: loginViewPresenter.getId(), version: 1), completion2: { result in
+            print("result:", result.roomInfos![0].roomName)
+            print("개수:", result.roomInfos?.count)
+
+            self.navigationController?.pushViewController(animated: true, viewName: "MainViewController", completion: { vc in
                 
-        loginViewPresenter.login(requestData: LoginRequest(fcm: loginViewPresenter.getToken(), password: loginViewPresenter.getPwd(), studentId: loginViewPresenter.getId(), version: 1))
+                let main = vc as! MainViewController
+                
+                main.prepareWithData(data: result)
+                
+            })
+            
+        })
+        
     }
     
 }

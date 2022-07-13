@@ -82,7 +82,7 @@
     <resources>
         <image name="PersonImage" width="18" height="17"/>
         <namedColor name="SubjectColor">
-            <color red="0.29803921568627451" green="0.28627450980392155" blue="0.28235294117647058" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.29800000786781311" green="0.28600001335144043" blue="0.28200000524520874" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>

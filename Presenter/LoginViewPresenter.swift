@@ -33,8 +33,12 @@ class LoginViewPresenter: ViewUpdate, getAccount {
         return token
     }
     
-    func login(requestData: LoginRequest) {
-        loginViewModel.loginTry(request: requestData)
+    func login(requestData: LoginRequest, completion2: @escaping (SubjectInfo) -> Void) {
+        
+        loginViewModel.loginTry(request: requestData, completion: { result in
+            completion2(result)
+        })
+    
     }
     
 }

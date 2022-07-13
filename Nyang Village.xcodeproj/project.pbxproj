@@ -35,6 +35,8 @@
 		66C1F7FE28314951001FD2FE /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66C1F7FD28314951001FD2FE /* LoginViewController.swift */; };
 		66C1F80128314A34001FD2FE /* UIView_Extention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66C1F80028314A34001FD2FE /* UIView_Extention.swift */; };
 		66F5BEB72804643D0002240C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 66F5BEB62804643D0002240C /* GoogleService-Info.plist */; };
+		66F5EEA8287C24CF0057C285 /* NaviViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66F5EEA7287C24CF0057C285 /* NaviViewController.swift */; };
+		66F5EEAA287C57350057C285 /* UINavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66F5EEA9287C57350057C285 /* UINavigationController.swift */; };
 		6E7867EFD964041F86EF3311 /* Pods_Nyang_Village.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D894EDED1EF20D4DC2AF2E62 /* Pods_Nyang_Village.framework */; };
 /* End PBXBuildFile section */
 
@@ -70,6 +72,8 @@
 		66C1F7FD28314951001FD2FE /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		66C1F80028314A34001FD2FE /* UIView_Extention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIView_Extention.swift; sourceTree = "<group>"; };
 		66F5BEB62804643D0002240C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		66F5EEA7287C24CF0057C285 /* NaviViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NaviViewController.swift; sourceTree = "<group>"; };
+		66F5EEA9287C57350057C285 /* UINavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UINavigationController.swift; sourceTree = "<group>"; };
 		859A35855346CD60860891DF /* Pods-Nyang Village.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Nyang Village.release.xcconfig"; path = "Target Support Files/Pods-Nyang Village/Pods-Nyang Village.release.xcconfig"; sourceTree = "<group>"; };
 		D894EDED1EF20D4DC2AF2E62 /* Pods_Nyang_Village.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Nyang_Village.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DCBC9BD51F0D33329EA76414 /* Pods-Nyang Village.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Nyang Village.debug.xcconfig"; path = "Target Support Files/Pods-Nyang Village/Pods-Nyang Village.debug.xcconfig"; sourceTree = "<group>"; };
@@ -139,6 +143,7 @@
 				664B2DAD27FC708D00109DFB /* AppDelegate.swift */,
 				664B2DAF27FC708D00109DFB /* SceneDelegate.swift */,
 				664B2DB327FC708D00109DFB /* Main.storyboard */,
+				66F5EEA7287C24CF0057C285 /* NaviViewController.swift */,
 				664B2DB627FC708E00109DFB /* Assets.xcassets */,
 				664B2DB827FC708E00109DFB /* LaunchScreen.storyboard */,
 				66F5BEB62804643D0002240C /* GoogleService-Info.plist */,
@@ -202,6 +207,7 @@
 			children = (
 				66C1F80028314A34001FD2FE /* UIView_Extention.swift */,
 				661197A1283174FE0033CB33 /* UITextField_Extention.swift */,
+				66F5EEA9287C57350057C285 /* UINavigationController.swift */,
 			);
 			path = Extention;
 			sourceTree = "<group>";
@@ -345,10 +351,12 @@
 				66B530842844C1770064B490 /* MainViewPresenter.swift in Sources */,
 				66C1F7FC28314949001FD2FE /* MainViewController.swift in Sources */,
 				66C1F80128314A34001FD2FE /* UIView_Extention.swift in Sources */,
+				66F5EEA8287C24CF0057C285 /* NaviViewController.swift in Sources */,
 				664B2DAE27FC708D00109DFB /* AppDelegate.swift in Sources */,
 				66AA9F5B2840B04E00988A60 /* MainTableViewCell.swift in Sources */,
 				66A126472865E48A007B3547 /* LoginResponse.swift in Sources */,
 				66A126452865D978007B3547 /* LoginRequest.swift in Sources */,
+				66F5EEAA287C57350057C285 /* UINavigationController.swift in Sources */,
 				6611868928326D340002A832 /* LoginViewModel.swift in Sources */,
 				66B8D185283DDA76000EB71B /* Protocol.swift in Sources */,
 				661197A2283174FE0033CB33 /* UITextField_Extention.swift in Sources */,
