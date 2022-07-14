@@ -29,15 +29,18 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="냥빌리지 프로젝트 01반" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jUy-gO-6pw">
-                        <rect key="frame" x="20" y="20" width="179" height="20"/>
+                        <rect key="frame" x="20" y="20" width="500" height="20"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <fontDescription key="fontDescription" name="S-CoreDream-8Heavy" family="S-Core Dream" pointSize="17"/>
                         <color key="textColor" name="SubjectColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="고양이 교수님" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L2N-js-1IB">
-                        <rect key="frame" x="20" y="50" width="85" height="16.5"/>
+                        <rect key="frame" x="20" y="50" width="300" height="17"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="300" id="Vdg-uy-gw4"/>
+                        </constraints>
                         <fontDescription key="fontDescription" name="S-CoreDream-4Regular" family="S-Core Dream" pointSize="14"/>
                         <color key="textColor" name="SubjectColor"/>
                         <nil key="highlightedColor"/>
@@ -68,6 +71,7 @@
                     <constraint firstItem="L2N-js-1IB" firstAttribute="top" secondItem="jUy-gO-6pw" secondAttribute="bottom" constant="10" id="ZPt-W8-yc8"/>
                     <constraint firstItem="jUy-gO-6pw" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="kXf-DJ-T6c"/>
                     <constraint firstItem="QP8-RC-tjo" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="qJJ-s2-VBS"/>
+                    <constraint firstAttribute="trailing" secondItem="jUy-gO-6pw" secondAttribute="trailing" constant="20" id="yzA-6L-j9c"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
