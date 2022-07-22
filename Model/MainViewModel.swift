@@ -9,9 +9,13 @@ class MainViewModel {
         self.roomData = allData.roomInfos
     }
     
-    func roomDataSend() -> [RoomInfos] {
-        return roomData!
+    func roomDataSend(compleion: @escaping ([RoomInfos]) -> Void) {
+        compleion(roomData!)
     }
+    
+//    func roomDataSend() -> [RoomInfos] {
+//        return roomData!
+//    }
     
     
 }

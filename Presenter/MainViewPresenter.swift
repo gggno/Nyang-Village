@@ -10,9 +10,18 @@ class MainViewPresenter {
         self.mainVC = view as? MainViewController
         mainViewModel.setRoomInfos(allData: data)
     }
-    
-    func roomDataBridge() -> [RoomInfos] {
-        return mainViewModel.roomDataSend()
+
+    func roomDataBridge() {
+        mainViewModel.roomDataSend(compleion: {result in
+            
+            self.mainVC?.initCell(data: result)
+        })
     }
+    
+    
+    
+//    func roomDataBridge() -> [RoomInfos] {
+//        return mainViewModel.roomDataSend()
+//    }
     
 }

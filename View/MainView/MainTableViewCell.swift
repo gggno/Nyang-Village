@@ -18,6 +18,9 @@ class MainTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    
+    func updateData(data: RoomInfos) {
+        self.SubjectNameLabel.text = data.roomName
+        self.ProfessorNameLabel.text = data.professorName
+    }
 
 }

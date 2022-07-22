@@ -7,9 +7,10 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     @IBOutlet weak var tableBackgroundView: UIView!
     @IBOutlet weak var settingBtn: UIButton!
     @IBOutlet weak var MainTableView: UITableView!
+    var cellArray: [MainTableViewCell] = []
+    var roomInfos: [RoomInfos] = []
     
     var mainViewPresenter = MainViewPresenter()
-    var result: SubjectInfo?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -17,7 +18,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         self.navigationController?.isNavigationBarHidden = true
         
         self.MainTableView.rowHeight = 80
-                
+        
         view.GradientColor(color1: UIColor(named: "MainYellowColor")!, color2: UIColor(named: "MainOrangeColor")!)
         
         tableBackgroundView.CornerRadiusLayerSetting(cornerRadius: 60, cornerLayer: [.layerMinXMinYCorner, .layerMaxXMinYCorner])
@@ -27,35 +28,36 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         MainTableView.register(UINib(nibName: "MainTableViewCell", bundle: nil), forCellReuseIdentifier: "MainTableViewCell")
     }
     
-//     init(data: SubjectInfo) {
-//        super.init(nibName: nil, bundle:nil)
-//
-//         self.result = data
-//    }
-//
-//    required init?(coder: NSCoder) {
-//        super.init(coder: coder)
-//    }
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5 // 임시 코드
+        return roomInfos.count // 임시 코드
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "MainTableViewCell", for: indexPath) as! MainTableViewCell
         
-//        let roomInfo: [RoomInfos] = mainViewPresenter.roomDataBridge()
+        cell.SubjectNameLabel.text = roomInfos[indexPath.row].roomName
+        cell.ProfessorNameLabel.text = roomInfos[indexPath.row].professorName
         
         cell.layer.cornerRadius = 50
-        print(indexPath.row)
-//        cell.ProfessorNameLabel.text = roomInfo[0].professorName
         
         return cell
+    }
+
+    func initCell(data: [RoomInfos]) {
+        
+//        for roomData in data {
+//            let cell = MainTableViewCell()
+////            cell.updateData(data: roomData)
+//            self.cellArray.append(cell)
+//        }
+        self.roomInfos = data
+        MainTableView.reloadData()
     }
     
     func prepareWithData(data: SubjectInfo) {
         // 프레젠터로
         mainViewPresenter.makeView(view: self, data: data)
+        mainViewPresenter.roomDataBridge()
     }
     
     @IBAction func settingBtnClicked(_ sender: Any) {
