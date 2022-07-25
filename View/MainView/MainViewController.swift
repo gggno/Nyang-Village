@@ -1,5 +1,4 @@
 import UIKit
-import FirebaseMessaging
 
 class MainViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     

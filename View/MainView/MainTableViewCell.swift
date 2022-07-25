@@ -21,6 +21,7 @@ class MainTableViewCell: UITableViewCell {
     func updateData(data: RoomInfos) {
         self.SubjectNameLabel.text = data.roomName
         self.ProfessorNameLabel.text = data.professorName
+//        self.NumberOfParticipantsLabel.text = data.roomInNames?.count
     }
 
 }

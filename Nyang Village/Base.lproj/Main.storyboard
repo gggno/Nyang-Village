@@ -198,22 +198,6 @@
             </objects>
             <point key="canvasLocation" x="-962.31884057971024" y="-549.45652173913049"/>
         </scene>
-        <!--Navi View Controller-->
-        <scene sceneID="Fca-LF-Af1">
-            <objects>
-                <viewController storyboardIdentifier="NaviViewController" id="mXB-cL-XWm" customClass="NaviViewController" customModule="Nyang_Village" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="GtJ-W2-lXH">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <viewLayoutGuide key="safeArea" id="VR1-o6-VXs"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="1Vm-vz-wx9"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="zVd-s7-61L" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="446" y="138"/>
-        </scene>
     </scenes>
     <resources>
         <image name="ListMainImage" width="166" height="93"/>
