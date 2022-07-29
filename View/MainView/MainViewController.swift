@@ -62,7 +62,8 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     @IBAction func settingBtnClicked(_ sender: Any) {
-//        작성해야 됨
+        let settingVC = self.storyboard?.instantiateViewController(withIdentifier: "SettingViewController")
+        self.navigationController?.pushViewController(settingVC!, animated: true)
     }
     
 }
