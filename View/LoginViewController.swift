@@ -89,16 +89,20 @@ class LoginViewController: UIViewController {
     @IBAction func LoginBtnClicked(_ sender: Any) {
         
         loginViewPresenter.login(requestData: LoginRequest(fcm: loginViewPresenter.getToken(), password: loginViewPresenter.getPwd(), studentId: loginViewPresenter.getId(), version: 1), completion2: { result in
-            
-            self.navigationController?.pushViewController(animated: true, viewName: "MainViewController", completion: { vc in
+            if result.signal == 3 || result.signal == 4 { // 정상 입력 되었을 때(signal == 3 || 4)
+                self.navigationController?.pushViewController(animated: true, viewName: "MainViewController", completion: { vc in
+                    
+                    let main = vc as! MainViewController
+                    
+                    main.prepareWithData(data: result)
+                })
+            } else if result.signal == 5 { //아이디 또는 패스워드 잘못 입력했을 때(signal == 5)
+                let alert = UIAlertController(title: "로그인 실패", message: "아이디 또는 비밀번호를 확인해주세요.", preferredStyle: .alert)
+                let ok = UIAlertAction(title: "확인", style: .default)
                 
-                let main = vc as! MainViewController
-                
-                main.prepareWithData(data: result)
-            })
-            
-            
-            
+                alert.addAction(ok)
+                self.present(alert, animated: true)
+            }
             
         })
         

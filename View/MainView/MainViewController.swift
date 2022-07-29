@@ -6,7 +6,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     @IBOutlet weak var tableBackgroundView: UIView!
     @IBOutlet weak var settingBtn: UIButton!
     @IBOutlet weak var MainTableView: UITableView!
-    var cellArray: [MainTableViewCell] = []
+//    var cellArray: [MainTableViewCell] = []
     var roomInfos: [RoomInfos] = []
     
     var mainViewPresenter = MainViewPresenter()
@@ -16,7 +16,9 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         self.navigationController?.isNavigationBarHidden = true
         
-        self.MainTableView.rowHeight = 80
+        self.MainTableView.rowHeight = 90
+        // 테이블 뷰 라인 삭제
+//        self.MainTableView.separatorStyle = UITableViewCell.SeparatorStyle.none
         
         view.GradientColor(color1: UIColor(named: "MainYellowColor")!, color2: UIColor(named: "MainOrangeColor")!)
         
@@ -28,7 +30,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return roomInfos.count // 임시 코드
+        return roomInfos.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -37,7 +39,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         cell.SubjectNameLabel.text = roomInfos[indexPath.row].roomName
         cell.ProfessorNameLabel.text = roomInfos[indexPath.row].professorName
         
-        cell.layer.cornerRadius = 50
+//        cell.layer.cornerRadius = 25
         
         return cell
     }
@@ -60,7 +62,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     @IBAction func settingBtnClicked(_ sender: Any) {
-        
+//        작성해야 됨
     }
     
 }

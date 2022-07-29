@@ -36,7 +36,11 @@ class LoginViewPresenter: ViewUpdate, getAccount {
     func login(requestData: LoginRequest, completion2: @escaping (SubjectInfo) -> Void) {
         
         loginViewModel.loginTry(request: requestData, completion: { result in
+            if result.signal == 3 || result.signal == 4 { // 정상 입력 되었을 때(signal ==4)
             completion2(result)
+            } else if result.signal == 5 { // 아이디 또는 패스워드 잘못 입력했을 때(signal == 5)
+                completion2(result)
+            }
         })
     
     }

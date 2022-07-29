@@ -20,21 +20,19 @@ class LoginViewModel {
             case .success(let response):
                 print("Success!")
                 
-                completion(response)
+                // 정상 입력 되었을 때(signal == 4)
+                if response.signal == 3 || response.signal == 4 {
+                    completion(response)
+                }
+                // 아이디 또는 패스워드 잘못 입력했을 때(signal == 5)
+                if response.signal == 5 {
+                    completion(response)
+                }
                 
-                // didSuccess(response)
             case .failure(let error):
                 print("Failure:", error)
             }
         }
-    }
-    
-    // 통신 성공 시 수행되는 함수
-    func didSuccess(_ completion: @escaping (SubjectInfo) -> Void) {
-        
-//        let data = response.roomInfos![0].roomName
-//        print(data)
-        
     }
     
 }
