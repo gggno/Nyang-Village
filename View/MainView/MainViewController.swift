@@ -17,7 +17,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         self.navigationController?.isNavigationBarHidden = true
         
         // 테이블 뷰 높이
-        self.MainTableView.rowHeight = 100
+        self.MainTableView.rowHeight = 120
         
         // 테이블 뷰 동적으로 높이 조절
 //        self.MainTableView.estimatedRowHeight = 80
@@ -28,6 +28,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         view.GradientColor(color1: UIColor(named: "MainYellowColor")!, color2: UIColor(named: "MainOrangeColor")!)
         
+        // 테이블 뷰 뒤 뷰 cornerRadius 작업
         tableBackgroundView.CornerRadiusLayerSetting(cornerRadius: 60, cornerLayer: [.layerMinXMinYCorner, .layerMaxXMinYCorner])
         
         MainTableView.delegate = self
