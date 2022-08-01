@@ -17,7 +17,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         self.navigationController?.isNavigationBarHidden = true
         
         // 테이블 뷰 높이
-        self.MainTableView.rowHeight = 130
+        self.MainTableView.rowHeight = 100
         
         // 테이블 뷰 동적으로 높이 조절
 //        self.MainTableView.estimatedRowHeight = 80
