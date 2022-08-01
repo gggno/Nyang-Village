@@ -16,9 +16,9 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         self.navigationController?.isNavigationBarHidden = true
         
-        self.MainTableView.rowHeight = 90
+        self.MainTableView.rowHeight = 100
         // 테이블 뷰 라인 삭제
-//        self.MainTableView.separatorStyle = UITableViewCell.SeparatorStyle.none
+        self.MainTableView.separatorStyle = UITableViewCell.SeparatorStyle.none
         
         view.GradientColor(color1: UIColor(named: "MainYellowColor")!, color2: UIColor(named: "MainOrangeColor")!)
         
@@ -36,10 +36,12 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "MainTableViewCell", for: indexPath) as! MainTableViewCell
         
-        cell.SubjectNameLabel.text = roomInfos[indexPath.row].roomName
-        cell.ProfessorNameLabel.text = roomInfos[indexPath.row].professorName
+        // 클릭 시 회색 하이라이트 제거
+        cell.selectionStyle = .none
         
-//        cell.layer.cornerRadius = 25
+        cell.SubjectNameLabel.text = roomInfos[indexPath.row].roomName
+        cell.ProfessorNameLabel.text = roomInfos[indexPath.row].professorName! + " 교수님"
+        cell.NumberOfParticipantsLabel.text = String(roomInfos[indexPath.row].roomInNames!.count)
         
         return cell
     }
