@@ -10,8 +10,8 @@ class LoginViewController: UIViewController {
     
     var loginViewPresenter = LoginViewPresenter()
     
+    // 로딩 인디케이터
     lazy var activityIndicator: UIActivityIndicatorView = {
-        
         let activityIndicator = UIActivityIndicatorView()
         activityIndicator.frame = CGRect(x: 0, y: 0, width: 50, height: 50)
         activityIndicator.center = self.view.center
@@ -109,6 +109,7 @@ class LoginViewController: UIViewController {
                     main.prepareWithData(data: result)
                 })
             } else if result.signal == 5 { //아이디 또는 패스워드 잘못 입력했을 때(signal == 5)
+                self.activityIndicator.stopAnimating()
                 let alert = UIAlertController(title: "로그인 실패", message: "아이디 또는 비밀번호를 확인해주세요.", preferredStyle: .alert)
                 let ok = UIAlertAction(title: "확인", style: .default)
                 
