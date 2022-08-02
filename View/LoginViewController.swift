@@ -10,6 +10,16 @@ class LoginViewController: UIViewController {
     
     var loginViewPresenter = LoginViewPresenter()
     
+    lazy var activityIndicator: UIActivityIndicatorView = {
+        
+        let activityIndicator = UIActivityIndicatorView()
+        activityIndicator.frame = CGRect(x: 0, y: 0, width: 50, height: 50)
+        activityIndicator.center = self.view.center
+        activityIndicator.style = .large
+        
+        return activityIndicator
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -20,6 +30,8 @@ class LoginViewController: UIViewController {
         IDTxtSetting()
         PWDTxtSetting()
         LoginBtnSetting()
+        
+        self.view.addSubview(activityIndicator)
     }
     // 화면 터치시 키보드 내리기
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -87,13 +99,13 @@ class LoginViewController: UIViewController {
     
     // MARK: - IBAction
     @IBAction func LoginBtnClicked(_ sender: Any) {
-        
+        activityIndicator.startAnimating()
         loginViewPresenter.login(requestData: LoginRequest(fcm: loginViewPresenter.getToken(), password: loginViewPresenter.getPwd(), studentId: loginViewPresenter.getId(), version: 1), completion2: { result in
             if result.signal == 3 || result.signal == 4 { // 정상 입력 되었을 때(signal == 3 || 4)
                 self.navigationController?.pushViewController(animated: true, viewName: "MainViewController", completion: { vc in
-                    
+                    self.activityIndicator.stopAnimating()
                     let main = vc as! MainViewController
-                    
+                        
                     main.prepareWithData(data: result)
                 })
             } else if result.signal == 5 { //아이디 또는 패스워드 잘못 입력했을 때(signal == 5)
