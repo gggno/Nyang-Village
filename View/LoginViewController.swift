@@ -9,7 +9,7 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var LoginBtn: UIButton!
     
     var loginViewPresenter = LoginViewPresenter()
-    
+    var sql = Sql()
     // 로딩 인디케이터
     lazy var activityIndicator: UIActivityIndicatorView = {
         let activityIndicator = UIActivityIndicatorView()
@@ -22,6 +22,9 @@ class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        sql.createDB()
+        sql.createChatInfoTable()
+        sql.createRoomInNameTable()
         
         loginViewPresenter.makeView(view: self)
         

@@ -25,32 +25,10 @@ class Sql {
     }
     
     // 테이블 생성
-    
-    func createUserInfoTable() {
-        
-        let createTableQuery = "CREATE TABLE IF NOT EXISTS UserInfo (studentid TEXT, token TEXT, suspendeddate TEXT, autologin INTEGER, jwt TEXT)"
-        
-        var createTablePtr: OpaquePointer? = nil
-        
-        if sqlite3_prepare_v2(self.db, createTableQuery, -1, &createTablePtr, nil) == SQLITE_OK {
-            
-            if sqlite3_step(createTablePtr) == SQLITE_DONE {
-                
-                print("UserInfoTable creation has been successfully done")
-            }
-            else {
-                print("UserInfoTable creation failure")
-            }
-        } else {
-            print("Preparation for creating UserInfoTable has been failed")
-        }
-        
-        sqlite3_finalize(createTablePtr)
-    }
-    
+
     func createRoomInfoTable() {
         
-        let createTableQuery = "CREATE TABLE IF NOT EXISTS RoomInfo (roomid TEXT, roomname TEXT, nickname TEXT, professorname TEXT, position INTEGER, noti INTEGER)"
+        let createTableQuery = "CREATE TABLE IF NOT EXISTS RoomInfo (roomid TEXT PRIMARY KEY, roomname TEXT, nickname TEXT, professorname TEXT, position INTEGER, noti INTEGER)"
         
         var createTablePtr: OpaquePointer? = nil
         
@@ -72,7 +50,7 @@ class Sql {
     
     func createRoomInNameTable() {
         
-        let createTableQuery = "CREATE TABLE IF NOT EXISTS RoomInName (id INTEGER, roomid INTEGER, name TEXT)"
+        let createTableQuery = "CREATE TABLE IF NOT EXISTS RoomInName (id INTEGER PRIMARY KEY AUTOINCREMENT, roomid INTEGER FOREIGN KEY, name TEXT FOREIGN KEY)"
         
         var createTablePtr: OpaquePointer? = nil
         
@@ -94,7 +72,7 @@ class Sql {
     
     func createChatInfoTable() {
         
-        let createTableQuery = "CREATE TABLE IF NOT EXISTS ChatInfo (id INTEGER, roomid INTEGER, nickname TEXT, time TEXT, content TEXT, type INTEGER)"
+        let createTableQuery = "CREATE TABLE IF NOT EXISTS ChatInfo (id INTEGER PRIMARY KEY AUTOINCREMENT, roomid INTEGER FOREIGN KEY, nickname TEXT FOREIGN KEY, time TEXT FOREIGN KEY, content TEXT FOREIGN KEY, type INTEGER FOREIGN KEY)"
         
         var createTablePtr: OpaquePointer? = nil
         
@@ -109,6 +87,28 @@ class Sql {
             }
         } else {
             print("Preparation for creating ChatInfoTable has been failed")
+        }
+        
+        sqlite3_finalize(createTablePtr)
+    }
+    
+    func createUserInfoTable() {
+        
+        let createTableQuery = "CREATE TABLE IF NOT EXISTS UserInfo (studentid TEXT PRIMARY KEY, token TEXT, suspendeddate TEXT, autologin INTEGER, jwt TEXT)"
+        
+        var createTablePtr: OpaquePointer? = nil
+        
+        if sqlite3_prepare_v2(self.db, createTableQuery, -1, &createTablePtr, nil) == SQLITE_OK {
+            
+            if sqlite3_step(createTablePtr) == SQLITE_DONE {
+                
+                print("UserInfoTable creation has been successfully done")
+            }
+            else {
+                print("UserInfoTable creation failure")
+            }
+        } else {
+            print("Preparation for creating UserInfoTable has been failed")
         }
         
         sqlite3_finalize(createTablePtr)
