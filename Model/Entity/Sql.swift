@@ -50,7 +50,7 @@ class Sql {
     
     func createRoomInNameTable() {
         
-        let createTableQuery = "CREATE TABLE IF NOT EXISTS RoomInName (id INTEGER PRIMARY KEY AUTOINCREMENT, roomid INTEGER REFERENCES RoomInfo(roomid) , name TEXT REFERENCES RoomInfo(roomid) )"
+        let createTableQuery = "CREATE TABLE IF NOT EXISTS RoomInName (id INTEGER PRIMARY KEY AUTOINCREMENT, roomid INTEGER REFERENCES RoomInfo(roomid) , name TEXT)"
         
         var createTablePtr: OpaquePointer? = nil
         
@@ -72,7 +72,7 @@ class Sql {
     
     func createChatInfoTable() {
         
-        let createTableQuery = "CREATE TABLE IF NOT EXISTS ChatInfo (id INTEGER PRIMARY KEY AUTOINCREMENT, roomid INTEGER REFERENCES RoomInfo(roomid), nickname TEXT REFERENCES RoomInfo(roomid), time TEXT REFERENCES RoomInfo(roomid), content TEXT REFERENCES RoomInfo(roomid), type INTEGER REFERENCES RoomInfo(roomid) )"
+        let createTableQuery = "CREATE TABLE IF NOT EXISTS ChatInfo (id INTEGER PRIMARY KEY AUTOINCREMENT, roomid INTEGER REFERENCES RoomInfo(roomid), nickname TEXT, time TEXT, content TEXT, type INTEGER)"
         
         var createTablePtr: OpaquePointer? = nil
         

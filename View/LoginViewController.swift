@@ -22,11 +22,11 @@ class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        sql.createDB()
-//        sql.createUserInfoTable()
-//        sql.createRoomInfoTable()
-//        sql.createChatInfoTable()
-//        sql.createRoomInNameTable()
+        sql.createDB()
+        sql.createUserInfoTable()
+        sql.createRoomInfoTable()
+        sql.createChatInfoTable()
+        sql.createRoomInNameTable()
 
         loginViewPresenter.makeView(view: self)
         
