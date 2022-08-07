@@ -28,7 +28,7 @@ class Sql {
 
     func createRoomInfoTable() {
         
-        let createTableQuery = "CREATE TABLE IF NOT EXISTS RoomInfo (roomid TEXT PRIMARY KEY, roomname TEXT, nickname TEXT, professorname TEXT, position INTEGER, noti INTEGER)"
+        let createTableQuery = "CREATE TABLE IF NOT EXISTS RoomInfo (roomid INTEGER PRIMARY KEY, roomname TEXT, nickname TEXT, professorname TEXT, position INTEGER, noti INTEGER)"
         
         var createTablePtr: OpaquePointer? = nil
         
@@ -50,7 +50,7 @@ class Sql {
     
     func createRoomInNameTable() {
         
-        let createTableQuery = "CREATE TABLE IF NOT EXISTS RoomInName (id INTEGER PRIMARY KEY AUTOINCREMENT, roomid INTEGER FOREIGN KEY, name TEXT FOREIGN KEY)"
+        let createTableQuery = "CREATE TABLE IF NOT EXISTS RoomInName (id INTEGER PRIMARY KEY AUTOINCREMENT, roomid INTEGER REFERENCES RoomInfo(roomid) , name TEXT REFERENCES RoomInfo(roomid) )"
         
         var createTablePtr: OpaquePointer? = nil
         
@@ -72,7 +72,7 @@ class Sql {
     
     func createChatInfoTable() {
         
-        let createTableQuery = "CREATE TABLE IF NOT EXISTS ChatInfo (id INTEGER PRIMARY KEY AUTOINCREMENT, roomid INTEGER FOREIGN KEY, nickname TEXT FOREIGN KEY, time TEXT FOREIGN KEY, content TEXT FOREIGN KEY, type INTEGER FOREIGN KEY)"
+        let createTableQuery = "CREATE TABLE IF NOT EXISTS ChatInfo (id INTEGER PRIMARY KEY AUTOINCREMENT, roomid INTEGER REFERENCES RoomInfo(roomid), nickname TEXT REFERENCES RoomInfo(roomid), time TEXT REFERENCES RoomInfo(roomid), content TEXT REFERENCES RoomInfo(roomid), type INTEGER REFERENCES RoomInfo(roomid) )"
         
         var createTablePtr: OpaquePointer? = nil
         

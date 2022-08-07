@@ -22,10 +22,12 @@ class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        sql.createDB()
-        sql.createChatInfoTable()
-        sql.createRoomInNameTable()
-        
+//        sql.createDB()
+//        sql.createUserInfoTable()
+//        sql.createRoomInfoTable()
+//        sql.createChatInfoTable()
+//        sql.createRoomInNameTable()
+
         loginViewPresenter.makeView(view: self)
         
         view.GradientColor(color1: UIColor(named: "MainYellowColor")!, color2: UIColor(named: "MainOrangeColor")!)
