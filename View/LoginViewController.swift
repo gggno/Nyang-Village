@@ -11,13 +11,7 @@ class LoginViewController: UIViewController {
     var loginViewPresenter = LoginViewPresenter()
     var sql = Sql()
     
-//    let roomids = [1, 2, 3]
-//
-//    let numbers = roomids.map{ "($0)" }
-//
-//    let result = "((numbers.joined(separator:",")))"
-
-//    print(result)
+    let arr = [1, 2, 3]
     
     // 로딩 인디케이터
     lazy var activityIndicator: UIActivityIndicatorView = {
@@ -42,7 +36,10 @@ class LoginViewController: UIViewController {
         
         sql.insertRoomInfo(roomidInt: 1, roomnameStr: "str", nicknameStr: "str", professornameStr: "str", positionInt: 2, notiInt: 3)
         
-//        sql.deleteRoomInfos(roomids: arr)
+        let numbers = arr.map{ "\($0)" }
+        let result = "(\(numbers.joined(separator: ",")))"
+        
+        sql.deleteRoomInfos(roomids: result)
 //        sql.deleteRoomInfo()
         sql.deleteRoomInName()
         sql.deleteChatInfo()

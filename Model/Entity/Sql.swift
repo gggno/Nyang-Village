@@ -191,9 +191,9 @@ class Sql {
         sqlite3_finalize(createTablePtr)
     }
     
-    func deleteRoomInfos(roomids: [Int]) {
+    func deleteRoomInfos(roomids: String) {
         let deleteQuery = "DELETE FROM RoomInfo WHERE roomid NOT IN \(roomids);"
-        print("\(deleteQuery)")
+        
         var createTablePtr: OpaquePointer? = nil//query를 가리키는 포인터
         
         if sqlite3_prepare(db, deleteQuery, -1, &createTablePtr, nil) == SQLITE_OK {
