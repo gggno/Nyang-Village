@@ -13,7 +13,7 @@ class LoginViewModel {
     // 로그인 통신(post) api
     func loginTry(request: LoginRequest, completion: @escaping (SubjectInfo) -> Void) {
         
-        let url = "http://54.180.114.197:8087/ay/login"
+        let url = "http://13.209.68.42:8087/ay/login"
         
         AF.request(url, method: .post, parameters: request, encoder: JSONParameterEncoder(), headers: nil).responseDecodable(of: SubjectInfo.self) { response in
             switch response.result {

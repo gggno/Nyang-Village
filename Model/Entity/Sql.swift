@@ -191,8 +191,21 @@ class Sql {
         sqlite3_finalize(createTablePtr)
     }
     
-    func insertRoomInfos(roomInfos: [RoomInfoRow]) {
+    func deleteRoomInfos(roomids: [Int]) {
+        let deleteQuery = "DELETE FROM RoomInfo WHERE roomid NOT IN \(roomids);"
+        print("\(deleteQuery)")
+        var createTablePtr: OpaquePointer? = nil//query를 가리키는 포인터
         
+        if sqlite3_prepare(db, deleteQuery, -1, &createTablePtr, nil) == SQLITE_OK {
+            if sqlite3_step(createTablePtr) == SQLITE_DONE {
+                print("\nDelete RoomInfos Row Success")
+            }else {
+                print("\nDelete RoomInfos Row Faild")
+            }
+        }else {
+            print("\nDelete RoomInfos Statement in not prepared")
+        }
+        sqlite3_finalize(createTablePtr)
     }
     
     func selectRoomInfo() {

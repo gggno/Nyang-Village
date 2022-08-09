@@ -10,6 +10,15 @@ class LoginViewController: UIViewController {
     
     var loginViewPresenter = LoginViewPresenter()
     var sql = Sql()
+    
+//    let roomids = [1, 2, 3]
+//
+//    let numbers = roomids.map{ "($0)" }
+//
+//    let result = "((numbers.joined(separator:",")))"
+
+//    print(result)
+    
     // 로딩 인디케이터
     lazy var activityIndicator: UIActivityIndicatorView = {
         let activityIndicator = UIActivityIndicatorView()
@@ -31,12 +40,14 @@ class LoginViewController: UIViewController {
         PWDTxtSetting()
         LoginBtnSetting()
         
-        sql.deleteRoomInfo()
+        sql.insertRoomInfo(roomidInt: 1, roomnameStr: "str", nicknameStr: "str", professornameStr: "str", positionInt: 2, notiInt: 3)
+        
+//        sql.deleteRoomInfos(roomids: arr)
+//        sql.deleteRoomInfo()
         sql.deleteRoomInName()
         sql.deleteChatInfo()
         sql.deleteUserInfo()
-        
-        sql.insertRoomInfo(roomidInt: 1, roomnameStr: "str", nicknameStr: "str", professornameStr: "str", positionInt: 2, notiInt: 3)
+    
         
         
         self.view.addSubview(activityIndicator)
@@ -111,6 +122,12 @@ class LoginViewController: UIViewController {
         loginViewPresenter.login(requestData: LoginRequest(fcm: loginViewPresenter.getToken(), password: loginViewPresenter.getPwd(), studentId: loginViewPresenter.getId(), version: 1), completion2: { result in
             if result.signal == 3 || result.signal == 4 { // 정상 입력 되었을 때(signal == 3 || 4)
                 self.navigationController?.pushViewController(animated: true, viewName: "MainViewController", completion: { vc in
+                    
+                    // insertSqlList
+                    for data in result.roomInfos! {
+                        self.sql.insertRoomInfo(roomidInt: data.roomId!, roomnameStr: data.roomName!, nicknameStr: data.nickName!, professornameStr: data.professorName!, positionInt: 0, notiInt: 1)
+                    }
+                    
                     self.activityIndicator.stopAnimating()
                     let main = vc as! MainViewController
                         
