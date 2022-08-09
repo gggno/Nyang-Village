@@ -22,11 +22,6 @@ class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        sql.createDB()
-        sql.createUserInfoTable()
-        sql.createRoomInfoTable()
-        sql.createChatInfoTable()
-        sql.createRoomInNameTable()
 
         loginViewPresenter.makeView(view: self)
         
@@ -35,6 +30,14 @@ class LoginViewController: UIViewController {
         IDTxtSetting()
         PWDTxtSetting()
         LoginBtnSetting()
+        
+        sql.deleteRoomInfo()
+        sql.deleteRoomInName()
+        sql.deleteChatInfo()
+        sql.deleteUserInfo()
+        
+        sql.insertRoomInfo(roomidInt: 1, roomnameStr: "str", nicknameStr: "str", professornameStr: "str", positionInt: 2, notiInt: 3)
+        
         
         self.view.addSubview(activityIndicator)
     }
