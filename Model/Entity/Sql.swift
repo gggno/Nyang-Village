@@ -121,7 +121,7 @@ class Sql {
     
     // MARK: - RoomInfo
     
-    // 방 정보 저장
+    // 1. 방 정보 저장
     func insertRoomInfo(roomidInt: Int, roomnameStr: String, nicknameStr: String, professornameStr: String, positionInt: Int, notiInt: Int) {
         
         var createTablePtr : OpaquePointer? = nil
@@ -191,6 +191,15 @@ class Sql {
         sqlite3_finalize(createTablePtr)
     }
     
+    // 2. 서버에서 받아 온 방 정보 리스트 저장
+    func insertRoomInfos(subjectData: SubjectInfo) {
+        for roomData in subjectData.roomInfos! {
+            
+            insertRoomInfo(roomidInt: roomData.roomId!, roomnameStr: roomData.roomName!, nicknameStr: roomData.nickName!, professornameStr: roomData.professorName!, positionInt: 0, notiInt: 1)
+        }
+    }
+    
+    // 3. 수강과목이 바뀌면 기존 과목은 삭제
     func deleteRoomInfos(roomids: String) {
         let deleteQuery = "DELETE FROM RoomInfo WHERE roomid NOT IN \(roomids);"
         
@@ -198,21 +207,28 @@ class Sql {
         
         if sqlite3_prepare(db, deleteQuery, -1, &createTablePtr, nil) == SQLITE_OK {
             if sqlite3_step(createTablePtr) == SQLITE_DONE {
-                print("\nDelete RoomInfos Row Success")
-            }else {
-                print("\nDelete RoomInfos Row Faild")
+                print("\nDelete deleteRoomInfos() Row Success")
+            } else {
+                print("\nDelete deleteRoomInfos() Row Faild")
             }
-        }else {
-            print("\nDelete RoomInfos Statement in not prepared")
+        } else {
+            print("\nDelete deleteRoomInfos() Statement in not prepared")
         }
         sqlite3_finalize(createTablePtr)
     }
     
+    // 4. 방 정보 불러오기
     func selectRoomInfo() {
         
         let selectQuery = "SELECT * FROM RoomInfo"
-        
         var createTablePtr: OpaquePointer? = nil
+        
+        var roomid: Int?
+        var roomname: String?
+        var nickName: String?
+        var professorname: String?
+        var position: Int?
+        var noti: Int?
         
         if sqlite3_prepare(self.db, selectQuery, -1, &createTablePtr, nil) != SQLITE_OK {
             let errMsg = String(cString: sqlite3_errmsg(db)!)
@@ -222,10 +238,63 @@ class Sql {
             return
         }
         
-        
+        while(sqlite3_step(createTablePtr) == SQLITE_ROW) {
+            
+        }
         
         
     }
+    
+    // 5. 방 정보 전체 삭제
+    func deleteAllRoomInfos() {
+        let deleteQuery = "DELETE FROM RoomInfo;"
+        
+        var createTablePtr: OpaquePointer? = nil //query를 가리키는 포인터
+        
+        if sqlite3_prepare(db, deleteQuery, -1, &createTablePtr, nil) == SQLITE_OK {
+            if sqlite3_step(createTablePtr) == SQLITE_DONE {
+                print("\nDelete deleteAllRoomInfos() Row Success")
+            } else {
+                print("\nDelete deleteAllRoomInfos() Row Faild")
+            }
+        } else {
+            print("\nDelete deleteAllRoomInfos() Statement in not prepared")
+        }
+        sqlite3_finalize(createTablePtr)
+    }
+    
+    // 6. 웹에서 채팅 보낼 시 해당 기기에 내가 보낸 것으로 해야함
+    func selectRoomInfoInNickname() {
+        
+    }
+    
+    // 7. 마지막으로 읽은 채팅
+    func selectRoomInfoPosition() {
+        
+    }
+    
+    // 8. 마지막으로 읽은 채팅위치 저장
+    func updateRoomInfoPositon() {
+        
+    }
+    
+    // 9. fcm 알림
+    func selectRoomInfoNoti() {
+        
+    }
+    
+    // 10. fcm 알림2
+    func selectRoomInfoNoti2() {
+        
+    }
+    
+    // 11. 알림 해제/허용
+    func updateRoomInfoNoti() {
+        
+    }
+    
+    
+    
     
     
     // MARK: - TestCaseSql(Delete)
@@ -267,12 +336,12 @@ class Sql {
         
         if sqlite3_prepare(db, deleteQuery, -1, &createTablePtr, nil) == SQLITE_OK{
             if sqlite3_step(createTablePtr) == SQLITE_DONE{
-                print("\nDelete ChatInfo Row Success")
+                print("\nDelete deleteChatInfo() Row Success")
             }else{
-                print("\nDelete ChatInfo Row Faild")
+                print("\nDelete deleteChatInfo() Row Faild")
             }
         }else{
-            print("\nDelete ChatInfo Statement in not prepared")
+            print("\nDelete deleteChatInfo() Statement in not prepared")
         }
         sqlite3_finalize(createTablePtr)
     }
@@ -283,12 +352,12 @@ class Sql {
         
         if sqlite3_prepare(db, deleteQuery, -1, &createTablePtr, nil) == SQLITE_OK{
             if sqlite3_step(createTablePtr) == SQLITE_DONE{
-                print("\nDelete UserInfo Row Success")
+                print("\nDelete deleteUserInfo() Row Success")
             }else{
-                print("\nDelete UserInfo Row Faild")
+                print("\nDelete deleteUserInfo() Row Faild")
             }
         }else{
-            print("\nDelete UserInfo Statement in not prepared")
+            print("\nDelete deleteUserInfo() Statement in not prepared")
         }
         sqlite3_finalize(createTablePtr)
     }

@@ -120,10 +120,7 @@ class LoginViewController: UIViewController {
             if result.signal == 3 || result.signal == 4 { // 정상 입력 되었을 때(signal == 3 || 4)
                 self.navigationController?.pushViewController(animated: true, viewName: "MainViewController", completion: { vc in
                     
-                    // insertSqlList
-                    for data in result.roomInfos! {
-                        self.sql.insertRoomInfo(roomidInt: data.roomId!, roomnameStr: data.roomName!, nicknameStr: data.nickName!, professornameStr: data.professorName!, positionInt: 0, notiInt: 1)
-                    }
+//                    self.sql.insertRoomInfos(subjectData: result)
                     
                     self.activityIndicator.stopAnimating()
                     let main = vc as! MainViewController
