@@ -14,14 +14,8 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.navigationController?.isNavigationBarHidden = true
-        
         // 테이블 뷰 높이
         self.MainTableView.rowHeight = 120
-        
-        // 테이블 뷰 동적으로 높이 조절
-//        self.MainTableView.estimatedRowHeight = 80
-//        self.MainTableView.rowHeight = UITableView.automaticDimension
         
         // 테이블 뷰 라인 삭제
         self.MainTableView.separatorStyle = UITableViewCell.SeparatorStyle.none
@@ -51,6 +45,23 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         cell.NumberOfParticipantsLabel.text = String(roomInfos[indexPath.row].roomInNames!.count)
         
         return cell
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.isNavigationBarHidden = true
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        self.navigationController?.isNavigationBarHidden = false
+    }
+    
+    // 셀 클릭 시 채팅 화면으로 화면 전환
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let chatVC = self.storyboard?.instantiateViewController(withIdentifier: "ChattingViewController")
+        self.navigationController!.pushViewController(chatVC!, animated: true)
     }
 
     func initCell(data: [RoomInfos]) {

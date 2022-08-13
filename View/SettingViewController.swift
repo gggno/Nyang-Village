@@ -5,11 +5,10 @@ class SettingViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
-    }
-  
-    @IBAction func backBtnCliked(_ sender: Any) {
-        self.navigationController?.popViewController(animated: true)
+        self.navigationController?.navigationBar.topItem?.title = ""
+        self.navigationController?.navigationBar.tintColor = .black
+        self.title = "설정"
+        
     }
     
 }

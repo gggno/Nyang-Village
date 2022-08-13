@@ -198,6 +198,21 @@
             </objects>
             <point key="canvasLocation" x="-962.31884057971024" y="-549.45652173913049"/>
         </scene>
+        <!--Chatting View Controller-->
+        <scene sceneID="1dO-50-cv0">
+            <objects>
+                <viewController storyboardIdentifier="ChattingViewController" id="m7B-3G-BxV" customClass="ChattingViewController" customModule="Nyang_Village" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="9E9-ys-X9Q">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="PR6-OH-8HB"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="FOI-eR-cnE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1774" y="-549"/>
+        </scene>
         <!--Setting View Controller-->
         <scene sceneID="uvf-NQ-xUy">
             <objects>
@@ -205,39 +220,19 @@
                     <view key="view" contentMode="scaleToFill" id="EFO-hJ-SAJ">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E3O-O0-Jpb">
-                                <rect key="frame" x="15" y="15" width="30" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="30" id="NuP-LA-GM4"/>
-                                    <constraint firstAttribute="height" constant="30" id="TVY-Zy-FRs"/>
-                                </constraints>
-                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" image="xmark" catalog="system"/>
-                                <connections>
-                                    <action selector="backBtnCliked:" destination="W5Y-Wx-RCa" eventType="touchUpInside" id="XqS-rk-b7Q"/>
-                                </connections>
-                            </button>
-                        </subviews>
                         <viewLayoutGuide key="safeArea" id="i2h-cS-NaC"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <constraints>
-                            <constraint firstItem="E3O-O0-Jpb" firstAttribute="top" secondItem="i2h-cS-NaC" secondAttribute="top" constant="15" id="DJg-Bn-91J"/>
-                            <constraint firstItem="E3O-O0-Jpb" firstAttribute="leading" secondItem="i2h-cS-NaC" secondAttribute="leading" constant="15" id="XFd-iG-YIp"/>
-                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="D7t-YR-7YD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-638" y="172"/>
+            <point key="canvasLocation" x="861" y="192"/>
         </scene>
     </scenes>
     <resources>
         <image name="ListMainImage" width="166" height="93"/>
         <image name="MainImage" width="431" height="403"/>
         <image name="SettingButton" width="20" height="20"/>
-        <image name="xmark" catalog="system" width="128" height="113"/>
         <namedColor name="MainOrangeColor">
             <color red="1" green="0.51800000667572021" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
