@@ -26,6 +26,7 @@
 		664B2DB727FC708E00109DFB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 664B2DB627FC708E00109DFB /* Assets.xcassets */; };
 		664B2DBA27FC708E00109DFB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 664B2DB827FC708E00109DFB /* LaunchScreen.storyboard */; };
 		666C5C8F28A77E1700991176 /* ChattingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 666C5C8E28A77E1700991176 /* ChattingViewController.swift */; };
+		6678F5B128A8C7840049938F /* JalnanOTF.otf in Resources */ = {isa = PBXBuildFile; fileRef = 6678F5B028A8C7840049938F /* JalnanOTF.otf */; };
 		66A126452865D978007B3547 /* LoginRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66A126442865D978007B3547 /* LoginRequest.swift */; };
 		66A126472865E48A007B3547 /* LoginResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66A126462865E48A007B3547 /* LoginResponse.swift */; };
 		66AA9F5B2840B04E00988A60 /* MainTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66AA9F592840B04E00988A60 /* MainTableViewCell.swift */; };
@@ -66,6 +67,7 @@
 		664B2DBB27FC708E00109DFB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		664F296B280469A100F1D43C /* Nyang Village.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Nyang Village.entitlements"; sourceTree = "<group>"; };
 		666C5C8E28A77E1700991176 /* ChattingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChattingViewController.swift; sourceTree = "<group>"; };
+		6678F5B028A8C7840049938F /* JalnanOTF.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = JalnanOTF.otf; sourceTree = "<group>"; };
 		66A126442865D978007B3547 /* LoginRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginRequest.swift; sourceTree = "<group>"; };
 		66A126462865E48A007B3547 /* LoginResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginResponse.swift; sourceTree = "<group>"; };
 		66AA9F592840B04E00988A60 /* MainTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTableViewCell.swift; sourceTree = "<group>"; };
@@ -117,6 +119,7 @@
 				661197972831667C0033CB33 /* SCDream7.otf */,
 				661197932831667B0033CB33 /* SCDream8.otf */,
 				661197952831667B0033CB33 /* SCDream9.otf */,
+				6678F5B028A8C7840049938F /* JalnanOTF.otf */,
 			);
 			path = Fonts;
 			sourceTree = "<group>";
@@ -302,6 +305,7 @@
 				661197A02831667C0033CB33 /* SCDream7.otf in Resources */,
 				664B2DB527FC708D00109DFB /* Main.storyboard in Resources */,
 				6611979F2831667C0033CB33 /* SCDream3.otf in Resources */,
+				6678F5B128A8C7840049938F /* JalnanOTF.otf in Resources */,
 				6611979B2831667C0033CB33 /* SCDream4.otf in Resources */,
 				66F5BEB72804643D0002240C /* GoogleService-Info.plist in Resources */,
 			);
