@@ -2,6 +2,9 @@ import UIKit
 
 class ChattingViewController: UIViewController {
     
+    // MARK: - IBOutlet
+    @IBOutlet weak var chatView: UIView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -15,8 +18,11 @@ class ChattingViewController: UIViewController {
         
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "line.3.horizontal"), style: .plain, target: self, action: #selector(rightBtnClicked))
         
+        chatView.CornerRadiusLayerSetting(cornerRadius: 40, cornerLayer: [.layerMinXMinYCorner, .layerMaxXMinYCorner])
+        
         
     }
+    
         
     @objc func rightBtnClicked() {
         print("click")
