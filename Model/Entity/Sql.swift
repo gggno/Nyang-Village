@@ -180,10 +180,10 @@ class Sql {
         }
         
         if sqlite3_step(createTablePtr) == SQLITE_DONE {
-            print("Insert data SuccessFully")
+            print("insertRoomInfo() data SuccessFully")
         } else {
             let errMsg = String(cString : sqlite3_errmsg(db)!)
-            print("insert fail :: \(errMsg)")
+            print("insertRoomInfo() fail :: \(errMsg)")
             sqlite3_finalize(createTablePtr)
             return
         }
@@ -227,7 +227,7 @@ class Sql {
         
         if sqlite3_prepare(self.db, selectQuery, -1, &createTablePtr, nil) != SQLITE_OK {
             let errMsg = String(cString: sqlite3_errmsg(db)!)
-            print("error preparing selectValue(): v1 \(errMsg)")
+            print("error preparing selectRoomInfo(): v1 \(errMsg)")
             
             sqlite3_finalize(createTablePtr)
             return roomInfoRowArr
@@ -279,7 +279,7 @@ class Sql {
         
         if sqlite3_prepare(self.db, selectQuery, -1, &createTablePtr, nil) != SQLITE_OK {
             let errMsg = String(cString: sqlite3_errmsg(db)!)
-            print("error preparing getAutoSelectValue(): v1 \(errMsg)")
+            print("error preparing selectRoomInfoInNickname(): v1 \(errMsg)")
             sqlite3_finalize(createTablePtr)
             return "실패!"
         }
@@ -303,7 +303,7 @@ class Sql {
         
         if sqlite3_prepare(self.db, selectQuery, -1, &createTablePtr, nil) != SQLITE_OK {
             let errMsg = String(cString: sqlite3_errmsg(db)!)
-            print("error preparing getAutoSelectValue(): v1 \(errMsg)")
+            print("error preparing selectRoomInfoPosition(): v1 \(errMsg)")
             sqlite3_finalize(createTablePtr)
             return position
         }
@@ -325,7 +325,7 @@ class Sql {
         
         if sqlite3_prepare(self.db, UpdateQuery, -1, &createTablePtr, nil) != SQLITE_OK{
             let errMsg = String(cString: sqlite3_errmsg(db)!)
-            print("error preparing update: v1\(errMsg)")
+            print("error preparing updateRoomInfoPositon(): v1\(errMsg)")
             
             sqlite3_finalize(createTablePtr)
             return
@@ -333,7 +333,7 @@ class Sql {
         
         if sqlite3_step(createTablePtr) != SQLITE_DONE {
             let errMsg = String(cString : sqlite3_errmsg(db)!)
-            print("update fail :: \(errMsg)")
+            print("updateRoomInfoPositon() fail :: \(errMsg)")
             
             sqlite3_finalize(createTablePtr)
             return
@@ -355,7 +355,7 @@ class Sql {
         
         if sqlite3_prepare(self.db, selectQuery, -1, &createTablePtr, nil) != SQLITE_OK {
             let errMsg = String(cString: sqlite3_errmsg(db)!)
-            print("error preparing getAutoSelectValue(): v1 \(errMsg)")
+            print("error preparing selectRoomInfoNoti(): v1 \(errMsg)")
             
             sqlite3_finalize(createTablePtr)
             return notiRoomInfo
@@ -380,7 +380,7 @@ class Sql {
         
         if sqlite3_prepare(self.db, selectQuery, -1, &createTablePtr, nil) != SQLITE_OK {
             let errMsg = String(cString: sqlite3_errmsg(db)!)
-            print("error preparing getAutoSelectValue(): v1 \(errMsg)")
+            print("error preparing selectRoomInfoNoti2(): v1 \(errMsg)")
             sqlite3_finalize(createTablePtr)
             return noti
         }
@@ -401,7 +401,7 @@ class Sql {
         
         if sqlite3_prepare(self.db, UpdateQuery, -1, &createTablePtr, nil) != SQLITE_OK{
             let errMsg = String(cString: sqlite3_errmsg(db)!)
-            print("error preparing update: v1\(errMsg)")
+            print("error preparing updateRoomInfoNoti(): v1\(errMsg)")
             
             sqlite3_finalize(createTablePtr)
             return
@@ -409,7 +409,7 @@ class Sql {
         
         if sqlite3_step(createTablePtr) != SQLITE_DONE {
             let errMsg = String(cString : sqlite3_errmsg(db)!)
-            print("update fail :: \(errMsg)")
+            print("updateRoomInfoNoti() fail :: \(errMsg)")
             
             sqlite3_finalize(createTablePtr)
             return
@@ -428,7 +428,7 @@ class Sql {
         
         if sqlite3_prepare(db, insertQeury, -1, &createTablePtr, nil) != SQLITE_OK {
             let errMsg = String(cString: sqlite3_errmsg(db)!)
-            print("error preparing insertData(): v1 \(errMsg)")
+            print("error preparing InsertUserInfo(): v1 \(errMsg)")
             sqlite3_finalize(createTablePtr)
             return
         }
@@ -474,7 +474,7 @@ class Sql {
             print("InsertUserInfo() data SuccessFully")
         } else {
             let errMsg = String(cString : sqlite3_errmsg(db)!)
-            print("insert fail :: \(errMsg)")
+            print("InsertUserInfo() fail :: \(errMsg)")
             sqlite3_finalize(createTablePtr)
             return
         }
@@ -504,7 +504,7 @@ class Sql {
         
         if sqlite3_prepare(self.db, selectQuery, -1, &createTablePtr, nil) != SQLITE_OK {
             let errMsg = String(cString: sqlite3_errmsg(db)!)
-            print("error preparing getAutoSelectValue(): v1 \(errMsg)")
+            print("error preparing SelectUserInfo(): v1 \(errMsg)")
             
             sqlite3_finalize(createTablePtr)
             return userInfo
@@ -568,7 +568,7 @@ class Sql {
         
         if sqlite3_prepare(self.db, selectQuery, -1, &createTablePtr, nil) != SQLITE_OK {
             let errMsg = String(cString: sqlite3_errmsg(db)!)
-            print("error preparing getAutoSelectValue(): v1 \(errMsg)")
+            print("error preparing SelectUserInfoAutoLogin(): v1 \(errMsg)")
             sqlite3_finalize(createTablePtr)
             return autoLogin
         }
@@ -610,12 +610,12 @@ class Sql {
         
         if sqlite3_prepare(db, deleteQuery, -1, &createTablePtr, nil) == SQLITE_OK{
             if sqlite3_step(createTablePtr) == SQLITE_DONE{
-                print("\nDelete RoomInfo Row Success")
+                print("\nDelete deleteRoomInfo() Row Success")
             }else{
-                print("\nDelete RoomInfo Row Faild")
+                print("\nDelete deleteRoomInfo() Row Faild")
             }
         }else{
-            print("\nDelete RoomInfo Statement in not prepared")
+            print("\nDelete deleteRoomInfo() Statement in not prepared")
         }
         sqlite3_finalize(createTablePtr)
     }
@@ -626,12 +626,12 @@ class Sql {
         
         if sqlite3_prepare(db, deleteQuery, -1, &createTablePtr, nil) == SQLITE_OK{
             if sqlite3_step(createTablePtr) == SQLITE_DONE{
-                print("\nDelete RoomInName Row Success")
+                print("\nDelete deleteRoomInName() Row Success")
             }else{
-                print("\nDelete RoomInName Row Faild")
+                print("\nDelete deleteRoomInName() Row Faild")
             }
         }else{
-            print("\nDelete RoomInName Statement in not prepared")
+            print("\nDelete deleteRoomInName() Statement in not prepared")
         }
         sqlite3_finalize(createTablePtr)
     }
