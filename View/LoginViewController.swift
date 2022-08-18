@@ -40,12 +40,12 @@ class LoginViewController: UIViewController {
         let result = "(\(numbers.joined(separator: ",")))"
         
 //        sql.deleteRoomInfos(roomids: result)
-        sql.deleteRoomInfo()
-        sql.deleteRoomInName()
-        sql.deleteChatInfo()
-        sql.deleteUserInfo()
+        sql.deleteRoomInfoTest()
+        sql.deleteRoomInNameTest()
+        sql.deleteChatInfoTest()
+        sql.deleteUserInfoTest()
     
-//        if sql.SelectUserInfoAutoLogin() == 1 {
+//        if sql.selectUserInfoAutoLogin() == 1 {
 //            print("성공")
 //            let mainVC = self.storyboard?.instantiateViewController(withIdentifier: "MainViewController")
 //            self.navigationController?.pushViewController(mainVC!, animated: true)
@@ -129,7 +129,7 @@ class LoginViewController: UIViewController {
             if result.signal == 3 || result.signal == 4 { // 정상 입력 되었을 때(signal == 3 || 4)
                 self.navigationController?.pushViewController(animated: true, viewName: "MainViewController", completion: { vc in
                     
-//                    self.sql.InsertUserInfo(studentid: self.loginViewPresenter.getId(), token: self.loginViewPresenter.getToken(), suspendeddate: result.suspendedDate ?? "noData", autologin: 1, jwt: result.jwt!)
+//                    self.sql.insertUserInfo(studentid: self.loginViewPresenter.getId(), token: self.loginViewPresenter.getToken(), suspendeddate: result.suspendedDate ?? "noData", autologin: 1, jwt: result.jwt!)
 //                    self.sql.insertRoomInfos(subjectData: result)
                     
                     

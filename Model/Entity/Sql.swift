@@ -220,7 +220,7 @@ class Sql {
     // 4. 방 정보 불러오기
     func selectRoomInfo() -> [RoomInfoRow] {
         
-        let selectQuery = "SELECT * FROM RoomInfo"
+        let selectQuery = "SELECT * FROM RoomInfo;"
         var createTablePtr: OpaquePointer? = nil
         
         var roomInfoRowArr: [RoomInfoRow] = []
@@ -272,7 +272,7 @@ class Sql {
     // 6. 웹에서 채팅 보낼 시 해당 기기에 내가 보낸 것으로 해야함
     func selectRoomInfoInNickname(roomid: Int) -> String {
         
-        let selectQuery = "SELECT nickName FROM RoomInfo WHERE roomId=\(roomid)"
+        let selectQuery = "SELECT nickName FROM RoomInfo WHERE roomId=\(roomid);"
         var createTablePtr: OpaquePointer? = nil
         
         var nickName: String = ""
@@ -296,7 +296,7 @@ class Sql {
     // 7. 마지막으로 읽은 채팅
     func selectRoomInfoPosition(roomid: Int) -> Int {
         
-        let selectQuery = "SELECT position FROM RoomInfo WHERE roomId=\(roomid)"
+        let selectQuery = "SELECT position FROM RoomInfo WHERE roomId=\(roomid);"
         var createTablePtr: OpaquePointer? = nil
         
         var position: Int = 0
@@ -320,7 +320,7 @@ class Sql {
     // 8. 마지막으로 읽은 채팅위치 저장
     func updateRoomInfoPositon(positon: Int, roomid: Int) {
         
-        let UpdateQuery = "UPDATE RoomInfo SET position=\(positon) WHERE roomId=\(roomid)"
+        let UpdateQuery = "UPDATE RoomInfo SET position=\(positon) WHERE roomId=\(roomid);"
         var createTablePtr: OpaquePointer? = nil
         
         if sqlite3_prepare(self.db, UpdateQuery, -1, &createTablePtr, nil) != SQLITE_OK{
@@ -345,7 +345,7 @@ class Sql {
     // 9. fcm 알림
     func selectRoomInfoNoti(roomid: Int) -> NotiRoomInfo {
         
-        let selectQuery = "SELECT roomName, noti FROM RoomInfo WHERE roomId=\(roomid)"
+        let selectQuery = "SELECT roomName, noti FROM RoomInfo WHERE roomId=\(roomid);"
         var createTablePtr: OpaquePointer? = nil
         
         let roomName: String = ""
@@ -373,7 +373,7 @@ class Sql {
     
     // 10. fcm 알림2
     func selectRoomInfoNoti2(roomid: Int) -> Int {
-        let selectQuery = "SELECT noti FROM RoomInfo WHERE roomId=\(roomid)"
+        let selectQuery = "SELECT noti FROM RoomInfo WHERE roomId=\(roomid);"
         var createTablePtr: OpaquePointer? = nil
         
         var noti: Int = 0
@@ -396,10 +396,10 @@ class Sql {
     
     // 11. 알림 해제/허용
     func updateRoomInfoNoti(noti: Int, roomid: Int) {
-        let UpdateQuery = "UPDATE RoomInfo SET noti=\(noti) WHERE roomId=\(roomid)"
+        let UpdateQuery = "UPDATE RoomInfo SET noti=\(noti) WHERE roomId=\(roomid);"
         var createTablePtr: OpaquePointer? = nil
         
-        if sqlite3_prepare(self.db, UpdateQuery, -1, &createTablePtr, nil) != SQLITE_OK{
+        if sqlite3_prepare(self.db, UpdateQuery, -1, &createTablePtr, nil) != SQLITE_OK {
             let errMsg = String(cString: sqlite3_errmsg(db)!)
             print("error preparing updateRoomInfoNoti(): v1\(errMsg)")
             
@@ -421,14 +421,14 @@ class Sql {
     // MARK: - UserInfo
     
     // 12. 유저정보저장
-    func InsertUserInfo(studentid: String, token: String, suspendeddate: String, autologin: Int, jwt: String) {
+    func insertUserInfo(studentid: String, token: String, suspendeddate: String, autologin: Int, jwt: String) {
         var createTablePtr : OpaquePointer? = nil
         
         let insertQeury: String = "INSERT INTO UserInfo (studentid, token, suspendeddate, autologin, jwt) VALUES (?,?,?,?,?);"
         
         if sqlite3_prepare(db, insertQeury, -1, &createTablePtr, nil) != SQLITE_OK {
             let errMsg = String(cString: sqlite3_errmsg(db)!)
-            print("error preparing InsertUserInfo(): v1 \(errMsg)")
+            print("error preparing insertUserInfo(): v1 \(errMsg)")
             sqlite3_finalize(createTablePtr)
             return
         }
@@ -471,10 +471,10 @@ class Sql {
         }
         
         if sqlite3_step(createTablePtr) == SQLITE_DONE {
-            print("InsertUserInfo() data SuccessFully")
+            print("insertUserInfo() data SuccessFully")
         } else {
             let errMsg = String(cString : sqlite3_errmsg(db)!)
-            print("InsertUserInfo() fail :: \(errMsg)")
+            print("insertUserInfo() fail :: \(errMsg)")
             sqlite3_finalize(createTablePtr)
             return
         }
@@ -483,15 +483,27 @@ class Sql {
     }
     
     // 13. 유저정보삭제
-    func DeleteUserInfo() {
+    func deleteUserInfo() {
+        let deleteQuery = "DELETE FROM UserInfo;"
         
+        var createTablePtr: OpaquePointer? = nil //query를 가리키는 포인터
         
+        if sqlite3_prepare(db, deleteQuery, -1, &createTablePtr, nil) == SQLITE_OK {
+            if sqlite3_step(createTablePtr) == SQLITE_DONE {
+                print("\nDelete deleteUserInfo() Row Success")
+            } else {
+                print("\nDelete deleteUserInfo() Row Faild")
+            }
+        } else {
+            print("\nDelete deleteUserInfo() Statement in not prepared")
+        }
+        sqlite3_finalize(createTablePtr)
     }
     
     // 14. 유저정보 불러오기
-    func SelectUserInfo() -> UserInfoRow {
+    func selectUserInfo() -> UserInfoRow {
         
-        let selectQuery = "SELECT * FROM UserInfo LIMIT 1"
+        let selectQuery = "SELECT * FROM UserInfo LIMIT 1;"
         var createTablePtr: OpaquePointer? = nil
         
         let studentId: String = ""
@@ -504,7 +516,7 @@ class Sql {
         
         if sqlite3_prepare(self.db, selectQuery, -1, &createTablePtr, nil) != SQLITE_OK {
             let errMsg = String(cString: sqlite3_errmsg(db)!)
-            print("error preparing SelectUserInfo(): v1 \(errMsg)")
+            print("error preparing selectUserInfo(): v1 \(errMsg)")
             
             sqlite3_finalize(createTablePtr)
             return userInfo
@@ -524,51 +536,162 @@ class Sql {
     }
     
     // 15. 학번 가져오기
-    func SelectUserInfoStudentId() {
+    func selectUserInfoStudentId() -> String {
         
+        let selectQuery = "SELECT studentId FROM UserInfo LIMIT 1;"
+        var createTablePtr: OpaquePointer? = nil
         
+        var studentId: String = ""
+        
+        if sqlite3_prepare(self.db, selectQuery, -1, &createTablePtr, nil) != SQLITE_OK {
+            let errMsg = String(cString: sqlite3_errmsg(db)!)
+            print("error preparing selectUserInfoStudentId(): v1 \(errMsg)")
+            sqlite3_finalize(createTablePtr)
+            return "실패!"
+        }
+        
+        while(sqlite3_step(createTablePtr) == SQLITE_ROW) {
+            studentId = String(cString: sqlite3_column_text(createTablePtr, 0))
+        }
+        
+        sqlite3_finalize(createTablePtr)
+        
+        return studentId
     }
     
     // 16. 정지 풀리는 날짜
-    func UpdateUserInfoSuspendedDate() {
+    func updateUserInfoSuspendedDate(suspendedDate: String) {
+       
+        let UpdateQuery = "UPDATE UserInfo SET suspendedDate=\(suspendedDate);"
+        var createTablePtr: OpaquePointer? = nil
         
+        if sqlite3_prepare(self.db, UpdateQuery, -1, &createTablePtr, nil) != SQLITE_OK {
+            let errMsg = String(cString: sqlite3_errmsg(db)!)
+            print("error preparing updateUserInfoSuspendedDate(): v1\(errMsg)")
+            
+            sqlite3_finalize(createTablePtr)
+            return
+        }
         
+        if sqlite3_step(createTablePtr) != SQLITE_DONE {
+            let errMsg = String(cString : sqlite3_errmsg(db)!)
+            print("updateUserInfoSuspendedDate() fail :: \(errMsg)")
+            
+            sqlite3_finalize(createTablePtr)
+            return
+        }
+        
+        sqlite3_finalize(createTablePtr)
     }
     
     // 17. jwt 교체
-    func UpdateUserInfoJwt() {
+    func updateUserInfoJwt(jwt: String) {
         
+        let UpdateQuery = "UPDATE UserInfo SET jwt=\(jwt);"
+        var createTablePtr: OpaquePointer? = nil
         
+        if sqlite3_prepare(self.db, UpdateQuery, -1, &createTablePtr, nil) != SQLITE_OK {
+            let errMsg = String(cString: sqlite3_errmsg(db)!)
+            print("error preparing updateUserInfoJwt(): v1\(errMsg)")
+            
+            sqlite3_finalize(createTablePtr)
+            return
+        }
+        
+        if sqlite3_step(createTablePtr) != SQLITE_DONE {
+            let errMsg = String(cString : sqlite3_errmsg(db)!)
+            print("updateUserInfoJwt() fail :: \(errMsg)")
+            
+            sqlite3_finalize(createTablePtr)
+            return
+        }
+        
+        sqlite3_finalize(createTablePtr)
     }
     
     // 18. 정지 날짜 가져오기
-    func SelectUserInfoSuspendedDate() {
+    func selectUserInfoSuspendedDate() -> String {
         
+        let selectQuery = "SELECT suspendedDate FROM UserInfo LIMIT 1;"
+        var createTablePtr: OpaquePointer? = nil
         
+        var suspendedDate: String = ""
+        
+        if sqlite3_prepare(self.db, selectQuery, -1, &createTablePtr, nil) != SQLITE_OK {
+            let errMsg = String(cString: sqlite3_errmsg(db)!)
+            print("error preparing selectUserInfoSuspendedDate(): v1 \(errMsg)")
+            sqlite3_finalize(createTablePtr)
+            return "실패!"
+        }
+        
+        while(sqlite3_step(createTablePtr) == SQLITE_ROW) {
+            suspendedDate = String(cString: sqlite3_column_text(createTablePtr, 0))
+        }
+        
+        sqlite3_finalize(createTablePtr)
+        
+        return suspendedDate
     }
     
     // 19. 토큰 가져오기
-    func SelectUserInfoToken() {
+    func selectUserInfoToken() -> String {
         
+        let selectQuery = "SELECT token FROM UserInfo LIMIT 1;"
+        var createTablePtr: OpaquePointer? = nil
         
+        var token: String = ""
+        
+        if sqlite3_prepare(self.db, selectQuery, -1, &createTablePtr, nil) != SQLITE_OK {
+            let errMsg = String(cString: sqlite3_errmsg(db)!)
+            print("error preparing selectUserInfoToken(): v1 \(errMsg)")
+            sqlite3_finalize(createTablePtr)
+            return "실패!"
+        }
+        
+        while(sqlite3_step(createTablePtr) == SQLITE_ROW) {
+            token = String(cString: sqlite3_column_text(createTablePtr, 0))
+        }
+        
+        sqlite3_finalize(createTablePtr)
+        
+        return token
     }
     
     // 20. 토큰 변경
-    func UpdateUserInfoToken() {
+    func updateUserInfoToken(token: String) {
         
+        let UpdateQuery = "UPDATE UserInfo SET token=\(token);"
+        var createTablePtr: OpaquePointer? = nil
         
+        if sqlite3_prepare(self.db, UpdateQuery, -1, &createTablePtr, nil) != SQLITE_OK {
+            let errMsg = String(cString: sqlite3_errmsg(db)!)
+            print("error preparing updateUserInfoToken(): v1\(errMsg)")
+            
+            sqlite3_finalize(createTablePtr)
+            return
+        }
+        
+        if sqlite3_step(createTablePtr) != SQLITE_DONE {
+            let errMsg = String(cString : sqlite3_errmsg(db)!)
+            print("updateUserInfoToken() fail :: \(errMsg)")
+            
+            sqlite3_finalize(createTablePtr)
+            return
+        }
+        
+        sqlite3_finalize(createTablePtr)
     }
     
     // 21. 자동로그인 여부 가져오기
-    func SelectUserInfoAutoLogin() -> Int {
-        let selectQuery = "SELECT autoLogin FROM UserInfo LIMIT 1"
+    func selectUserInfoAutoLogin() -> Int {
+        let selectQuery = "SELECT autoLogin FROM UserInfo LIMIT 1;"
         var createTablePtr: OpaquePointer? = nil
         
         var autoLogin: Int = 0
         
         if sqlite3_prepare(self.db, selectQuery, -1, &createTablePtr, nil) != SQLITE_OK {
             let errMsg = String(cString: sqlite3_errmsg(db)!)
-            print("error preparing SelectUserInfoAutoLogin(): v1 \(errMsg)")
+            print("error preparing selectUserInfoAutoLogin(): v1 \(errMsg)")
             sqlite3_finalize(createTablePtr)
             return autoLogin
         }
@@ -583,87 +706,376 @@ class Sql {
     }
     
     // 22. 자동로그인 변경
-    func UpdateUserInfoAutoLogin() {
+    func updateUserInfoAutoLogin(autoLogin: Int) {
         
+        let UpdateQuery = "UPDATE UserInfo SET autoLogin=\(autoLogin);"
+        var createTablePtr: OpaquePointer? = nil
         
-    }
-    
-    // 23. 아이디 변경
-    func UpdateUserInfoStudentId() {
-        
-        
-    }
-    
-    // 24. jwt 가져오기
-    func SelectUserInfoJwt() {
-        
-        
-    }
-    
-    
-    
-    
-    // MARK: - TestCaseSql(Delete)
-    func deleteRoomInfo() {
-        let deleteQuery = "DELETE FROM RoomInfo;"
-        var createTablePtr: OpaquePointer? //query를 가리키는 포인터
-        
-        if sqlite3_prepare(db, deleteQuery, -1, &createTablePtr, nil) == SQLITE_OK{
-            if sqlite3_step(createTablePtr) == SQLITE_DONE{
-                print("\nDelete deleteRoomInfo() Row Success")
-            }else{
-                print("\nDelete deleteRoomInfo() Row Faild")
-            }
-        }else{
-            print("\nDelete deleteRoomInfo() Statement in not prepared")
+        if sqlite3_prepare(self.db, UpdateQuery, -1, &createTablePtr, nil) != SQLITE_OK {
+            let errMsg = String(cString: sqlite3_errmsg(db)!)
+            print("error preparing updateUserInfoAutoLogin(): v1\(errMsg)")
+            
+            sqlite3_finalize(createTablePtr)
+            return
         }
+        
+        if sqlite3_step(createTablePtr) != SQLITE_DONE {
+            let errMsg = String(cString : sqlite3_errmsg(db)!)
+            print("updateUserInfoAutoLogin() fail :: \(errMsg)")
+            
+            sqlite3_finalize(createTablePtr)
+            return
+        }
+        
         sqlite3_finalize(createTablePtr)
     }
     
-    func deleteRoomInName() {
-        let deleteQuery = "DELETE FROM RoomInName;"
-        var createTablePtr: OpaquePointer? //query를 가리키는 포인터
+    // 23. 아이디 변경
+    func updateUserInfoStudentId(studentId: String) {
         
-        if sqlite3_prepare(db, deleteQuery, -1, &createTablePtr, nil) == SQLITE_OK{
-            if sqlite3_step(createTablePtr) == SQLITE_DONE{
+        let UpdateQuery = "UPDATE UserInfo SET studentId=\(studentId);"
+        var createTablePtr: OpaquePointer? = nil
+        
+        if sqlite3_prepare(self.db, UpdateQuery, -1, &createTablePtr, nil) != SQLITE_OK {
+            let errMsg = String(cString: sqlite3_errmsg(db)!)
+            print("error preparing updateUserInfoStudentId(): v1\(errMsg)")
+            
+            sqlite3_finalize(createTablePtr)
+            return
+        }
+        
+        if sqlite3_step(createTablePtr) != SQLITE_DONE {
+            let errMsg = String(cString : sqlite3_errmsg(db)!)
+            print("updateUserInfoStudentId() fail :: \(errMsg)")
+            
+            sqlite3_finalize(createTablePtr)
+            return
+        }
+        
+        sqlite3_finalize(createTablePtr)
+    }
+    
+    // 24. jwt 가져오기
+    func selectUserInfoJwt() -> String {
+        
+        let selectQuery = "SELECT jwt FROM UserInfo LIMIT 1;"
+        var createTablePtr: OpaquePointer? = nil
+        
+        var jwt: String = ""
+        
+        if sqlite3_prepare(self.db, selectQuery, -1, &createTablePtr, nil) != SQLITE_OK {
+            let errMsg = String(cString: sqlite3_errmsg(db)!)
+            print("error preparing selectUserInfoJwt(): v1 \(errMsg)")
+            sqlite3_finalize(createTablePtr)
+            return "실패!"
+        }
+        
+        while(sqlite3_step(createTablePtr) == SQLITE_ROW) {
+            jwt = String(cString: sqlite3_column_text(createTablePtr, 0))
+        }
+        
+        sqlite3_finalize(createTablePtr)
+        
+        return jwt
+    }
+    
+    // MARK: - RoomInName
+    
+    // 25. 방 안에 사용자 닉네임 저장
+    func insertRoomInNames(subjectData: SubjectInfo) {
+        
+        
+    }
+    
+    // 26. 입장할 때 마다 사용자 이름 추가
+    func insertRoomInName(id: Int, roomid: Int, name: String) {
+       
+        var createTablePtr : OpaquePointer? = nil
+        
+        let insertQeury: String = "INSERT INTO RoomInName (id, roomid, name) VALUES (?,?,?);"
+        
+        if sqlite3_prepare(db, insertQeury, -1, &createTablePtr, nil) != SQLITE_OK {
+            let errMsg = String(cString: sqlite3_errmsg(db)!)
+            print("error preparing insertRoomInName(): v1 \(errMsg)")
+            sqlite3_finalize(createTablePtr)
+            return
+        }
+        
+        let SQLITE_TRANSIENT = unsafeBitCast(-1, to: sqlite3_destructor_type.self)
+        
+        if sqlite3_bind_int(createTablePtr, 1, Int32(id)) != SQLITE_OK {
+            let errMsg = String(cString : sqlite3_errmsg(db)!)
+            print("failture binding name: \(errMsg)")
+            sqlite3_finalize(createTablePtr)
+            return
+        }
+        
+        if sqlite3_bind_int(createTablePtr, 2, Int32(roomid)) != SQLITE_OK {
+            let errMsg = String(cString : sqlite3_errmsg(db)!)
+            print("failture binding name: \(errMsg)")
+            sqlite3_finalize(createTablePtr)
+            return
+        }
+        
+        if sqlite3_bind_text(createTablePtr, 3, name, -1, SQLITE_TRANSIENT) != SQLITE_OK {
+            let errMsg = String(cString : sqlite3_errmsg(db)!)
+            print("failture binding name: \(errMsg)")
+            sqlite3_finalize(createTablePtr)
+            return
+        }
+        
+        if sqlite3_step(createTablePtr) == SQLITE_DONE {
+            print("insertRoomInName() data SuccessFully")
+        } else {
+            let errMsg = String(cString : sqlite3_errmsg(db)!)
+            print("insertRoomInName() fail :: \(errMsg)")
+            sqlite3_finalize(createTablePtr)
+            return
+        }
+        
+        sqlite3_finalize(createTablePtr)
+    }
+    
+    // 27. 퇴장할 때 사용자 이름 제거
+    func deleteRoomInName(roomId: Int, name: String) {
+        
+        let deleteQuery = "DELETE FROM RoomInName WHERE roomId=\(roomId) AND name=\(name)"
+        var createTablePtr: OpaquePointer? = nil //query를 가리키는 포인터
+        
+        if sqlite3_prepare(db, deleteQuery, -1, &createTablePtr, nil) == SQLITE_OK {
+            if sqlite3_step(createTablePtr) == SQLITE_DONE {
                 print("\nDelete deleteRoomInName() Row Success")
-            }else{
+            } else {
                 print("\nDelete deleteRoomInName() Row Faild")
             }
-        }else{
+        } else {
             print("\nDelete deleteRoomInName() Statement in not prepared")
         }
         sqlite3_finalize(createTablePtr)
     }
     
-    func deleteChatInfo() {
-        let deleteQuery = "DELETE FROM ChatInfo;"
-        var createTablePtr: OpaquePointer? //query를 가리키는 포인터
+    // 28. 수강과목이 바뀌면 기존 과목은 삭제
+    func deleteRoomInNames() {
         
-        if sqlite3_prepare(db, deleteQuery, -1, &createTablePtr, nil) == SQLITE_OK{
-            if sqlite3_step(createTablePtr) == SQLITE_DONE{
+        
+        
+    }
+    
+    // 29.
+    func selectRoomInNames() {
+        
+        
+    }
+    
+    // 30. 방 안에 사용자 닉네임 전체 삭제
+    func deleteAllRoomInNames() {
+        
+        let deleteQuery = "DELETE FROM RoomInName"
+        var createTablePtr: OpaquePointer? = nil //query를 가리키는 포인터
+        
+        if sqlite3_prepare(db, deleteQuery, -1, &createTablePtr, nil) == SQLITE_OK {
+            if sqlite3_step(createTablePtr) == SQLITE_DONE {
+                print("\nDelete deleteAllRoomInNames() Row Success")
+            } else {
+                print("\nDelete deleteAllRoomInNames() Row Faild")
+            }
+        } else {
+            print("\nDelete deleteAllRoomInNames() Statement in not prepared")
+        }
+        sqlite3_finalize(createTablePtr)
+    }
+    
+    // 31. 방 안에 사용자 닉네임 불러오기
+    func selectRoomInNames2() {
+        
+        
+    }
+    
+    // MARK: - ChatInfo
+    
+    // 31. 채팅 내용 저장
+    func insertChatInfo(id: Int, roomid: Int, nickName: String, time: String, content: String, type: Int) {
+
+        var createTablePtr : OpaquePointer? = nil
+        let insertQeury: String = "INSERT INTO ChatInfo (id, roomid, nickname, time, content, type) VALUES (?,?,?,?,?,?);"
+        
+        if sqlite3_prepare(db, insertQeury, -1, &createTablePtr, nil) != SQLITE_OK {
+            let errMsg = String(cString: sqlite3_errmsg(db)!)
+            print("error preparing insertChatInfo(): v1 \(errMsg)")
+            sqlite3_finalize(createTablePtr)
+            return
+        }
+        
+        let SQLITE_TRANSIENT = unsafeBitCast(-1, to: sqlite3_destructor_type.self)
+        
+        if sqlite3_bind_int(createTablePtr, 1, Int32(id)) != SQLITE_OK {
+            let errMsg = String(cString : sqlite3_errmsg(db)!)
+            print("failture binding name: \(errMsg)")
+            sqlite3_finalize(createTablePtr)
+            return
+        }
+        
+        if sqlite3_bind_int(createTablePtr, 2, Int32(roomid)) != SQLITE_OK {
+            let errMsg = String(cString : sqlite3_errmsg(db)!)
+            print("failture binding name: \(errMsg)")
+            sqlite3_finalize(createTablePtr)
+            return
+        }
+        
+        if sqlite3_bind_text(createTablePtr, 3, nickName, -1, SQLITE_TRANSIENT) != SQLITE_OK {
+            let errMsg = String(cString : sqlite3_errmsg(db)!)
+            print("failture binding name: \(errMsg)")
+            sqlite3_finalize(createTablePtr)
+            return
+        }
+        
+        if sqlite3_bind_text(createTablePtr, 4, time, -1, SQLITE_TRANSIENT) != SQLITE_OK {
+            let errMsg = String(cString : sqlite3_errmsg(db)!)
+            print("failture binding name: \(errMsg)")
+            sqlite3_finalize(createTablePtr)
+            return
+        }
+        
+        if sqlite3_bind_text(createTablePtr, 5, content, -1, SQLITE_TRANSIENT) != SQLITE_OK {
+            let errMsg = String(cString : sqlite3_errmsg(db)!)
+            print("failture binding name: \(errMsg)")
+            sqlite3_finalize(createTablePtr)
+            return
+        }
+        
+        if sqlite3_bind_int(createTablePtr, 6, Int32(type)) != SQLITE_OK {
+            let errMsg = String(cString : sqlite3_errmsg(db)!)
+            print("failture binding name: \(errMsg)")
+            sqlite3_finalize(createTablePtr)
+            return
+        }
+        
+        if sqlite3_step(createTablePtr) == SQLITE_DONE {
+            print("insertChatInfo() data SuccessFully")
+        } else {
+            let errMsg = String(cString : sqlite3_errmsg(db)!)
+            print("insertChatInfo() fail :: \(errMsg)")
+            sqlite3_finalize(createTablePtr)
+            return
+        }
+        
+        sqlite3_finalize(createTablePtr)
+    }
+    
+    // 32. 수강과목이 바뀌면 기존 과목의 채팅 내용은 삭제
+//    func deleteChatInfos() {
+//
+//
+//    }
+    
+    // 33. 채팅 내용 전체 삭제
+    func deleteChatInfos() {
+        
+        let deleteQuery = "DELETE FROM ChatInfo;"
+        var createTablePtr: OpaquePointer? = nil //query를 가리키는 포인터
+        
+        if sqlite3_prepare(db, deleteQuery, -1, &createTablePtr, nil) == SQLITE_OK {
+            if sqlite3_step(createTablePtr) == SQLITE_DONE {
+                print("\nDelete deleteChatInfos() Row Success")
+            } else {
+                print("\nDelete deleteChatInfos() Row Faild")
+            }
+        } else {
+            print("\nDelete deleteChatInfos() Statement in not prepared")
+        }
+        sqlite3_finalize(createTablePtr)
+    }
+    
+    // 34. 채팅 내용 불러오기
+    func selectChatInfo() {
+        
+        
+        
+    }
+    
+    // 35. 정정때 수강과목 바뀌면 기존 채팅 내용 삭제
+    func deleteChatInfo(roomid: Int) {
+        
+        let deleteQuery = "DELETE FROM ChatInfo WHERE roomId=\(roomid);"
+        var createTablePtr: OpaquePointer? = nil //query를 가리키는 포인터
+        
+        if sqlite3_prepare(db, deleteQuery, -1, &createTablePtr, nil) == SQLITE_OK {
+            if sqlite3_step(createTablePtr) == SQLITE_DONE {
                 print("\nDelete deleteChatInfo() Row Success")
-            }else{
+            } else {
                 print("\nDelete deleteChatInfo() Row Faild")
             }
-        }else{
+        } else {
             print("\nDelete deleteChatInfo() Statement in not prepared")
         }
         sqlite3_finalize(createTablePtr)
     }
     
-    func deleteUserInfo() {
+    
+    
+    
+    
+    // MARK: - TestCaseSql(Delete)
+    func deleteRoomInfoTest() {
+        let deleteQuery = "DELETE FROM RoomInfo;"
+        var createTablePtr: OpaquePointer? //query를 가리키는 포인터
+        
+        if sqlite3_prepare(db, deleteQuery, -1, &createTablePtr, nil) == SQLITE_OK{
+            if sqlite3_step(createTablePtr) == SQLITE_DONE{
+                print("\nDelete deleteRoomInfoTest() Row Success")
+            }else{
+                print("\nDelete deleteRoomInfoTest() Row Faild")
+            }
+        }else{
+            print("\nDelete deleteRoomInfoTest() Statement in not prepared")
+        }
+        sqlite3_finalize(createTablePtr)
+    }
+    
+    func deleteRoomInNameTest() {
+        let deleteQuery = "DELETE FROM RoomInName;"
+        var createTablePtr: OpaquePointer? //query를 가리키는 포인터
+        
+        if sqlite3_prepare(db, deleteQuery, -1, &createTablePtr, nil) == SQLITE_OK{
+            if sqlite3_step(createTablePtr) == SQLITE_DONE{
+                print("\nDelete deleteRoomInNameTest() Row Success")
+            }else{
+                print("\nDelete deleteRoomInNameTest() Row Faild")
+            }
+        }else{
+            print("\nDelete deleteRoomInNameTest() Statement in not prepared")
+        }
+        sqlite3_finalize(createTablePtr)
+    }
+    
+    func deleteChatInfoTest() {
+        let deleteQuery = "DELETE FROM ChatInfo;"
+        var createTablePtr: OpaquePointer? //query를 가리키는 포인터
+        
+        if sqlite3_prepare(db, deleteQuery, -1, &createTablePtr, nil) == SQLITE_OK{
+            if sqlite3_step(createTablePtr) == SQLITE_DONE{
+                print("\nDelete deleteChatInfoTest() Row Success")
+            }else{
+                print("\nDelete deleteChatInfoTest() Row Faild")
+            }
+        }else{
+            print("\nDelete deleteChatInfoTest() Statement in not prepared")
+        }
+        sqlite3_finalize(createTablePtr)
+    }
+    
+    func deleteUserInfoTest() {
         let deleteQuery = "DELETE FROM UserInfo;"
         var createTablePtr: OpaquePointer? //query를 가리키는 포인터
         
         if sqlite3_prepare(db, deleteQuery, -1, &createTablePtr, nil) == SQLITE_OK{
             if sqlite3_step(createTablePtr) == SQLITE_DONE{
-                print("\nDelete deleteUserInfo() Row Success")
+                print("\nDelete deleteUserInfoTest() Row Success")
             }else{
-                print("\nDelete deleteUserInfo() Row Faild")
+                print("\nDelete deleteUserInfoTest() Row Faild")
             }
         }else{
-            print("\nDelete deleteUserInfo() Statement in not prepared")
+            print("\nDelete deleteUserInfoTest() Statement in not prepared")
         }
         sqlite3_finalize(createTablePtr)
     }
