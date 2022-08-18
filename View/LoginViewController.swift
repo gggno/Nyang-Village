@@ -46,7 +46,6 @@ class LoginViewController: UIViewController {
         sql.deleteUserInfo()
     
         
-        
         self.view.addSubview(activityIndicator)
     }
     // 화면 터치시 키보드 내리기
@@ -78,6 +77,7 @@ class LoginViewController: UIViewController {
         LoginBtn.layer.shadowOpacity = 1
         LoginBtn.layer.shadowOffset = CGSize(width: 0, height: 5)
     }
+    
     // 키보드 up, down 설정(notification 활용) 노티피케이션 원리 이해하기
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)

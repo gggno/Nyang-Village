@@ -218,31 +218,37 @@ class Sql {
     }
     
     // 4. 방 정보 불러오기
-    func selectRoomInfo() {
+    func selectRoomInfo() -> [RoomInfoRow] {
         
         let selectQuery = "SELECT * FROM RoomInfo"
         var createTablePtr: OpaquePointer? = nil
         
-        var roomid: Int?
-        var roomname: String?
-        var nickName: String?
-        var professorname: String?
-        var position: Int?
-        var noti: Int?
+        var roomInfoRowArr: [RoomInfoRow] = []
         
         if sqlite3_prepare(self.db, selectQuery, -1, &createTablePtr, nil) != SQLITE_OK {
             let errMsg = String(cString: sqlite3_errmsg(db)!)
             print("error preparing selectValue(): v1 \(errMsg)")
             
             sqlite3_finalize(createTablePtr)
-            return
+            return roomInfoRowArr
         }
         
         while(sqlite3_step(createTablePtr) == SQLITE_ROW) {
+            let roomid = sqlite3_column_int(createTablePtr, 0)
+            let roomName = String(cString: sqlite3_column_text(createTablePtr, 1))
+            let nickName = String(cString: sqlite3_column_text(createTablePtr, 2))
+            let professorName = String(cString: sqlite3_column_text(createTablePtr, 3))
+            let position = sqlite3_column_int(createTablePtr, 4)
+            let noti = sqlite3_column_int(createTablePtr, 5)
             
+            let roomInfoRowST: RoomInfoRow = RoomInfoRow(roomId: Int(roomid), roomName: roomName, nickName: nickName, professorName: professorName, position: Int(position), noti: Int(noti))
+            
+            roomInfoRowArr.append(roomInfoRowST)
         }
         
+        sqlite3_finalize(createTablePtr)
         
+        return roomInfoRowArr
     }
     
     // 5. 방 정보 전체 삭제
@@ -264,35 +270,233 @@ class Sql {
     }
     
     // 6. 웹에서 채팅 보낼 시 해당 기기에 내가 보낸 것으로 해야함
-    func selectRoomInfoInNickname() {
+    func selectRoomInfoInNickname(roomid: Int) -> String {
         
+        let selectQuery = "SELECT nickName FROM RoomInfo WHERE roomId=\(roomid)"
+        var createTablePtr: OpaquePointer? = nil
+        
+        var nickName: String = ""
+        
+        if sqlite3_prepare(self.db, selectQuery, -1, &createTablePtr, nil) != SQLITE_OK {
+            let errMsg = String(cString: sqlite3_errmsg(db)!)
+            print("error preparing getAutoSelectValue(): v1 \(errMsg)")
+            sqlite3_finalize(createTablePtr)
+            return "실패!"
+        }
+        
+        while(sqlite3_step(createTablePtr) == SQLITE_ROW) {
+            nickName = String(cString: sqlite3_column_text(createTablePtr, 0))
+        }
+        
+        sqlite3_finalize(createTablePtr)
+        
+        return nickName
     }
     
     // 7. 마지막으로 읽은 채팅
-    func selectRoomInfoPosition() {
+    func selectRoomInfoPosition(roomid: Int) -> Int {
         
+        let selectQuery = "SELECT position FROM RoomInfo WHERE roomId=\(roomid)"
+        var createTablePtr: OpaquePointer? = nil
+        
+        var position: Int = 0
+        
+        if sqlite3_prepare(self.db, selectQuery, -1, &createTablePtr, nil) != SQLITE_OK {
+            let errMsg = String(cString: sqlite3_errmsg(db)!)
+            print("error preparing getAutoSelectValue(): v1 \(errMsg)")
+            sqlite3_finalize(createTablePtr)
+            return position
+        }
+        
+        while(sqlite3_step(createTablePtr) == SQLITE_ROW) {
+            position = Int(sqlite3_column_int(createTablePtr, 0))
+        }
+        
+        sqlite3_finalize(createTablePtr)
+        
+        return position
     }
     
     // 8. 마지막으로 읽은 채팅위치 저장
-    func updateRoomInfoPositon() {
+    func updateRoomInfoPositon(positon: Int, roomid: Int) {
         
+        let UpdateQuery = "UPDATE RoomInfo SET position=\(positon) WHERE roomId=\(roomid)"
+        var createTablePtr: OpaquePointer? = nil
+        
+        if sqlite3_prepare(self.db, UpdateQuery, -1, &createTablePtr, nil) != SQLITE_OK{
+            let errMsg = String(cString: sqlite3_errmsg(db)!)
+            print("error preparing update: v1\(errMsg)")
+            
+            sqlite3_finalize(createTablePtr)
+            return
+        }
+        
+        if sqlite3_step(createTablePtr) != SQLITE_DONE {
+            let errMsg = String(cString : sqlite3_errmsg(db)!)
+            print("update fail :: \(errMsg)")
+            
+            sqlite3_finalize(createTablePtr)
+            return
+        }
+        
+        sqlite3_finalize(createTablePtr)
     }
     
     // 9. fcm 알림
-    func selectRoomInfoNoti() {
+    func selectRoomInfoNoti(roomid: Int) -> NotiRoomInfo {
         
+        let selectQuery = "SELECT roomName, noti FROM RoomInfo WHERE roomId=\(roomid)"
+        var createTablePtr: OpaquePointer? = nil
+        
+        var roomName: String = ""
+        var noti: Int = 0
+        
+        var notiRoomInfo: NotiRoomInfo = NotiRoomInfo(roomName: roomName, noti: noti)
+        
+        if sqlite3_prepare(self.db, selectQuery, -1, &createTablePtr, nil) != SQLITE_OK {
+            let errMsg = String(cString: sqlite3_errmsg(db)!)
+            print("error preparing getAutoSelectValue(): v1 \(errMsg)")
+            
+            sqlite3_finalize(createTablePtr)
+            return notiRoomInfo
+        }
+        
+        while(sqlite3_step(createTablePtr) == SQLITE_ROW) {
+            notiRoomInfo.roomName = String(cString: sqlite3_column_text(createTablePtr, 0))
+            notiRoomInfo.noti = Int(sqlite3_column_int(createTablePtr, 1))
+        }
+        
+        sqlite3_finalize(createTablePtr)
+        
+        return notiRoomInfo
     }
     
     // 10. fcm 알림2
-    func selectRoomInfoNoti2() {
+    func selectRoomInfoNoti2(roomid: Int) -> Int {
+        let selectQuery = "SELECT noti FROM RoomInfo WHERE roomId=\(roomid)"
+        var createTablePtr: OpaquePointer? = nil
         
+        var noti: Int = 0
+        
+        if sqlite3_prepare(self.db, selectQuery, -1, &createTablePtr, nil) != SQLITE_OK {
+            let errMsg = String(cString: sqlite3_errmsg(db)!)
+            print("error preparing getAutoSelectValue(): v1 \(errMsg)")
+            sqlite3_finalize(createTablePtr)
+            return noti
+        }
+        
+        while(sqlite3_step(createTablePtr) == SQLITE_ROW) {
+            noti = Int(sqlite3_column_int(createTablePtr, 0))
+        }
+        
+        sqlite3_finalize(createTablePtr)
+        
+        return noti
     }
     
     // 11. 알림 해제/허용
-    func updateRoomInfoNoti() {
+    func updateRoomInfoNoti(noti: Int, roomid: Int) {
+        let UpdateQuery = "UPDATE RoomInfo SET noti=\(noti) WHERE roomId=\(roomid)"
+        var createTablePtr: OpaquePointer? = nil
+        
+        if sqlite3_prepare(self.db, UpdateQuery, -1, &createTablePtr, nil) != SQLITE_OK{
+            let errMsg = String(cString: sqlite3_errmsg(db)!)
+            print("error preparing update: v1\(errMsg)")
+            
+            sqlite3_finalize(createTablePtr)
+            return
+        }
+        
+        if sqlite3_step(createTablePtr) != SQLITE_DONE {
+            let errMsg = String(cString : sqlite3_errmsg(db)!)
+            print("update fail :: \(errMsg)")
+            
+            sqlite3_finalize(createTablePtr)
+            return
+        }
+        
+        sqlite3_finalize(createTablePtr)
+    }
+    
+    // MARK: - UserInfo
+    
+    // 12. 유저정보저장
+    func InsertUserInfo() {
+        
         
     }
     
+    // 13. 유저정보삭제
+    func DeleteUserInfo() {
+        
+        
+    }
+    
+    // 14. 유저정보 불러오기
+    func SelectUserInfo() {
+        
+        
+    }
+    
+    // 15. 학번 가져오기
+    func SelectUserInfoStudentId() {
+        
+        
+    }
+    
+    // 16. 정지 풀리는 날짜
+    func UpdateUserInfoSuspendedDate() {
+        
+        
+    }
+    
+    // 17. jwt 교체
+    func UpdateUserInfoJwt() {
+        
+        
+    }
+    
+    // 18. 정지 날짜 가져오기
+    func SelectUserInfoSuspendedDate() {
+        
+        
+    }
+    
+    // 19. 토큰 가져오기
+    func SelectUserInfoToken() {
+        
+        
+    }
+    
+    // 20. 토큰 변경
+    func UpdateUserInfoToken() {
+        
+        
+    }
+    
+    // 21. 자동로그인 여부 가져오기
+    func SelectUserInfoAutoLogin() {
+        
+        
+    }
+    
+    // 22. 자동로그인 변경
+    func UpdateUserInfoAutoLogin() {
+        
+        
+    }
+    
+    // 23. 아이디 변경
+    func UpdateUserInfoStudentId() {
+        
+        
+    }
+    
+    // 24. jwt 가져오기
+    func SelectUserInfoJwt() {
+        
+        
+    }
     
     
     

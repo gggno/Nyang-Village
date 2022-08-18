@@ -27,6 +27,8 @@
 		664B2DBA27FC708E00109DFB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 664B2DB827FC708E00109DFB /* LaunchScreen.storyboard */; };
 		666C5C8F28A77E1700991176 /* ChattingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 666C5C8E28A77E1700991176 /* ChattingViewController.swift */; };
 		6678F5B128A8C7840049938F /* JalnanOTF.otf in Resources */ = {isa = PBXBuildFile; fileRef = 6678F5B028A8C7840049938F /* JalnanOTF.otf */; };
+		667A9AE128AD0DC40068582F /* MyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 667A9ADF28AD0DC40068582F /* MyTableViewCell.swift */; };
+		667A9AE228AD0DC40068582F /* MyTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 667A9AE028AD0DC40068582F /* MyTableViewCell.xib */; };
 		66A126452865D978007B3547 /* LoginRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66A126442865D978007B3547 /* LoginRequest.swift */; };
 		66A126472865E48A007B3547 /* LoginResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66A126462865E48A007B3547 /* LoginResponse.swift */; };
 		66AA9F5B2840B04E00988A60 /* MainTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66AA9F592840B04E00988A60 /* MainTableViewCell.swift */; };
@@ -39,6 +41,7 @@
 		66C1F80128314A34001FD2FE /* UIView_Extention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66C1F80028314A34001FD2FE /* UIView_Extention.swift */; };
 		66C8773228A226EB002903CF /* RoomInfoRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66C8773128A226EB002903CF /* RoomInfoRow.swift */; };
 		66C9A4E62893A8870073C0C4 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66C9A4E52893A8870073C0C4 /* SettingViewController.swift */; };
+		66D0634D28AE02870024E1AF /* NotiRoomInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66D0634C28AE02870024E1AF /* NotiRoomInfo.swift */; };
 		66F5BEB72804643D0002240C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 66F5BEB62804643D0002240C /* GoogleService-Info.plist */; };
 		66F5EEAA287C57350057C285 /* UINavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66F5EEA9287C57350057C285 /* UINavigationController.swift */; };
 		6E7867EFD964041F86EF3311 /* Pods_Nyang_Village.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D894EDED1EF20D4DC2AF2E62 /* Pods_Nyang_Village.framework */; };
@@ -68,6 +71,8 @@
 		664F296B280469A100F1D43C /* Nyang Village.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Nyang Village.entitlements"; sourceTree = "<group>"; };
 		666C5C8E28A77E1700991176 /* ChattingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChattingViewController.swift; sourceTree = "<group>"; };
 		6678F5B028A8C7840049938F /* JalnanOTF.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = JalnanOTF.otf; sourceTree = "<group>"; };
+		667A9ADF28AD0DC40068582F /* MyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTableViewCell.swift; sourceTree = "<group>"; };
+		667A9AE028AD0DC40068582F /* MyTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyTableViewCell.xib; sourceTree = "<group>"; };
 		66A126442865D978007B3547 /* LoginRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginRequest.swift; sourceTree = "<group>"; };
 		66A126462865E48A007B3547 /* LoginResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginResponse.swift; sourceTree = "<group>"; };
 		66AA9F592840B04E00988A60 /* MainTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTableViewCell.swift; sourceTree = "<group>"; };
@@ -80,6 +85,7 @@
 		66C1F80028314A34001FD2FE /* UIView_Extention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIView_Extention.swift; sourceTree = "<group>"; };
 		66C8773128A226EB002903CF /* RoomInfoRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomInfoRow.swift; sourceTree = "<group>"; };
 		66C9A4E52893A8870073C0C4 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
+		66D0634C28AE02870024E1AF /* NotiRoomInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotiRoomInfo.swift; sourceTree = "<group>"; };
 		66F5BEB62804643D0002240C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		66F5EEA9287C57350057C285 /* UINavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UINavigationController.swift; sourceTree = "<group>"; };
 		859A35855346CD60860891DF /* Pods-Nyang Village.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Nyang Village.release.xcconfig"; path = "Target Support Files/Pods-Nyang Village/Pods-Nyang Village.release.xcconfig"; sourceTree = "<group>"; };
@@ -160,25 +166,35 @@
 			path = "Nyang Village";
 			sourceTree = "<group>";
 		};
+		667A9ADE28AD0D8F0068582F /* ChatView(TableView) */ = {
+			isa = PBXGroup;
+			children = (
+				666C5C8E28A77E1700991176 /* ChattingViewController.swift */,
+				667A9ADF28AD0DC40068582F /* MyTableViewCell.swift */,
+				667A9AE028AD0DC40068582F /* MyTableViewCell.xib */,
+			);
+			path = "ChatView(TableView)";
+			sourceTree = "<group>";
+		};
 		66A126432865D957007B3547 /* Entity */ = {
 			isa = PBXGroup;
 			children = (
 				66A126442865D978007B3547 /* LoginRequest.swift */,
 				66A126462865E48A007B3547 /* LoginResponse.swift */,
 				660723D72898CE9B0010A3D4 /* Sql.swift */,
-				66C8773128A226EB002903CF /* RoomInfoRow.swift */,
+				66D0634B28AE026E0024E1AF /* RoomInfoSql */,
 			);
 			path = Entity;
 			sourceTree = "<group>";
 		};
-		66A126482865FC59007B3547 /* MainView */ = {
+		66A126482865FC59007B3547 /* MainView(TableView) */ = {
 			isa = PBXGroup;
 			children = (
 				66C1F7FB28314949001FD2FE /* MainViewController.swift */,
 				66AA9F592840B04E00988A60 /* MainTableViewCell.swift */,
 				66AA9F5A2840B04E00988A60 /* MainTableViewCell.xib */,
 			);
-			path = MainView;
+			path = "MainView(TableView)";
 			sourceTree = "<group>";
 		};
 		66C1F7F82831492E001FD2FE /* Presenter */ = {
@@ -194,9 +210,9 @@
 		66C1F7F928314938001FD2FE /* View */ = {
 			isa = PBXGroup;
 			children = (
-				66A126482865FC59007B3547 /* MainView */,
+				66A126482865FC59007B3547 /* MainView(TableView) */,
 				66C1F7FD28314951001FD2FE /* LoginViewController.swift */,
-				666C5C8E28A77E1700991176 /* ChattingViewController.swift */,
+				667A9ADE28AD0D8F0068582F /* ChatView(TableView) */,
 				66C9A4E52893A8870073C0C4 /* SettingViewController.swift */,
 			);
 			path = View;
@@ -222,6 +238,15 @@
 				66F5EEA9287C57350057C285 /* UINavigationController.swift */,
 			);
 			path = Extention;
+			sourceTree = "<group>";
+		};
+		66D0634B28AE026E0024E1AF /* RoomInfoSql */ = {
+			isa = PBXGroup;
+			children = (
+				66C8773128A226EB002903CF /* RoomInfoRow.swift */,
+				66D0634C28AE02870024E1AF /* NotiRoomInfo.swift */,
+			);
+			path = RoomInfoSql;
 			sourceTree = "<group>";
 		};
 		E15539E4DC57C978CBBE24AB /* Pods */ = {
@@ -306,6 +331,7 @@
 				664B2DB527FC708D00109DFB /* Main.storyboard in Resources */,
 				6611979F2831667C0033CB33 /* SCDream3.otf in Resources */,
 				6678F5B128A8C7840049938F /* JalnanOTF.otf in Resources */,
+				667A9AE228AD0DC40068582F /* MyTableViewCell.xib in Resources */,
 				6611979B2831667C0033CB33 /* SCDream4.otf in Resources */,
 				66F5BEB72804643D0002240C /* GoogleService-Info.plist in Resources */,
 			);
@@ -362,6 +388,7 @@
 			files = (
 				66C1F7FE28314951001FD2FE /* LoginViewController.swift in Sources */,
 				66B530842844C1770064B490 /* MainViewPresenter.swift in Sources */,
+				66D0634D28AE02870024E1AF /* NotiRoomInfo.swift in Sources */,
 				66C1F7FC28314949001FD2FE /* MainViewController.swift in Sources */,
 				666C5C8F28A77E1700991176 /* ChattingViewController.swift in Sources */,
 				66C9A4E62893A8870073C0C4 /* SettingViewController.swift in Sources */,
@@ -373,6 +400,7 @@
 				66F5EEAA287C57350057C285 /* UINavigationController.swift in Sources */,
 				6611868928326D340002A832 /* LoginViewModel.swift in Sources */,
 				66B8D185283DDA76000EB71B /* Protocol.swift in Sources */,
+				667A9AE128AD0DC40068582F /* MyTableViewCell.swift in Sources */,
 				661197A2283174FE0033CB33 /* UITextField_Extention.swift in Sources */,
 				664B2DB027FC708D00109DFB /* SceneDelegate.swift in Sources */,
 				6611868728326CFE0002A832 /* LoginViewPresenter.swift in Sources */,
