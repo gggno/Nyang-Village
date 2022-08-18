@@ -42,6 +42,7 @@
 		66C8773228A226EB002903CF /* RoomInfoRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66C8773128A226EB002903CF /* RoomInfoRow.swift */; };
 		66C9A4E62893A8870073C0C4 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66C9A4E52893A8870073C0C4 /* SettingViewController.swift */; };
 		66D0634D28AE02870024E1AF /* NotiRoomInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66D0634C28AE02870024E1AF /* NotiRoomInfo.swift */; };
+		66D0635028AE0E3A0024E1AF /* UserInfoRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66D0634F28AE0E3A0024E1AF /* UserInfoRow.swift */; };
 		66F5BEB72804643D0002240C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 66F5BEB62804643D0002240C /* GoogleService-Info.plist */; };
 		66F5EEAA287C57350057C285 /* UINavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66F5EEA9287C57350057C285 /* UINavigationController.swift */; };
 		6E7867EFD964041F86EF3311 /* Pods_Nyang_Village.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D894EDED1EF20D4DC2AF2E62 /* Pods_Nyang_Village.framework */; };
@@ -86,6 +87,7 @@
 		66C8773128A226EB002903CF /* RoomInfoRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomInfoRow.swift; sourceTree = "<group>"; };
 		66C9A4E52893A8870073C0C4 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		66D0634C28AE02870024E1AF /* NotiRoomInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotiRoomInfo.swift; sourceTree = "<group>"; };
+		66D0634F28AE0E3A0024E1AF /* UserInfoRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoRow.swift; sourceTree = "<group>"; };
 		66F5BEB62804643D0002240C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		66F5EEA9287C57350057C285 /* UINavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UINavigationController.swift; sourceTree = "<group>"; };
 		859A35855346CD60860891DF /* Pods-Nyang Village.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Nyang Village.release.xcconfig"; path = "Target Support Files/Pods-Nyang Village/Pods-Nyang Village.release.xcconfig"; sourceTree = "<group>"; };
@@ -183,6 +185,7 @@
 				66A126462865E48A007B3547 /* LoginResponse.swift */,
 				660723D72898CE9B0010A3D4 /* Sql.swift */,
 				66D0634B28AE026E0024E1AF /* RoomInfoSql */,
+				66D0634E28AE0DE70024E1AF /* UserInfoSql */,
 			);
 			path = Entity;
 			sourceTree = "<group>";
@@ -247,6 +250,14 @@
 				66D0634C28AE02870024E1AF /* NotiRoomInfo.swift */,
 			);
 			path = RoomInfoSql;
+			sourceTree = "<group>";
+		};
+		66D0634E28AE0DE70024E1AF /* UserInfoSql */ = {
+			isa = PBXGroup;
+			children = (
+				66D0634F28AE0E3A0024E1AF /* UserInfoRow.swift */,
+			);
+			path = UserInfoSql;
 			sourceTree = "<group>";
 		};
 		E15539E4DC57C978CBBE24AB /* Pods */ = {
@@ -406,6 +417,7 @@
 				6611868728326CFE0002A832 /* LoginViewPresenter.swift in Sources */,
 				660723D82898CE9B0010A3D4 /* Sql.swift in Sources */,
 				66C8773228A226EB002903CF /* RoomInfoRow.swift in Sources */,
+				66D0635028AE0E3A0024E1AF /* UserInfoRow.swift in Sources */,
 				66B530862844C1C10064B490 /* MainViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

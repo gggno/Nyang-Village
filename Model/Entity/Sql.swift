@@ -348,8 +348,8 @@ class Sql {
         let selectQuery = "SELECT roomName, noti FROM RoomInfo WHERE roomId=\(roomid)"
         var createTablePtr: OpaquePointer? = nil
         
-        var roomName: String = ""
-        var noti: Int = 0
+        let roomName: String = ""
+        let noti: Int = 0
         
         var notiRoomInfo: NotiRoomInfo = NotiRoomInfo(roomName: roomName, noti: noti)
         
@@ -421,9 +421,65 @@ class Sql {
     // MARK: - UserInfo
     
     // 12. 유저정보저장
-    func InsertUserInfo() {
+    func InsertUserInfo(studentid: String, token: String, suspendeddate: String, autologin: Int, jwt: String) {
+        var createTablePtr : OpaquePointer? = nil
         
+        let insertQeury: String = "INSERT INTO UserInfo (studentid, token, suspendeddate, autologin, jwt) VALUES (?,?,?,?,?);"
         
+        if sqlite3_prepare(db, insertQeury, -1, &createTablePtr, nil) != SQLITE_OK {
+            let errMsg = String(cString: sqlite3_errmsg(db)!)
+            print("error preparing insertData(): v1 \(errMsg)")
+            sqlite3_finalize(createTablePtr)
+            return
+        }
+        
+        let SQLITE_TRANSIENT = unsafeBitCast(-1, to: sqlite3_destructor_type.self)
+        
+        if sqlite3_bind_text(createTablePtr, 1, studentid, -1, SQLITE_TRANSIENT) != SQLITE_OK {
+            let errMsg = String(cString : sqlite3_errmsg(db)!)
+            print("failture binding name: \(errMsg)")
+            sqlite3_finalize(createTablePtr)
+            return
+        }
+        
+        if sqlite3_bind_text(createTablePtr, 2, token, -1, SQLITE_TRANSIENT) != SQLITE_OK {
+            let errMsg = String(cString : sqlite3_errmsg(db)!)
+            print("failture binding name: \(errMsg)")
+            sqlite3_finalize(createTablePtr)
+            return
+        }
+        
+        if sqlite3_bind_text(createTablePtr, 3, suspendeddate, -1, SQLITE_TRANSIENT) != SQLITE_OK {
+            let errMsg = String(cString : sqlite3_errmsg(db)!)
+            print("failture binding name: \(errMsg)")
+            sqlite3_finalize(createTablePtr)
+            return
+        }
+        
+        if sqlite3_bind_int(createTablePtr, 4, Int32(autologin)) != SQLITE_OK {
+            let errMsg = String(cString : sqlite3_errmsg(db)!)
+            print("failture binding name: \(errMsg)")
+            sqlite3_finalize(createTablePtr)
+            return
+        }
+        
+        if sqlite3_bind_text(createTablePtr, 5, jwt, -1, SQLITE_TRANSIENT) != SQLITE_OK {
+            let errMsg = String(cString : sqlite3_errmsg(db)!)
+            print("failture binding name: \(errMsg)")
+            sqlite3_finalize(createTablePtr)
+            return
+        }
+        
+        if sqlite3_step(createTablePtr) == SQLITE_DONE {
+            print("InsertUserInfo() data SuccessFully")
+        } else {
+            let errMsg = String(cString : sqlite3_errmsg(db)!)
+            print("insert fail :: \(errMsg)")
+            sqlite3_finalize(createTablePtr)
+            return
+        }
+        
+        sqlite3_finalize(createTablePtr)
     }
     
     // 13. 유저정보삭제
@@ -433,9 +489,38 @@ class Sql {
     }
     
     // 14. 유저정보 불러오기
-    func SelectUserInfo() {
+    func SelectUserInfo() -> UserInfoRow {
         
+        let selectQuery = "SELECT * FROM UserInfo LIMIT 1"
+        var createTablePtr: OpaquePointer? = nil
         
+        let studentId: String = ""
+        let token: String = ""
+        let suspendedDate: String = ""
+        let autoLogin: Int = 0
+        let jwt: String = ""
+        
+        var userInfo: UserInfoRow = UserInfoRow(studentId: studentId, token: token, suspendedDate: suspendedDate, autoLogin: autoLogin, jwt: jwt)
+        
+        if sqlite3_prepare(self.db, selectQuery, -1, &createTablePtr, nil) != SQLITE_OK {
+            let errMsg = String(cString: sqlite3_errmsg(db)!)
+            print("error preparing getAutoSelectValue(): v1 \(errMsg)")
+            
+            sqlite3_finalize(createTablePtr)
+            return userInfo
+        }
+        
+        while(sqlite3_step(createTablePtr) == SQLITE_ROW) {
+            userInfo.studentId = String(cString: sqlite3_column_text(createTablePtr, 0))
+            userInfo.token = String(cString: sqlite3_column_text(createTablePtr, 1))
+            userInfo.suspendedDate = String(cString: sqlite3_column_text(createTablePtr, 2))
+            userInfo.autoLogin = Int(sqlite3_column_int(createTablePtr, 3))
+            userInfo.jwt = String(cString: sqlite3_column_text(createTablePtr, 4))
+        }
+        
+        sqlite3_finalize(createTablePtr)
+        
+        return userInfo
     }
     
     // 15. 학번 가져오기
@@ -475,9 +560,26 @@ class Sql {
     }
     
     // 21. 자동로그인 여부 가져오기
-    func SelectUserInfoAutoLogin() {
+    func SelectUserInfoAutoLogin() -> Int {
+        let selectQuery = "SELECT autoLogin FROM UserInfo LIMIT 1"
+        var createTablePtr: OpaquePointer? = nil
         
+        var autoLogin: Int = 0
         
+        if sqlite3_prepare(self.db, selectQuery, -1, &createTablePtr, nil) != SQLITE_OK {
+            let errMsg = String(cString: sqlite3_errmsg(db)!)
+            print("error preparing getAutoSelectValue(): v1 \(errMsg)")
+            sqlite3_finalize(createTablePtr)
+            return autoLogin
+        }
+        
+        while(sqlite3_step(createTablePtr) == SQLITE_ROW) {
+            autoLogin = Int(sqlite3_column_int(createTablePtr, 0))
+        }
+        
+        sqlite3_finalize(createTablePtr)
+        
+        return autoLogin
     }
     
     // 22. 자동로그인 변경

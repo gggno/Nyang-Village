@@ -34,17 +34,25 @@ class LoginViewController: UIViewController {
         PWDTxtSetting()
         LoginBtnSetting()
         
-        sql.insertRoomInfo(roomidInt: 1, roomnameStr: "str", nicknameStr: "str", professornameStr: "str", positionInt: 2, notiInt: 3)
+//        sql.insertRoomInfo(roomidInt: 1, roomnameStr: "str", nicknameStr: "str", professornameStr: "str", positionInt: 2, notiInt: 3)
         
         let numbers = arr.map{ "\($0)" }
         let result = "(\(numbers.joined(separator: ",")))"
         
-        sql.deleteRoomInfos(roomids: result)
-//        sql.deleteRoomInfo()
+//        sql.deleteRoomInfos(roomids: result)
+        sql.deleteRoomInfo()
         sql.deleteRoomInName()
         sql.deleteChatInfo()
         sql.deleteUserInfo()
     
+//        if sql.SelectUserInfoAutoLogin() == 1 {
+//            print("성공")
+//            let mainVC = self.storyboard?.instantiateViewController(withIdentifier: "MainViewController")
+//            self.navigationController?.pushViewController(mainVC!, animated: true)
+//        } else {
+//            print("실패")
+//
+//        }
         
         self.view.addSubview(activityIndicator)
     }
@@ -117,10 +125,13 @@ class LoginViewController: UIViewController {
     @IBAction func LoginBtnClicked(_ sender: Any) {
         activityIndicator.startAnimating()
         loginViewPresenter.login(requestData: LoginRequest(fcm: loginViewPresenter.getToken(), password: loginViewPresenter.getPwd(), studentId: loginViewPresenter.getId(), version: 1), completion2: { result in
+            // 로그인 signal 구분지어서 코드 재작성 해야 됨.
             if result.signal == 3 || result.signal == 4 { // 정상 입력 되었을 때(signal == 3 || 4)
                 self.navigationController?.pushViewController(animated: true, viewName: "MainViewController", completion: { vc in
                     
+//                    self.sql.InsertUserInfo(studentid: self.loginViewPresenter.getId(), token: self.loginViewPresenter.getToken(), suspendeddate: result.suspendedDate ?? "noData", autologin: 1, jwt: result.jwt!)
 //                    self.sql.insertRoomInfos(subjectData: result)
+                    
                     
                     self.activityIndicator.stopAnimating()
                     let main = vc as! MainViewController
