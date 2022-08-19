@@ -25,7 +25,7 @@ class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         loginViewPresenter.makeView(view: self)
         
         view.GradientColor(color1: UIColor(named: "MainYellowColor")!, color2: UIColor(named: "MainOrangeColor")!)
@@ -34,25 +34,25 @@ class LoginViewController: UIViewController {
         PWDTxtSetting()
         LoginBtnSetting()
         
-//        sql.insertRoomInfo(roomidInt: 1, roomnameStr: "str", nicknameStr: "str", professornameStr: "str", positionInt: 2, notiInt: 3)
+        //        sql.insertRoomInfo(roomidInt: 1, roomnameStr: "str", nicknameStr: "str", professornameStr: "str", positionInt: 2, notiInt: 3)
         
         let numbers = arr.map{ "\($0)" }
         let result = "(\(numbers.joined(separator: ",")))"
         
-//        sql.deleteRoomInfos(roomids: result)
+        //        sql.deleteRoomInfos(roomids: result)
         sql.deleteRoomInfoTest()
         sql.deleteRoomInNameTest()
         sql.deleteChatInfoTest()
         sql.deleteUserInfoTest()
-    
-//        if sql.selectUserInfoAutoLogin() == 1 {
-//            print("성공")
-//            let mainVC = self.storyboard?.instantiateViewController(withIdentifier: "MainViewController")
-//            self.navigationController?.pushViewController(mainVC!, animated: true)
-//        } else {
-//            print("실패")
-//
-//        }
+        
+        //        if sql.selectUserInfoAutoLogin() == 1 {
+        //            print("성공")
+        //            let mainVC = self.storyboard?.instantiateViewController(withIdentifier: "MainViewController")
+        //            self.navigationController?.pushViewController(mainVC!, animated: true)
+        //        } else {
+        //            print("실패")
+        //
+        //        }
         
         self.view.addSubview(activityIndicator)
     }
@@ -126,18 +126,35 @@ class LoginViewController: UIViewController {
         activityIndicator.startAnimating()
         loginViewPresenter.login(requestData: LoginRequest(fcm: loginViewPresenter.getToken(), password: loginViewPresenter.getPwd(), studentId: loginViewPresenter.getId(), version: 1), completion2: { result in
             // 로그인 signal 구분지어서 코드 재작성 해야 됨.
-            if result.signal == 3 || result.signal == 4 { // 정상 입력 되었을 때(signal == 3 || 4)
+            if result.signal == 3 { // 최초 로그인 정상 입력 되었을 때(signal == 3 || 4)
                 self.navigationController?.pushViewController(animated: true, viewName: "MainViewController", completion: { vc in
                     
-//                    self.sql.insertUserInfo(studentid: self.loginViewPresenter.getId(), token: self.loginViewPresenter.getToken(), suspendeddate: result.suspendedDate ?? "noData", autologin: 1, jwt: result.jwt!)
-//                    self.sql.insertRoomInfos(subjectData: result)
+                    //                    self.sql.insertUserInfo(studentid: self.loginViewPresenter.getId(), token: self.loginViewPresenter.getToken(), suspendeddate: result.suspendedDate ?? "noData", autologin: 1, jwt: result.jwt!)
+                    //                    self.sql.insertRoomInfos(subjectData: result)
                     
                     
                     self.activityIndicator.stopAnimating()
                     let main = vc as! MainViewController
-                        
+                    
                     main.prepareWithData(data: result)
                 })
+            } else if result.signal == 4 { // 정상 입력
+                self.navigationController?.pushViewController(animated: true, viewName: "MainViewController", completion: { vc in
+                    
+                    //                    self.sql.insertUserInfo(studentid: self.loginViewPresenter.getId(), token: self.loginViewPresenter.getToken(), suspendeddate: result.suspendedDate ?? "noData", autologin: 1, jwt: result.jwt!)
+                    //                    self.sql.insertRoomInfos(subjectData: result)
+                    
+                    
+                    self.activityIndicator.stopAnimating()
+                    let main = vc as! MainViewController
+                    
+                    main.prepareWithData(data: result)
+                })
+                
+            } else if result.signal == 1 { // 업데이트
+                
+                
+                
             } else if result.signal == 5 { //아이디 또는 패스워드 잘못 입력했을 때(signal == 5)
                 self.activityIndicator.stopAnimating()
                 let alert = UIAlertController(title: "로그인 실패", message: "아이디 또는 비밀번호를 확인해주세요.", preferredStyle: .alert)
@@ -145,6 +162,11 @@ class LoginViewController: UIViewController {
                 
                 alert.addAction(ok)
                 self.present(alert, animated: true)
+                
+            } else if result.signal == 6 { // 정지된 회원
+                
+                
+                
             }
             
         })

@@ -4,6 +4,10 @@ class ChattingViewController: UIViewController, UITableViewDelegate, UITableView
     
     // MARK: - IBOutlet
     @IBOutlet weak var chatView: UIView!
+    
+    @IBOutlet weak var sendView: UIView!
+    @IBOutlet weak var sendViewBottomMargin: NSLayoutConstraint!
+    
     @IBOutlet weak var inputTextView: UITextView!
     @IBOutlet weak var sendBtn: UIButton!
     
@@ -37,7 +41,7 @@ class ChattingViewController: UIViewController, UITableViewDelegate, UITableView
         // 키보드 노티피케이션 등록
         // 키보드가 올라오는 것을 관찰(감지) -> 키보드가 올라오면 selector에 있는 함수(keyboardWillShowHandling())가 발동
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShowHandling(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
-        
+        //키보드가 내려가는 것을 관찰(감지) -> 키보드가 내려가면 selector에 있는 함수(keyboardWillHideHandling())가 발동
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHideHandling(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
 
@@ -49,7 +53,6 @@ class ChattingViewController: UIViewController, UITableViewDelegate, UITableView
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
         
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: self)
-        
     }
     
     // 화면 터치시 키보드 내리기
@@ -60,23 +63,36 @@ class ChattingViewController: UIViewController, UITableViewDelegate, UITableView
     @objc func keyboardWillShowHandling(notification: NSNotification) {
         print("chattingVC - keyboardWillShow() called")
         
-        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
-            self.inputTextView.frame.origin.y -= keyboardSize.height
-            self.sendBtn.frame.origin.y -= keyboardSize.height
-            self.chatTableView.frame.origin.y -= keyboardSize.height
-        }
+        let notiInfo = notification.userInfo!
         
+        // 키보드 높이를 가져옴
+            let keyboardFrame = notiInfo[UIResponder.keyboardFrameEndUserInfoKey] as! CGRect
+            let height = keyboardFrame.size.height - self.view.safeAreaInsets.bottom
+            sendViewBottomMargin.constant = height
+
+            // 애니메이션 효과를 키보드 애니메이션 시간과 동일하게
+            let animationDuration = notiInfo[UIResponder.keyboardAnimationDurationUserInfoKey] as! TimeInterval
+            UIView.animate(withDuration: animationDuration) {
+                self.view.layoutIfNeeded()
+            }
     }
     
     @objc func keyboardWillHideHandling(notification: NSNotification) {
         print("chattingVC - keyboardWillHide() called")
         
-        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
-            self.inputTextView.frame.origin.y += keyboardSize.height
-            self.sendBtn.frame.origin.y += keyboardSize.height
-            self.chatTableView.frame.origin.y += keyboardSize.height
-        }
+        let notiInfo = notification.userInfo!
         
+        let animationDuration = notiInfo[UIResponder.keyboardAnimationDurationUserInfoKey] as! TimeInterval
+            self.sendViewBottomMargin.constant = 0
+
+            // 애니메이션 효과를 키보드 애니메이션 시간과 동일하게
+            UIView.animate(withDuration: animationDuration) {
+                self.view.layoutIfNeeded()
+            }
+    }
+    
+    override func viewDidLayoutSubviews() {
+        inputTextView.centerVertically()
     }
 
     

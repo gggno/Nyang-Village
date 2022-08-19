@@ -29,6 +29,10 @@
 		6678F5B128A8C7840049938F /* JalnanOTF.otf in Resources */ = {isa = PBXBuildFile; fileRef = 6678F5B028A8C7840049938F /* JalnanOTF.otf */; };
 		667A9AE128AD0DC40068582F /* MyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 667A9ADF28AD0DC40068582F /* MyTableViewCell.swift */; };
 		667A9AE228AD0DC40068582F /* MyTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 667A9AE028AD0DC40068582F /* MyTableViewCell.xib */; };
+		669BBB4B28AF551900EB4DF4 /* UITextView_Extention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 669BBB4A28AF551900EB4DF4 /* UITextView_Extention.swift */; };
+		669BBB4D28AF658D00EB4DF4 /* RoomInNameRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 669BBB4C28AF658D00EB4DF4 /* RoomInNameRow.swift */; };
+		669BBB4F28AF688100EB4DF4 /* RoomInNamesRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 669BBB4E28AF688100EB4DF4 /* RoomInNamesRow.swift */; };
+		669BBB5328AF6A9200EB4DF4 /* ChatInfoRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 669BBB5228AF6A9200EB4DF4 /* ChatInfoRow.swift */; };
 		66A126452865D978007B3547 /* LoginRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66A126442865D978007B3547 /* LoginRequest.swift */; };
 		66A126472865E48A007B3547 /* LoginResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66A126462865E48A007B3547 /* LoginResponse.swift */; };
 		66AA9F5B2840B04E00988A60 /* MainTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66AA9F592840B04E00988A60 /* MainTableViewCell.swift */; };
@@ -74,6 +78,10 @@
 		6678F5B028A8C7840049938F /* JalnanOTF.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = JalnanOTF.otf; sourceTree = "<group>"; };
 		667A9ADF28AD0DC40068582F /* MyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTableViewCell.swift; sourceTree = "<group>"; };
 		667A9AE028AD0DC40068582F /* MyTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyTableViewCell.xib; sourceTree = "<group>"; };
+		669BBB4A28AF551900EB4DF4 /* UITextView_Extention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextView_Extention.swift; sourceTree = "<group>"; };
+		669BBB4C28AF658D00EB4DF4 /* RoomInNameRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomInNameRow.swift; sourceTree = "<group>"; };
+		669BBB4E28AF688100EB4DF4 /* RoomInNamesRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomInNamesRow.swift; sourceTree = "<group>"; };
+		669BBB5228AF6A9200EB4DF4 /* ChatInfoRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatInfoRow.swift; sourceTree = "<group>"; };
 		66A126442865D978007B3547 /* LoginRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginRequest.swift; sourceTree = "<group>"; };
 		66A126462865E48A007B3547 /* LoginResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginResponse.swift; sourceTree = "<group>"; };
 		66AA9F592840B04E00988A60 /* MainTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTableViewCell.swift; sourceTree = "<group>"; };
@@ -178,14 +186,33 @@
 			path = "ChatView(TableView)";
 			sourceTree = "<group>";
 		};
+		669BBB5028AF6A4200EB4DF4 /* RoomInNameSql */ = {
+			isa = PBXGroup;
+			children = (
+				669BBB4C28AF658D00EB4DF4 /* RoomInNameRow.swift */,
+				669BBB4E28AF688100EB4DF4 /* RoomInNamesRow.swift */,
+			);
+			path = RoomInNameSql;
+			sourceTree = "<group>";
+		};
+		669BBB5128AF6A6A00EB4DF4 /* ChatInfoSql */ = {
+			isa = PBXGroup;
+			children = (
+				669BBB5228AF6A9200EB4DF4 /* ChatInfoRow.swift */,
+			);
+			path = ChatInfoSql;
+			sourceTree = "<group>";
+		};
 		66A126432865D957007B3547 /* Entity */ = {
 			isa = PBXGroup;
 			children = (
 				66A126442865D978007B3547 /* LoginRequest.swift */,
 				66A126462865E48A007B3547 /* LoginResponse.swift */,
 				660723D72898CE9B0010A3D4 /* Sql.swift */,
+				669BBB5128AF6A6A00EB4DF4 /* ChatInfoSql */,
 				66D0634B28AE026E0024E1AF /* RoomInfoSql */,
 				66D0634E28AE0DE70024E1AF /* UserInfoSql */,
+				669BBB5028AF6A4200EB4DF4 /* RoomInNameSql */,
 			);
 			path = Entity;
 			sourceTree = "<group>";
@@ -239,6 +266,7 @@
 				66C1F80028314A34001FD2FE /* UIView_Extention.swift */,
 				661197A1283174FE0033CB33 /* UITextField_Extention.swift */,
 				66F5EEA9287C57350057C285 /* UINavigationController.swift */,
+				669BBB4A28AF551900EB4DF4 /* UITextView_Extention.swift */,
 			);
 			path = Extention;
 			sourceTree = "<group>";
@@ -398,6 +426,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				66C1F7FE28314951001FD2FE /* LoginViewController.swift in Sources */,
+				669BBB4F28AF688100EB4DF4 /* RoomInNamesRow.swift in Sources */,
 				66B530842844C1770064B490 /* MainViewPresenter.swift in Sources */,
 				66D0634D28AE02870024E1AF /* NotiRoomInfo.swift in Sources */,
 				66C1F7FC28314949001FD2FE /* MainViewController.swift in Sources */,
@@ -408,14 +437,17 @@
 				66AA9F5B2840B04E00988A60 /* MainTableViewCell.swift in Sources */,
 				66A126472865E48A007B3547 /* LoginResponse.swift in Sources */,
 				66A126452865D978007B3547 /* LoginRequest.swift in Sources */,
+				669BBB4D28AF658D00EB4DF4 /* RoomInNameRow.swift in Sources */,
 				66F5EEAA287C57350057C285 /* UINavigationController.swift in Sources */,
 				6611868928326D340002A832 /* LoginViewModel.swift in Sources */,
 				66B8D185283DDA76000EB71B /* Protocol.swift in Sources */,
+				669BBB5328AF6A9200EB4DF4 /* ChatInfoRow.swift in Sources */,
 				667A9AE128AD0DC40068582F /* MyTableViewCell.swift in Sources */,
 				661197A2283174FE0033CB33 /* UITextField_Extention.swift in Sources */,
 				664B2DB027FC708D00109DFB /* SceneDelegate.swift in Sources */,
 				6611868728326CFE0002A832 /* LoginViewPresenter.swift in Sources */,
 				660723D82898CE9B0010A3D4 /* Sql.swift in Sources */,
+				669BBB4B28AF551900EB4DF4 /* UITextView_Extention.swift in Sources */,
 				66C8773228A226EB002903CF /* RoomInfoRow.swift in Sources */,
 				66D0635028AE0E3A0024E1AF /* UserInfoRow.swift in Sources */,
 				66B530862844C1C10064B490 /* MainViewModel.swift in Sources */,

@@ -199,6 +199,8 @@ class Sql {
         }
     }
     
+//    let numbers = arr.map{ "\($0)" }
+//    let result = "(\(numbers.joined(separator: ",")))" 해줘야 됨.
     // 3. 수강과목이 바뀌면 기존 과목은 삭제
     func deleteRoomInfos(roomids: String) {
         let deleteQuery = "DELETE FROM RoomInfo WHERE roomid NOT IN \(roomids);"
@@ -783,16 +785,20 @@ class Sql {
     
     // 25. 방 안에 사용자 닉네임 저장
     func insertRoomInNames(subjectData: SubjectInfo) {
-        
-        
+        for countData in 0...subjectData.roomInfos!.count-1 {
+            for nameData in subjectData.roomInfos![countData].roomInNames! {
+                
+                insertRoomInName(roomid: subjectData.roomInfos![countData].roomId!, name: nameData)
+            }
+        }
     }
     
     // 26. 입장할 때 마다 사용자 이름 추가
-    func insertRoomInName(id: Int, roomid: Int, name: String) {
+    func insertRoomInName(roomid: Int, name: String) {
        
         var createTablePtr : OpaquePointer? = nil
         
-        let insertQeury: String = "INSERT INTO RoomInName (id, roomid, name) VALUES (?,?,?);"
+        let insertQeury: String = "INSERT INTO RoomInName (roomid, name) VALUES (?,?);"
         
         if sqlite3_prepare(db, insertQeury, -1, &createTablePtr, nil) != SQLITE_OK {
             let errMsg = String(cString: sqlite3_errmsg(db)!)
@@ -802,13 +808,6 @@ class Sql {
         }
         
         let SQLITE_TRANSIENT = unsafeBitCast(-1, to: sqlite3_destructor_type.self)
-        
-        if sqlite3_bind_int(createTablePtr, 1, Int32(id)) != SQLITE_OK {
-            let errMsg = String(cString : sqlite3_errmsg(db)!)
-            print("failture binding name: \(errMsg)")
-            sqlite3_finalize(createTablePtr)
-            return
-        }
         
         if sqlite3_bind_int(createTablePtr, 2, Int32(roomid)) != SQLITE_OK {
             let errMsg = String(cString : sqlite3_errmsg(db)!)
@@ -854,17 +853,54 @@ class Sql {
         sqlite3_finalize(createTablePtr)
     }
     
+    //    let numbers = arr.map{ "\($0)" }
+    //    let result = "(\(numbers.joined(separator: ",")))" 해줘야 됨.
     // 28. 수강과목이 바뀌면 기존 과목은 삭제
-    func deleteRoomInNames() {
+    func deleteRoomInNames(roomIds: String) {
+        let deleteQuery = "DELETE FROM RoomInName WHERE roomId NOT IN \(roomIds);"
         
+        var createTablePtr: OpaquePointer? = nil//query를 가리키는 포인터
         
-        
+        if sqlite3_prepare(db, deleteQuery, -1, &createTablePtr, nil) == SQLITE_OK {
+            if sqlite3_step(createTablePtr) == SQLITE_DONE {
+                print("\nDelete deleteRoomInNames() Row Success")
+            } else {
+                print("\nDelete deleteRoomInNames() Row Faild")
+            }
+        } else {
+            print("\nDelete deleteRoomInNames() Statement in not prepared")
+        }
+        sqlite3_finalize(createTablePtr)
     }
     
     // 29.
-    func selectRoomInNames() {
+    func selectRoomInNames() -> [RoomInNameRow] {
         
+        let selectQuery = "SELECT * FROM RoomInName;"
+        var createTablePtr: OpaquePointer? = nil
         
+        var roomInNameRowArr: [RoomInNameRow] = []
+        
+        if sqlite3_prepare(self.db, selectQuery, -1, &createTablePtr, nil) != SQLITE_OK {
+            let errMsg = String(cString: sqlite3_errmsg(db)!)
+            print("error preparing selectRoomInNames(): v1 \(errMsg)")
+            
+            sqlite3_finalize(createTablePtr)
+            return roomInNameRowArr
+        }
+        
+        while(sqlite3_step(createTablePtr) == SQLITE_ROW) {
+            let roomid = sqlite3_column_int(createTablePtr, 1)
+            let name = String(cString: sqlite3_column_text(createTablePtr, 2))
+            
+            let roomInNameRowST: RoomInNameRow = RoomInNameRow(roomid: Int(roomid), name: name)
+            
+            roomInNameRowArr.append(roomInNameRowST)
+        }
+        
+        sqlite3_finalize(createTablePtr)
+        
+        return roomInNameRowArr
     }
     
     // 30. 방 안에 사용자 닉네임 전체 삭제
@@ -886,18 +922,41 @@ class Sql {
     }
     
     // 31. 방 안에 사용자 닉네임 불러오기
-    func selectRoomInNames2() {
+    func selectRoomInNames2(roomId: Int) -> [RoomInNamesRow] {
         
+        let selectQuery = "SELECT name FROM RoomInName WHERE roomId=\(roomId);"
+        var createTablePtr: OpaquePointer? = nil
         
+        var roomInNamesRowArr: [RoomInNamesRow] = []
+        
+        if sqlite3_prepare(self.db, selectQuery, -1, &createTablePtr, nil) != SQLITE_OK {
+            let errMsg = String(cString: sqlite3_errmsg(db)!)
+            print("error preparing selectRoomInNames2(): v1 \(errMsg)")
+            
+            sqlite3_finalize(createTablePtr)
+            return roomInNamesRowArr
+        }
+        
+        while(sqlite3_step(createTablePtr) == SQLITE_ROW) {
+            let name = String(cString: sqlite3_column_text(createTablePtr, 2))
+            
+            let roomInNamesRowST: RoomInNamesRow = RoomInNamesRow(name: name)
+            
+            roomInNamesRowArr.append(roomInNamesRowST)
+        }
+        
+        sqlite3_finalize(createTablePtr)
+        
+        return roomInNamesRowArr
     }
     
     // MARK: - ChatInfo
     
     // 31. 채팅 내용 저장
-    func insertChatInfo(id: Int, roomid: Int, nickName: String, time: String, content: String, type: Int) {
+    func insertChatInfo(roomid: Int, nickName: String, time: String, content: String, type: Int) {
 
         var createTablePtr : OpaquePointer? = nil
-        let insertQeury: String = "INSERT INTO ChatInfo (id, roomid, nickname, time, content, type) VALUES (?,?,?,?,?,?);"
+        let insertQeury: String = "INSERT INTO ChatInfo (roomid, nickname, time, content, type) VALUES (?,?,?,?,?,?);"
         
         if sqlite3_prepare(db, insertQeury, -1, &createTablePtr, nil) != SQLITE_OK {
             let errMsg = String(cString: sqlite3_errmsg(db)!)
@@ -907,13 +966,6 @@ class Sql {
         }
         
         let SQLITE_TRANSIENT = unsafeBitCast(-1, to: sqlite3_destructor_type.self)
-        
-        if sqlite3_bind_int(createTablePtr, 1, Int32(id)) != SQLITE_OK {
-            let errMsg = String(cString : sqlite3_errmsg(db)!)
-            print("failture binding name: \(errMsg)")
-            sqlite3_finalize(createTablePtr)
-            return
-        }
         
         if sqlite3_bind_int(createTablePtr, 2, Int32(roomid)) != SQLITE_OK {
             let errMsg = String(cString : sqlite3_errmsg(db)!)
@@ -962,11 +1014,26 @@ class Sql {
         sqlite3_finalize(createTablePtr)
     }
     
+    //    let numbers = arr.map{ "\($0)" }
+    //    let result = "(\(numbers.joined(separator: ",")))" 해줘야 됨.
     // 32. 수강과목이 바뀌면 기존 과목의 채팅 내용은 삭제
-//    func deleteChatInfos() {
-//
-//
-//    }
+    func deleteChatInfos(roomIds: String) {
+        
+        let deleteQuery = "DELETE FROM ChatInfo WHERE roomId NOT IN \(roomIds);"
+        
+        var createTablePtr: OpaquePointer? = nil//query를 가리키는 포인터
+        
+        if sqlite3_prepare(db, deleteQuery, -1, &createTablePtr, nil) == SQLITE_OK {
+            if sqlite3_step(createTablePtr) == SQLITE_DONE {
+                print("\nDelete deleteChatInfos() Row Success")
+            } else {
+                print("\nDelete deleteChatInfos() Row Faild")
+            }
+        } else {
+            print("\nDelete deleteChatInfos() Statement in not prepared")
+        }
+        sqlite3_finalize(createTablePtr)
+    }
     
     // 33. 채팅 내용 전체 삭제
     func deleteChatInfos() {
@@ -987,10 +1054,36 @@ class Sql {
     }
     
     // 34. 채팅 내용 불러오기
-    func selectChatInfo() {
+    func selectChatInfo(roomId: Int) -> [ChatInfoRow] {
         
+        let selectQuery = "SELECT * FROM ChatInfo WHERE roomId=\(roomId);"
+        var createTablePtr: OpaquePointer? = nil
         
+        var chatInfoRowArr: [ChatInfoRow] = []
         
+        if sqlite3_prepare(self.db, selectQuery, -1, &createTablePtr, nil) != SQLITE_OK {
+            let errMsg = String(cString: sqlite3_errmsg(db)!)
+            print("error preparing selectChatInfo(): v1 \(errMsg)")
+            
+            sqlite3_finalize(createTablePtr)
+            return chatInfoRowArr
+        }
+        
+        while(sqlite3_step(createTablePtr) == SQLITE_ROW) {
+            let roomId = sqlite3_column_int(createTablePtr, 1)
+            let nickName = String(cString: sqlite3_column_text(createTablePtr, 2))
+            let time = String(cString: sqlite3_column_text(createTablePtr, 3))
+            let content = String(cString: sqlite3_column_text(createTablePtr, 4))
+            let type = sqlite3_column_int(createTablePtr, 5)
+            
+            let chatInfoRowST: ChatInfoRow = ChatInfoRow(roomId: Int(roomId), nickName: nickName, time: time, content: content, type: Int(type))
+            
+            chatInfoRowArr.append(chatInfoRowST)
+        }
+        
+        sqlite3_finalize(createTablePtr)
+        
+        return chatInfoRowArr
     }
     
     // 35. 정정때 수강과목 바뀌면 기존 채팅 내용 삭제
