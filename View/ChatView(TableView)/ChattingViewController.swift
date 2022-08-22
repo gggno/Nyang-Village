@@ -29,6 +29,10 @@ class ChattingViewController: UIViewController, UITableViewDelegate, UITableView
         
         chatView.CornerRadiusLayerSetting(cornerRadius: 40, cornerLayer: [.layerMinXMinYCorner, .layerMaxXMinYCorner])
         
+        inputTextView.layer.borderWidth = 1
+        inputTextView.layer.borderColor = UIColor(named: "ShadowColor")!.cgColor
+        inputTextView.layer.cornerRadius = 10
+        
         chatTableView.delegate = self
         chatTableView.dataSource = self
         chatTableView.register(UINib(nibName: "MyTableViewCell", bundle: nil), forCellReuseIdentifier: "MyTableViewCell")
@@ -60,6 +64,7 @@ class ChattingViewController: UIViewController, UITableViewDelegate, UITableView
         self.chatView.endEditing(true)
     }
     
+    // 키보드 올라갈 때 호출되는 메서드
     @objc func keyboardWillShowHandling(notification: NSNotification) {
         print("chattingVC - keyboardWillShow() called")
         
@@ -77,6 +82,7 @@ class ChattingViewController: UIViewController, UITableViewDelegate, UITableView
             }
     }
     
+    // 키보드 내려갈 때 호출되는 메서드
     @objc func keyboardWillHideHandling(notification: NSNotification) {
         print("chattingVC - keyboardWillHide() called")
         
@@ -91,11 +97,11 @@ class ChattingViewController: UIViewController, UITableViewDelegate, UITableView
             }
     }
     
-    override func viewDidLayoutSubviews() {
-        inputTextView.centerVertically()
-    }
+    // TextView 세로 중앙
+//    override func viewDidLayoutSubviews() {
+//        inputTextView.centerVertically()
+//    }
 
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 20
     }
@@ -105,7 +111,6 @@ class ChattingViewController: UIViewController, UITableViewDelegate, UITableView
         
         return myCell
     }
-    
     
     
     // MARK: - IBAction

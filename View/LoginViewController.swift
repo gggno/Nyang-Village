@@ -141,9 +141,10 @@ class LoginViewController: UIViewController {
             } else if result.signal == 4 { // 정상 입력
                 self.navigationController?.pushViewController(animated: true, viewName: "MainViewController", completion: { vc in
                     
-                    //                    self.sql.insertUserInfo(studentid: self.loginViewPresenter.getId(), token: self.loginViewPresenter.getToken(), suspendeddate: result.suspendedDate ?? "noData", autologin: 1, jwt: result.jwt!)
-                    //                    self.sql.insertRoomInfos(subjectData: result)
+//                    self.sql.insertUserInfo(studentid: self.loginViewPresenter.getId(), token: self.loginViewPresenter.getToken(), suspendeddate: result.suspendedDate ?? "noData", autologin: 1, jwt: result.jwt!)
+//                    self.sql.insertRoomInfos(subjectData: result)
                     
+//              작성해야됨.      self.sql.deleteRoomInfos(roomids: resu)
                     
                     self.activityIndicator.stopAnimating()
                     let main = vc as! MainViewController
