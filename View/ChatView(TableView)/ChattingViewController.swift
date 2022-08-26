@@ -11,7 +11,6 @@ class ChattingViewController: UIViewController, UITableViewDelegate, UITableView
     @IBOutlet weak var inputTextView: UITextView!
     @IBOutlet weak var sendBtn: UIButton!
     
-    
     @IBOutlet weak var chatTableView: UITableView!
     
     override func viewDidLoad() {
@@ -27,8 +26,13 @@ class ChattingViewController: UIViewController, UITableViewDelegate, UITableView
         
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "line.3.horizontal"), style: .plain, target: self, action: #selector(rightBtnClicked))
         
+        // 테이블 뷰 터치 시 키보드 다운
+        let tableViewDownGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(keyboardDownGesture(_:)))
+        chatTableView.addGestureRecognizer(tableViewDownGestureRecognizer)
+        
         chatView.CornerRadiusLayerSetting(cornerRadius: 40, cornerLayer: [.layerMinXMinYCorner, .layerMaxXMinYCorner])
         
+        // 입력 칸 설정
         inputTextView.layer.borderWidth = 1
         inputTextView.layer.borderColor = UIColor(named: "ShadowColor")!.cgColor
         inputTextView.layer.cornerRadius = 10
@@ -48,7 +52,7 @@ class ChattingViewController: UIViewController, UITableViewDelegate, UITableView
         //키보드가 내려가는 것을 관찰(감지) -> 키보드가 내려가면 selector에 있는 함수(keyboardWillHideHandling())가 발동
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHideHandling(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
-
+    
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         print("chattingVC viewWillDisAppear() called")
@@ -59,49 +63,40 @@ class ChattingViewController: UIViewController, UITableViewDelegate, UITableView
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: self)
     }
     
-    // 화면 터치시 키보드 내리기
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        self.chatView.endEditing(true)
-    }
-    
     // 키보드 올라갈 때 호출되는 메서드
     @objc func keyboardWillShowHandling(notification: NSNotification) {
-        print("chattingVC - keyboardWillShow() called")
+        print("chattingVC - keyboardWillShowHandling() called")
         
         let notiInfo = notification.userInfo!
         
         // 키보드 높이를 가져옴
-            let keyboardFrame = notiInfo[UIResponder.keyboardFrameEndUserInfoKey] as! CGRect
-            let height = keyboardFrame.size.height - self.view.safeAreaInsets.bottom
-            sendViewBottomMargin.constant = height
-
-            // 애니메이션 효과를 키보드 애니메이션 시간과 동일하게
-            let animationDuration = notiInfo[UIResponder.keyboardAnimationDurationUserInfoKey] as! TimeInterval
-            UIView.animate(withDuration: animationDuration) {
-                self.view.layoutIfNeeded()
-            }
+        let keyboardFrame = notiInfo[UIResponder.keyboardFrameEndUserInfoKey] as! CGRect
+        let height = keyboardFrame.size.height - self.view.safeAreaInsets.bottom
+        
+        sendViewBottomMargin.constant = height + 0 // sendView와 superView 간격이 34라서 추가해줌.
+        
+        // 애니메이션 효과를 키보드 애니메이션 시간과 동일하게
+        let animationDuration = notiInfo[UIResponder.keyboardAnimationDurationUserInfoKey] as! TimeInterval
+        UIView.animate(withDuration: animationDuration) {
+            self.view.layoutIfNeeded()
+        }
     }
     
     // 키보드 내려갈 때 호출되는 메서드
     @objc func keyboardWillHideHandling(notification: NSNotification) {
-        print("chattingVC - keyboardWillHide() called")
+        print("chattingVC - keyboardWillHideHandling() called")
         
         let notiInfo = notification.userInfo!
         
         let animationDuration = notiInfo[UIResponder.keyboardAnimationDurationUserInfoKey] as! TimeInterval
-            self.sendViewBottomMargin.constant = 0
-
-            // 애니메이션 효과를 키보드 애니메이션 시간과 동일하게
-            UIView.animate(withDuration: animationDuration) {
-                self.view.layoutIfNeeded()
-            }
+        self.sendViewBottomMargin.constant = 0 // sendView와 superView 간격이 34라서 추가해줌.
+        
+        // 애니메이션 효과를 키보드 애니메이션 시간과 동일하게
+        UIView.animate(withDuration: animationDuration) {
+            self.view.layoutIfNeeded()
+        }
     }
     
-    // TextView 세로 중앙
-//    override func viewDidLayoutSubviews() {
-//        inputTextView.centerVertically()
-//    }
-
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 20
     }
@@ -112,13 +107,18 @@ class ChattingViewController: UIViewController, UITableViewDelegate, UITableView
         return myCell
     }
     
-    
     // MARK: - IBAction
     @objc func rightBtnClicked() {
         print("click")
     }
     
     @IBAction func sendBtnClicked(_ sender: Any) {
+        
+    }
+    
+    // 화면 터치 시 키보드 다운
+    @objc func keyboardDownGesture(_ gesture: UITapGestureRecognizer) {
+        view.endEditing(true)
     }
     
     
