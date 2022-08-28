@@ -1,17 +1,15 @@
-//
-//  MyTableViewCell.swift
-//  Nyang Village
-//
-//  Created by 정근호 on 2022/08/17.
-//
-
 import UIKit
 
 class MyTableViewCell: UITableViewCell {
 
+    // MARK: - IBAction
+    @IBOutlet weak var bubbleBackgroundView: UIView!
+    @IBOutlet weak var bubbleContentsLabel: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        
+        self.bubbleBackgroundView.layer.cornerRadius = 15
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

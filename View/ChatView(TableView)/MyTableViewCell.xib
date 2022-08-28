@@ -3,39 +3,79 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="MyTableViewCell" rowHeight="120" id="KGk-i7-Jjw" customClass="MyTableViewCell" customModule="Nyang_Village" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="401" height="120"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="MyTableViewCell" rowHeight="189" id="KGk-i7-Jjw" customClass="MyTableViewCell" customModule="Nyang_Village" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="401" height="189"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="401" height="120"/>
+                <rect key="frame" x="0.0" y="0.0" width="401" height="189"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="test" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cDN-ah-nMZ">
-                        <rect key="frame" x="165.5" y="33.5" width="70.5" height="53"/>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1VV-8J-eGJ">
+                        <rect key="frame" x="77" y="25" width="314" height="139"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B1L-uM-ROG">
+                                <rect key="frame" x="10" y="10" width="294" height="119"/>
+                                <string key="text">요약 정리
+오토레이아웃은 뷰에 담긴 콘텐츠 사이즈를 자동으로 계산해서 크기 조건을 설정한다.
+
+UIKit에는 버튼, 레이블 같이 고유 콘텐츠를 포함하는 뷰도 있고, UIView 같이 고유 콘텐츠가 없는 뷰도 있다.
+
+콘텐츠 사이즈 조건은 총 4개의 부등식으로 설정된다. (X축 허깅/컴프레션 + Y축 허깅/컴프레션)
+
+허깅은 콘텐츠 사이즈보다 늘어나지 않으려고 하는 조건이다.
+
+컴프레션은 콘텐츠 사이즈보다 줄어들지 않으려고 하는 조건이다.
+
+조건 우선순위는 허깅이 기본 250, 컴프레션은 750으로 설정된다.
+
+콘텐츠 사이즈 조건이 서로 충돌할 때는 우선순위를 높이거나 낮춰서 해결한다.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" name="MyChatBubbleColor"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="53" id="MrI-QR-hmA"/>
-                            <constraint firstAttribute="width" constant="70.5" id="sYY-zX-u3G"/>
+                            <constraint firstAttribute="bottom" secondItem="B1L-uM-ROG" secondAttribute="bottom" constant="10" id="0Xg-h6-ckx"/>
+                            <constraint firstItem="B1L-uM-ROG" firstAttribute="top" secondItem="1VV-8J-eGJ" secondAttribute="top" constant="10" id="GGa-JO-ym9"/>
+                            <constraint firstAttribute="trailing" secondItem="B1L-uM-ROG" secondAttribute="trailing" constant="10" id="aeR-SS-WLm"/>
+                            <constraint firstItem="B1L-uM-ROG" firstAttribute="leading" secondItem="1VV-8J-eGJ" secondAttribute="leading" constant="10" id="dbI-og-X9T"/>
                         </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="44"/>
-                        <nil key="textColor"/>
+                    </view>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalCompressionResistancePriority="800" text="오후 1:14" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wLj-ej-XTy">
+                        <rect key="frame" x="32.5" y="152" width="39.5" height="12"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                        <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="cDN-ah-nMZ" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="YYJ-k9-4dk"/>
-                    <constraint firstItem="cDN-ah-nMZ" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="33.5" id="s3d-rY-uZP"/>
-                    <constraint firstAttribute="bottom" secondItem="cDN-ah-nMZ" secondAttribute="bottom" constant="33.5" id="u5I-NS-tr8"/>
-                    <constraint firstItem="cDN-ah-nMZ" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="zR1-rm-Xtc"/>
+                    <constraint firstItem="wLj-ej-XTy" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="30" id="4f1-AL-clH"/>
+                    <constraint firstItem="wLj-ej-XTy" firstAttribute="bottom" secondItem="1VV-8J-eGJ" secondAttribute="bottom" id="CRN-B9-ip0"/>
+                    <constraint firstItem="1VV-8J-eGJ" firstAttribute="leading" secondItem="wLj-ej-XTy" secondAttribute="trailing" constant="5" id="Jfo-yB-jgf"/>
+                    <constraint firstAttribute="trailing" secondItem="1VV-8J-eGJ" secondAttribute="trailing" constant="10" id="UJd-9H-7Ec"/>
+                    <constraint firstAttribute="bottom" secondItem="1VV-8J-eGJ" secondAttribute="bottom" constant="25" id="cSa-YF-OQ3"/>
+                    <constraint firstItem="1VV-8J-eGJ" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="25" id="o7D-48-zLf"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
-            <point key="canvasLocation" x="190.57971014492756" y="86.383928571428569"/>
+            <connections>
+                <outlet property="bubbleBackgroundView" destination="1VV-8J-eGJ" id="J2i-zx-UJG"/>
+                <outlet property="bubbleContentsLabel" destination="B1L-uM-ROG" id="c2K-2f-nGq"/>
+            </connections>
+            <point key="canvasLocation" x="190.57971014492756" y="109.48660714285714"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <namedColor name="MyChatBubbleColor">
+            <color red="1" green="0.58799999952316284" blue="0.0040000001899898052" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
 </document>
