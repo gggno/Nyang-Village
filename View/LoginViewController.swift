@@ -22,9 +22,19 @@ class LoginViewController: UIViewController {
         
         return activityIndicator
     }()
-    
+        
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // 자동 로그인 로직
+        if sql.selectUserInfoAutoLogin() == 1 {
+            print("자동로그인 성공")
+            
+            let mainVC = self.storyboard?.instantiateViewController(withIdentifier: "MainViewController")
+            self.navigationController?.pushViewController(mainVC!, animated: true)
+        } else {
+            print("자동로그인 실패")
+        }
         
         loginViewPresenter.makeView(view: self)
         
@@ -34,28 +44,19 @@ class LoginViewController: UIViewController {
         PWDTxtSetting()
         LoginBtnSetting()
         
-        //        sql.insertRoomInfo(roomidInt: 1, roomnameStr: "str", nicknameStr: "str", professornameStr: "str", positionInt: 2, notiInt: 3)
+        // SQL 테스트 용
+//        forTheSqlTest()
         
-        let numbers = arr.map{ "\($0)" }
-        let result = "(\(numbers.joined(separator: ",")))"
-        
-        //        sql.deleteRoomInfos(roomids: result)
+        self.view.addSubview(activityIndicator)
+    }
+    
+    func forTheSqlTest() {
         sql.deleteRoomInfoTest()
         sql.deleteRoomInNameTest()
         sql.deleteChatInfoTest()
         sql.deleteUserInfoTest()
-        
-        //        if sql.selectUserInfoAutoLogin() == 1 {
-        //            print("성공")
-        //            let mainVC = self.storyboard?.instantiateViewController(withIdentifier: "MainViewController")
-        //            self.navigationController?.pushViewController(mainVC!, animated: true)
-        //        } else {
-        //            print("실패")
-        //
-        //        }
-        
-        self.view.addSubview(activityIndicator)
     }
+    
     // 화면 터치시 키보드 내리기
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
@@ -126,25 +127,40 @@ class LoginViewController: UIViewController {
         activityIndicator.startAnimating()
         loginViewPresenter.login(requestData: LoginRequest(fcm: loginViewPresenter.getToken(), password: loginViewPresenter.getPwd(), studentId: loginViewPresenter.getId(), version: 1), completion2: { result in
             // 로그인 signal 구분지어서 코드 재작성 해야 됨.
-            if result.signal == 3 { // 최초 로그인 정상 입력 되었을 때(signal == 3 || 4)
+            if result.signal == 1 { // 앱 업데이트
+                
+                
+            } else if result.signal == 3 { // 최초 로그인(정상 입력)
                 self.navigationController?.pushViewController(animated: true, viewName: "MainViewController", completion: { vc in
                     
-                    //                    self.sql.insertUserInfo(studentid: self.loginViewPresenter.getId(), token: self.loginViewPresenter.getToken(), suspendeddate: result.suspendedDate ?? "noData", autologin: 1, jwt: result.jwt!)
-                    //                    self.sql.insertRoomInfos(subjectData: result)
-                    
+                    // 사용자 정보를 내부 db에 저장
+                    self.sql.insertUserInfo(studentid: self.loginViewPresenter.getId(), token: self.loginViewPresenter.getToken(), suspendeddate: result.suspendedDate ?? "noData", autologin: 1, jwt: result.jwt!)
+                    // 사용자 수강 과목 정보를 내부 db에 저장
+                    self.sql.insertRoomInfos(subjectData: result)
                     
                     self.activityIndicator.stopAnimating()
                     let main = vc as! MainViewController
                     
                     main.prepareWithData(data: result)
                 })
-            } else if result.signal == 4 { // 정상 입력
+            } else if result.signal == 4 { // 기존 로그인 기록 남아있을 때(정상 입력)
                 self.navigationController?.pushViewController(animated: true, viewName: "MainViewController", completion: { vc in
                     
-//                    self.sql.insertUserInfo(studentid: self.loginViewPresenter.getId(), token: self.loginViewPresenter.getToken(), suspendeddate: result.suspendedDate ?? "noData", autologin: 1, jwt: result.jwt!)
-//                    self.sql.insertRoomInfos(subjectData: result)
+                    // 사용자 정보를 내부 db에 저장
+                    self.sql.insertUserInfo(studentid: self.loginViewPresenter.getId(), token: self.loginViewPresenter.getToken(), suspendeddate: result.suspendedDate ?? "noData", autologin: 1, jwt: result.jwt!)
+                   
+                    // 사용자 수강 과목 정보를 내부 db에 저장
+                    self.sql.insertRoomInfos(subjectData: result)
                     
-//              작성해야됨.      self.sql.deleteRoomInfos(roomids: resu)
+                    // 수강 정정 시 변경된 과목 삭제
+                    var roomArr: [Int] = []
+                    for cnt in 0...result.roomInfos!.count-1 {
+                        roomArr.append(result.roomInfos![cnt].roomId!)
+                    }
+                    let convertNum = roomArr.map{ "\($0)" }
+                    let convertResult = "(\(convertNum.joined(separator: ",")))"
+                    
+                    self.sql.deleteRoomInfos(roomids: convertResult)
                     
                     self.activityIndicator.stopAnimating()
                     let main = vc as! MainViewController
@@ -152,11 +168,7 @@ class LoginViewController: UIViewController {
                     main.prepareWithData(data: result)
                 })
                 
-            } else if result.signal == 1 { // 업데이트
-                
-                
-                
-            } else if result.signal == 5 { //아이디 또는 패스워드 잘못 입력했을 때(signal == 5)
+            } else if result.signal == 5 { //아이디 또는 패스워드 잘못 입력했을 때
                 self.activityIndicator.stopAnimating()
                 let alert = UIAlertController(title: "로그인 실패", message: "아이디 또는 비밀번호를 확인해주세요.", preferredStyle: .alert)
                 let ok = UIAlertAction(title: "확인", style: .default)

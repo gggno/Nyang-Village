@@ -26,6 +26,9 @@ class ChattingViewController: UIViewController, UITableViewDelegate, UITableView
         
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "line.3.horizontal"), style: .plain, target: self, action: #selector(rightBtnClicked))
         
+        // 테이블 뷰 라인 삭제
+        self.chatTableView.separatorStyle = UITableViewCell.SeparatorStyle.none
+        
         // 테이블 뷰 터치 시 키보드 다운
         let tableViewDownGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(keyboardDownGesture(_:)))
         chatTableView.addGestureRecognizer(tableViewDownGestureRecognizer)
@@ -104,6 +107,9 @@ class ChattingViewController: UIViewController, UITableViewDelegate, UITableView
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let myCell = tableView.dequeueReusableCell(withIdentifier: "MyTableViewCell", for: indexPath)
         
+        // 클릭 시 회색 하이라이트 제거
+        myCell.selectionStyle = .none
+        
         return myCell
     }
     
@@ -120,6 +126,5 @@ class ChattingViewController: UIViewController, UITableViewDelegate, UITableView
     @objc func keyboardDownGesture(_ gesture: UITapGestureRecognizer) {
         view.endEditing(true)
     }
-    
-    
+        
 }
