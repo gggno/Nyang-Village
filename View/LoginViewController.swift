@@ -10,18 +10,6 @@ class LoginViewController: UIViewController {
     
     var loginViewPresenter = LoginViewPresenter()
     var sql = Sql()
-    
-    let arr = [1, 2, 3]
-    
-    // 로딩 인디케이터
-    lazy var activityIndicator: UIActivityIndicatorView = {
-        let activityIndicator = UIActivityIndicatorView()
-        activityIndicator.frame = CGRect(x: 0, y: 0, width: 50, height: 50)
-        activityIndicator.center = self.view.center
-        activityIndicator.style = .large
-        
-        return activityIndicator
-    }()
         
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -62,6 +50,17 @@ class LoginViewController: UIViewController {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
     }
+    
+    // 로딩 인디케이터
+    lazy var activityIndicator: UIActivityIndicatorView = {
+        let activityIndicator = UIActivityIndicatorView()
+        activityIndicator.frame = CGRect(x: 0, y: 0, width: 50, height: 50)
+        activityIndicator.center = self.view.center
+        activityIndicator.style = .large
+        
+        return activityIndicator
+    }()
+    
     // IDTxt 설정
     func IDTxtSetting() {
         IDTxt.layer.cornerRadius = 25

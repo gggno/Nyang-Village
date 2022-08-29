@@ -18,10 +18,10 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Lfi-5s-u3J">
-                        <rect key="frame" x="10" y="46" width="437.5" height="176"/>
+                        <rect key="frame" x="15" y="47" width="434.5" height="175"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jd2-rM-LX4">
-                                <rect key="frame" x="10" y="10" width="417.5" height="156"/>
+                                <rect key="frame" x="10" y="10" width="414.5" height="155"/>
                                 <string key="text">요약 정리 오토레이아웃은 뷰에 담긴 콘텐츠 사이즈를 자동으로 계산해서 크기 조건을 설정한다.
 션은 750으로 설정된다.
 
@@ -40,26 +40,26 @@
                         </constraints>
                     </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="800" text="오후 5:26" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gt5-v7-emM">
-                        <rect key="frame" x="452.5" y="210" width="42.5" height="12"/>
+                        <rect key="frame" x="454.5" y="210" width="42.5" height="12"/>
                         <fontDescription key="fontDescription" type="system" pointSize="10"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="고양이" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fse-Ar-SOy">
-                        <rect key="frame" x="10" y="25" width="34" height="16"/>
+                        <rect key="frame" x="15" y="25" width="34" height="16"/>
                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="Lfi-5s-u3J" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="14B-FA-9ec"/>
+                    <constraint firstItem="Lfi-5s-u3J" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="14B-FA-9ec"/>
                     <constraint firstItem="fse-Ar-SOy" firstAttribute="leading" secondItem="Lfi-5s-u3J" secondAttribute="leading" id="Jvw-b5-kYb"/>
                     <constraint firstAttribute="bottom" secondItem="Lfi-5s-u3J" secondAttribute="bottom" constant="25" id="N6T-XY-XDg"/>
                     <constraint firstItem="fse-Ar-SOy" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="25" id="ST8-9o-kmR"/>
                     <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="gt5-v7-emM" secondAttribute="trailing" constant="30" id="gBt-yH-XT1"/>
                     <constraint firstItem="gt5-v7-emM" firstAttribute="bottom" secondItem="Lfi-5s-u3J" secondAttribute="bottom" id="o2V-zb-Ons"/>
-                    <constraint firstItem="Lfi-5s-u3J" firstAttribute="top" secondItem="fse-Ar-SOy" secondAttribute="bottom" constant="5" id="oiE-qP-hNR"/>
+                    <constraint firstItem="Lfi-5s-u3J" firstAttribute="top" secondItem="fse-Ar-SOy" secondAttribute="bottom" constant="6" id="oiE-qP-hNR"/>
                     <constraint firstItem="gt5-v7-emM" firstAttribute="leading" secondItem="Lfi-5s-u3J" secondAttribute="trailing" constant="5" id="wZD-a9-LHX"/>
                 </constraints>
             </tableViewCellContentView>
