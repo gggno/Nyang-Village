@@ -37,6 +37,8 @@
 		66A126472865E48A007B3547 /* LoginResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66A126462865E48A007B3547 /* LoginResponse.swift */; };
 		66AA9F5B2840B04E00988A60 /* MainTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66AA9F592840B04E00988A60 /* MainTableViewCell.swift */; };
 		66AA9F5C2840B04E00988A60 /* MainTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 66AA9F5A2840B04E00988A60 /* MainTableViewCell.xib */; };
+		66B195AB28BCAC1A00019892 /* YourTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66B195A928BCAC1A00019892 /* YourTableViewCell.swift */; };
+		66B195AC28BCAC1A00019892 /* YourTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 66B195AA28BCAC1A00019892 /* YourTableViewCell.xib */; };
 		66B530842844C1770064B490 /* MainViewPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66B530832844C1770064B490 /* MainViewPresenter.swift */; };
 		66B530862844C1C10064B490 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66B530852844C1C10064B490 /* MainViewModel.swift */; };
 		66B8D185283DDA76000EB71B /* Protocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66B8D184283DDA76000EB71B /* Protocol.swift */; };
@@ -86,6 +88,8 @@
 		66A126462865E48A007B3547 /* LoginResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginResponse.swift; sourceTree = "<group>"; };
 		66AA9F592840B04E00988A60 /* MainTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTableViewCell.swift; sourceTree = "<group>"; };
 		66AA9F5A2840B04E00988A60 /* MainTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainTableViewCell.xib; sourceTree = "<group>"; };
+		66B195A928BCAC1A00019892 /* YourTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YourTableViewCell.swift; sourceTree = "<group>"; };
+		66B195AA28BCAC1A00019892 /* YourTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YourTableViewCell.xib; sourceTree = "<group>"; };
 		66B530832844C1770064B490 /* MainViewPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewPresenter.swift; sourceTree = "<group>"; };
 		66B530852844C1C10064B490 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
 		66B8D184283DDA76000EB71B /* Protocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocol.swift; sourceTree = "<group>"; };
@@ -182,6 +186,8 @@
 				666C5C8E28A77E1700991176 /* ChattingViewController.swift */,
 				667A9ADF28AD0DC40068582F /* MyTableViewCell.swift */,
 				667A9AE028AD0DC40068582F /* MyTableViewCell.xib */,
+				66B195A928BCAC1A00019892 /* YourTableViewCell.swift */,
+				66B195AA28BCAC1A00019892 /* YourTableViewCell.xib */,
 			);
 			path = "ChatView(TableView)";
 			sourceTree = "<group>";
@@ -365,6 +371,7 @@
 				664B2DB727FC708E00109DFB /* Assets.xcassets in Resources */,
 				6611979D2831667C0033CB33 /* SCDream5.otf in Resources */,
 				6611979E2831667C0033CB33 /* SCDream9.otf in Resources */,
+				66B195AC28BCAC1A00019892 /* YourTableViewCell.xib in Resources */,
 				661197992831667C0033CB33 /* SCDream1.otf in Resources */,
 				661197A02831667C0033CB33 /* SCDream7.otf in Resources */,
 				664B2DB527FC708D00109DFB /* Main.storyboard in Resources */,
@@ -447,6 +454,7 @@
 				664B2DB027FC708D00109DFB /* SceneDelegate.swift in Sources */,
 				6611868728326CFE0002A832 /* LoginViewPresenter.swift in Sources */,
 				660723D82898CE9B0010A3D4 /* Sql.swift in Sources */,
+				66B195AB28BCAC1A00019892 /* YourTableViewCell.swift in Sources */,
 				669BBB4B28AF551900EB4DF4 /* UITextView_Extention.swift in Sources */,
 				66C8773228A226EB002903CF /* RoomInfoRow.swift in Sources */,
 				66D0635028AE0E3A0024E1AF /* UserInfoRow.swift in Sources */,

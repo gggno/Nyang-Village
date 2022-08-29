@@ -1,8 +1,9 @@
 import UIKit
 
-class MyTableViewCell: UITableViewCell {
+class YourTableViewCell: UITableViewCell {
 
-    // MARK: - IBAction
+    // MARK: - IBOutlet
+    
     @IBOutlet weak var bubbleBackgroundView: UIView!
     @IBOutlet weak var bubbleContentsLabel: UILabel!
     

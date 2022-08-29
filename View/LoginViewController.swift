@@ -26,12 +26,16 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // SQL 테스트 용
+//        forTheSqlTest()
+        
         // 자동 로그인 로직
         if sql.selectUserInfoAutoLogin() == 1 {
             print("자동로그인 성공")
             
             let mainVC = self.storyboard?.instantiateViewController(withIdentifier: "MainViewController")
             self.navigationController?.pushViewController(mainVC!, animated: true)
+                        
         } else {
             print("자동로그인 실패")
         }
@@ -43,9 +47,6 @@ class LoginViewController: UIViewController {
         IDTxtSetting()
         PWDTxtSetting()
         LoginBtnSetting()
-        
-        // SQL 테스트 용
-//        forTheSqlTest()
         
         self.view.addSubview(activityIndicator)
     }

@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="YourTableViewCell" rowHeight="247" id="KGk-i7-Jjw" customClass="YourTableViewCell" customModule="Nyang_Village" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="527" height="247"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="527" height="247"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Lfi-5s-u3J">
+                        <rect key="frame" x="10" y="46" width="437.5" height="176"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jd2-rM-LX4">
+                                <rect key="frame" x="10" y="10" width="417.5" height="156"/>
+                                <string key="text">요약 정리 오토레이아웃은 뷰에 담긴 콘텐츠 사이즈를 자동으로 계산해서 크기 조건을 설정한다.
+션은 750으로 설정된다.
+
+콘텐츠 사이즈 조건이 서로 충돌할 때는 우선순위를 높이거나 낮춰서 해결한다.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" name="YourChatBubbleColor"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="jd2-rM-LX4" secondAttribute="trailing" constant="10" id="15S-Sv-d5t"/>
+                            <constraint firstAttribute="bottom" secondItem="jd2-rM-LX4" secondAttribute="bottom" constant="10" id="IUk-xS-rGZ"/>
+                            <constraint firstItem="jd2-rM-LX4" firstAttribute="leading" secondItem="Lfi-5s-u3J" secondAttribute="leading" constant="10" id="NX7-5E-KYd"/>
+                            <constraint firstItem="jd2-rM-LX4" firstAttribute="top" secondItem="Lfi-5s-u3J" secondAttribute="top" constant="10" id="Rew-aj-dCs"/>
+                        </constraints>
+                    </view>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="800" text="오후 5:26" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gt5-v7-emM">
+                        <rect key="frame" x="452.5" y="210" width="42.5" height="12"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="고양이" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fse-Ar-SOy">
+                        <rect key="frame" x="10" y="25" width="34" height="16"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="Lfi-5s-u3J" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="14B-FA-9ec"/>
+                    <constraint firstItem="fse-Ar-SOy" firstAttribute="leading" secondItem="Lfi-5s-u3J" secondAttribute="leading" id="Jvw-b5-kYb"/>
+                    <constraint firstAttribute="bottom" secondItem="Lfi-5s-u3J" secondAttribute="bottom" constant="25" id="N6T-XY-XDg"/>
+                    <constraint firstItem="fse-Ar-SOy" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="25" id="ST8-9o-kmR"/>
+                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="gt5-v7-emM" secondAttribute="trailing" constant="30" id="gBt-yH-XT1"/>
+                    <constraint firstItem="gt5-v7-emM" firstAttribute="bottom" secondItem="Lfi-5s-u3J" secondAttribute="bottom" id="o2V-zb-Ons"/>
+                    <constraint firstItem="Lfi-5s-u3J" firstAttribute="top" secondItem="fse-Ar-SOy" secondAttribute="bottom" constant="5" id="oiE-qP-hNR"/>
+                    <constraint firstItem="gt5-v7-emM" firstAttribute="leading" secondItem="Lfi-5s-u3J" secondAttribute="trailing" constant="5" id="wZD-a9-LHX"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="bubbleBackgroundView" destination="Lfi-5s-u3J" id="iFi-2v-VnN"/>
+                <outlet property="bubbleContentsLabel" destination="jd2-rM-LX4" id="jqE-8p-74N"/>
+                <outlet property="nameLabel" destination="fse-Ar-SOy" id="Tfo-Ma-21i"/>
+                <outlet property="timeLabel" destination="gt5-v7-emM" id="BAU-cX-XMd"/>
+            </connections>
+            <point key="canvasLocation" x="118.11594202898551" y="166.40625"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <namedColor name="YourChatBubbleColor">
+            <color red="0.96078431372549022" green="0.70980392156862748" blue="0.33725490196078434" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

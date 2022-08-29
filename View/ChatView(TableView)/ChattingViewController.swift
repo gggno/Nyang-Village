@@ -43,6 +43,7 @@ class ChattingViewController: UIViewController, UITableViewDelegate, UITableView
         chatTableView.delegate = self
         chatTableView.dataSource = self
         chatTableView.register(UINib(nibName: "MyTableViewCell", bundle: nil), forCellReuseIdentifier: "MyTableViewCell")
+        chatTableView.register(UINib(nibName: "YourTableViewCell", bundle: nil), forCellReuseIdentifier: "YourTableViewCell")
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -106,11 +107,13 @@ class ChattingViewController: UIViewController, UITableViewDelegate, UITableView
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let myCell = tableView.dequeueReusableCell(withIdentifier: "MyTableViewCell", for: indexPath)
+        let yourCell = tableView.dequeueReusableCell(withIdentifier: "YourTableViewCell", for: indexPath)
         
         // 클릭 시 회색 하이라이트 제거
         myCell.selectionStyle = .none
+        yourCell.selectionStyle = .none
         
-        return myCell
+        return yourCell
     }
     
     // MARK: - IBAction
