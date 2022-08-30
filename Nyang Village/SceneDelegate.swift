@@ -10,8 +10,18 @@ import UIKit
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
-
-
+    
+    func changeRootVC() {
+        let rootViewController = MainViewController()
+           
+//            위에서 생성한 뷰 컨트롤러로 내비게이션 컨트롤러를 생성
+        let navigationController = UINavigationController(rootViewController: rootViewController)
+        self.window = UIWindow(frame: UIScreen.main.bounds)
+//            윈도우의 루트 뷰 컨트롤러로 내비게이션 컨트롤러를 설정합니다.
+        self.window?.rootViewController = navigationController
+        self.window?.makeKeyAndVisible()
+    }
+    
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
         // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.

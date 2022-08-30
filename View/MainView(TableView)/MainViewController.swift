@@ -6,14 +6,18 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     @IBOutlet weak var tableBackgroundView: UIView!
     @IBOutlet weak var settingBtn: UIButton!
     @IBOutlet weak var MainTableView: UITableView!
-//    var cellArray: [MainTableViewCell] = []
+    //    var cellArray: [MainTableViewCell] = []
     var roomInfos: [RoomInfos] = []
+    var roomInfoDatas: [RoomInfoRow] = []
     
     var mainViewPresenter = MainViewPresenter()
+    
+    let sql = Sql.shared
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        roomInfoData()
         // 테이블 뷰 높이
         self.MainTableView.rowHeight = 120
         
@@ -31,7 +35,12 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return roomInfos.count
+        
+        if roomInfos.count > 0 { // 자동로그인이 아닐 때
+            return roomInfos.count
+        } else {
+            return roomInfoDatas.count
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -40,11 +49,20 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         // 클릭 시 회색 하이라이트 제거
         cell.selectionStyle = .none
         
-        cell.SubjectNameLabel.text = roomInfos[indexPath.row].roomName
-        cell.ProfessorNameLabel.text = roomInfos[indexPath.row].professorName! + " 교수님"
-        cell.NumberOfParticipantsLabel.text = String(roomInfos[indexPath.row].roomInNames!.count)
-        
-        return cell
+        if roomInfos.count > 0 { // 자동로그인 일 때
+            
+            cell.SubjectNameLabel.text = roomInfos[indexPath.row].roomName
+            cell.ProfessorNameLabel.text = roomInfos[indexPath.row].professorName! + " 교수님"
+            cell.NumberOfParticipantsLabel.text = String(roomInfos[indexPath.row].roomInNames!.count)
+            
+            return cell
+        } else {
+            
+            cell.SubjectNameLabel.text = roomInfoDatas[indexPath.row].roomName
+            cell.ProfessorNameLabel.text = roomInfoDatas[indexPath.row].professorName + " 교수님"
+            cell.NumberOfParticipantsLabel.text = String(roomInCount(roomid: roomInfoDatas[indexPath.row].roomId))
+            return cell
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -63,14 +81,14 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         let chatVC = self.storyboard?.instantiateViewController(withIdentifier: "ChattingViewController")
         self.navigationController!.pushViewController(chatVC!, animated: true)
     }
-
+    
     func initCell(data: [RoomInfos]) {
         
-//        for roomData in data {
-//            let cell = MainTableViewCell()
-////            cell.updateData(data: roomData)
-//            self.cellArray.append(cell)
-//        }
+        //        for roomData in data {
+        //            let cell = MainTableViewCell()
+        ////            cell.updateData(data: roomData)
+        //            self.cellArray.append(cell)
+        //        }
         self.roomInfos = data
         MainTableView.reloadData()
     }
@@ -79,6 +97,16 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         // 프레젠터로
         mainViewPresenter.makeView(view: self, data: data)
         mainViewPresenter.roomDataBridge()
+    }
+    
+    // sql로 roomInfo들의 데이터를 roomInfoDatas에 저장
+    func roomInfoData() {
+        roomInfoDatas = sql.selectRoomInfo()
+    }
+    
+    // sql로 방 안에 사용자 수 불러오기
+    func roomInCount(roomid: Int) -> Int {
+        return sql.selectRoomInNames2(roomId: roomid).count
     }
     
     @IBAction func settingBtnClicked(_ sender: Any) {

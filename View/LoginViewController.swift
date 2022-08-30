@@ -9,7 +9,8 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var LoginBtn: UIButton!
     
     var loginViewPresenter = LoginViewPresenter()
-    var sql = Sql()
+
+    var sql = Sql.shared
         
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,11 +20,14 @@ class LoginViewController: UIViewController {
         
         // 자동 로그인 로직
         if sql.selectUserInfoAutoLogin() == 1 {
-            print("자동로그인 성공")
+            
+            // 루트 뷰 변경
+            
             
             let mainVC = self.storyboard?.instantiateViewController(withIdentifier: "MainViewController")
             self.navigationController?.pushViewController(mainVC!, animated: true)
-                        
+            
+            print("자동로그인 성공")
         } else {
             print("자동로그인 실패")
         }
@@ -137,6 +141,7 @@ class LoginViewController: UIViewController {
                     self.sql.insertUserInfo(studentid: self.loginViewPresenter.getId(), token: self.loginViewPresenter.getToken(), suspendeddate: result.suspendedDate ?? "noData", autologin: 1, jwt: result.jwt!)
                     // 사용자 수강 과목 정보를 내부 db에 저장
                     self.sql.insertRoomInfos(subjectData: result)
+                    self.sql.insertRoomInNames(subjectData: result)
                     
                     self.activityIndicator.stopAnimating()
                     let main = vc as! MainViewController
@@ -151,6 +156,7 @@ class LoginViewController: UIViewController {
                    
                     // 사용자 수강 과목 정보를 내부 db에 저장
                     self.sql.insertRoomInfos(subjectData: result)
+                    self.sql.insertRoomInNames(subjectData: result)
                     
                     // 수강 정정 시 변경된 과목 삭제
                     var roomArr: [Int] = []

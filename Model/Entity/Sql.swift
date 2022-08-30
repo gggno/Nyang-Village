@@ -1,10 +1,13 @@
 import Foundation
 import SQLite3
 
-class Sql {
+final class Sql {
+    
+    static let shared = Sql()
+    
     var db: OpaquePointer? = nil
     
-    init() {
+    private init() {
         self.db = createDB()
         
         createRoomInfoTable()
@@ -924,7 +927,7 @@ class Sql {
     // 31. 방 안에 사용자 닉네임 불러오기
     func selectRoomInNames2(roomId: Int) -> [RoomInNamesRow] {
         
-        let selectQuery = "SELECT name FROM RoomInName WHERE roomId=\(roomId);"
+        let selectQuery = "SELECT name FROM RoomInName WHERE roomid= \(roomId);"
         var createTablePtr: OpaquePointer? = nil
         
         var roomInNamesRowArr: [RoomInNamesRow] = []
