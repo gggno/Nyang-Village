@@ -132,8 +132,12 @@ class LoginViewController: UIViewController {
         loginViewPresenter.login(requestData: LoginRequest(fcm: loginViewPresenter.getToken(), password: loginViewPresenter.getPwd(), studentId: loginViewPresenter.getId(), version: 1), completion2: { result in
             // 로그인 signal 구분지어서 코드 재작성 해야 됨.
             if result.signal == 1 { // 앱 업데이트
+                self.activityIndicator.stopAnimating()
+                let alert = UIAlertController(title: "업데이트", message: "업데이트 후 이용해주세요.", preferredStyle: .alert)
+                let ok = UIAlertAction(title: "확인", style: .default)
                 
-                
+                alert.addAction(ok)
+                self.present(alert, animated: true)
             } else if result.signal == 3 { // 최초 로그인(정상 입력)
                 self.navigationController?.pushViewController(animated: true, viewName: "MainViewController", completion: { vc in
                     
@@ -183,9 +187,12 @@ class LoginViewController: UIViewController {
                 self.present(alert, animated: true)
                 
             } else if result.signal == 6 { // 정지된 회원
+                self.activityIndicator.stopAnimating()
+                let alert = UIAlertController(title: "이용 제한 계정", message: "정지된 계정입니다.", preferredStyle: .alert)
+                let ok = UIAlertAction(title: "확인", style: .default)
                 
-                
-                
+                alert.addAction(ok)
+                self.present(alert, animated: true)
             }
             
         })
