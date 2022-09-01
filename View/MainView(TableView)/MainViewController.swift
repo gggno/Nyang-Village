@@ -59,7 +59,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         } else {
             
             cell.SubjectNameLabel.text = roomInfoDatas[indexPath.row].roomName
-            cell.ProfessorNameLabel.text = roomInfoDatas[indexPath.row].professorName + " 교수님"
+            cell.ProfessorNameLabel.text = roomInfoDatas[indexPath.row].professorName + " 교수"
             cell.NumberOfParticipantsLabel.text = String(roomInCount(roomid: roomInfoDatas[indexPath.row].roomId))
             return cell
         }

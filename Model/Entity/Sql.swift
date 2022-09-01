@@ -58,7 +58,7 @@ final class Sql {
     
     func createRoomInNameTable() {
         
-        let createTableQuery = "CREATE TABLE IF NOT EXISTS RoomInName (id INTEGER PRIMARY KEY AUTOINCREMENT, roomid INTEGER REFERENCES RoomInfo(roomid) , name TEXT)"
+        let createTableQuery = "CREATE TABLE IF NOT EXISTS RoomInName (id INTEGER PRIMARY KEY AUTOINCREMENT, roomid INTEGER REFERENCES RoomInfo(roomid), name TEXT)"
         
         var createTablePtr: OpaquePointer? = nil
         
@@ -249,6 +249,7 @@ final class Sql {
             let roomInfoRowST: RoomInfoRow = RoomInfoRow(roomId: Int(roomid), roomName: roomName, nickName: nickName, professorName: professorName, position: Int(position), noti: Int(noti))
             
             roomInfoRowArr.append(roomInfoRowST)
+            print(roomInfoRowArr)
         }
         
         sqlite3_finalize(createTablePtr)
@@ -811,15 +812,15 @@ final class Sql {
         }
         
         let SQLITE_TRANSIENT = unsafeBitCast(-1, to: sqlite3_destructor_type.self)
-        
-        if sqlite3_bind_int(createTablePtr, 2, Int32(roomid)) != SQLITE_OK {
+        // 원래대로 0, 1이 아닌 0(생략) 1, 2
+        if sqlite3_bind_int(createTablePtr, 1, Int32(roomid)) != SQLITE_OK {
             let errMsg = String(cString : sqlite3_errmsg(db)!)
             print("failture binding name: \(errMsg)")
             sqlite3_finalize(createTablePtr)
             return
         }
         
-        if sqlite3_bind_text(createTablePtr, 3, name, -1, SQLITE_TRANSIENT) != SQLITE_OK {
+        if sqlite3_bind_text(createTablePtr, 2, name, -1, SQLITE_TRANSIENT) != SQLITE_OK {
             let errMsg = String(cString : sqlite3_errmsg(db)!)
             print("failture binding name: \(errMsg)")
             sqlite3_finalize(createTablePtr)
@@ -941,8 +942,8 @@ final class Sql {
         }
         
         while(sqlite3_step(createTablePtr) == SQLITE_ROW) {
-            let name = String(cString: sqlite3_column_text(createTablePtr, 2))
-            
+            let name = String(cString: sqlite3_column_text(createTablePtr, 0))
+            print("name: \(name)")
             let roomInNamesRowST: RoomInNamesRow = RoomInNamesRow(name: name)
             
             roomInNamesRowArr.append(roomInNamesRowST)
@@ -1172,6 +1173,22 @@ final class Sql {
             }
         }else{
             print("\nDelete deleteUserInfoTest() Statement in not prepared")
+        }
+        sqlite3_finalize(createTablePtr)
+    }
+    
+    func dropRoomInNameTest() {
+        let deleteQuery = "DROP TABLE RoomInName;"
+        var createTablePtr: OpaquePointer? //query를 가리키는 포인터
+        
+        if sqlite3_prepare(db, deleteQuery, -1, &createTablePtr, nil) == SQLITE_OK{
+            if sqlite3_step(createTablePtr) == SQLITE_DONE{
+                print("\nDelete dropRoomInNameTest() Row Success")
+            }else{
+                print("\nDelete dropRoomInNameTest() Row Faild")
+            }
+        }else{
+            print("\nDelete dropRoomInNameTest() Statement in not prepared")
         }
         sqlite3_finalize(createTablePtr)
     }
