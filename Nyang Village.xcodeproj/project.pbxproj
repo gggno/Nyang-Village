@@ -20,6 +20,10 @@
 		6611979F2831667C0033CB33 /* SCDream3.otf in Resources */ = {isa = PBXBuildFile; fileRef = 661197962831667C0033CB33 /* SCDream3.otf */; };
 		661197A02831667C0033CB33 /* SCDream7.otf in Resources */ = {isa = PBXBuildFile; fileRef = 661197972831667C0033CB33 /* SCDream7.otf */; };
 		661197A2283174FE0033CB33 /* UITextField_Extention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 661197A1283174FE0033CB33 /* UITextField_Extention.swift */; };
+		6625937328C33A6B0034F4C1 /* SideMenuNavigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6625937228C33A6B0034F4C1 /* SideMenuNavigation.swift */; };
+		6625937628C33ACF0034F4C1 /* SideMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6625937528C33ACF0034F4C1 /* SideMenuViewController.swift */; };
+		6625937928C3447F0034F4C1 /* SideMenuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6625937728C3447F0034F4C1 /* SideMenuTableViewCell.swift */; };
+		6625937A28C3447F0034F4C1 /* SideMenuTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6625937828C3447F0034F4C1 /* SideMenuTableViewCell.xib */; };
 		664B2DAE27FC708D00109DFB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 664B2DAD27FC708D00109DFB /* AppDelegate.swift */; };
 		664B2DB027FC708D00109DFB /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 664B2DAF27FC708D00109DFB /* SceneDelegate.swift */; };
 		664B2DB527FC708D00109DFB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 664B2DB327FC708D00109DFB /* Main.storyboard */; };
@@ -68,6 +72,10 @@
 		661197962831667C0033CB33 /* SCDream3.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = SCDream3.otf; sourceTree = "<group>"; };
 		661197972831667C0033CB33 /* SCDream7.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = SCDream7.otf; sourceTree = "<group>"; };
 		661197A1283174FE0033CB33 /* UITextField_Extention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextField_Extention.swift; sourceTree = "<group>"; };
+		6625937228C33A6B0034F4C1 /* SideMenuNavigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuNavigation.swift; sourceTree = "<group>"; };
+		6625937528C33ACF0034F4C1 /* SideMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuViewController.swift; sourceTree = "<group>"; };
+		6625937728C3447F0034F4C1 /* SideMenuTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuTableViewCell.swift; sourceTree = "<group>"; };
+		6625937828C3447F0034F4C1 /* SideMenuTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SideMenuTableViewCell.xib; sourceTree = "<group>"; };
 		664B2DAA27FC708D00109DFB /* Nyang Village.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Nyang Village.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		664B2DAD27FC708D00109DFB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		664B2DAF27FC708D00109DFB /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -142,6 +150,17 @@
 				6678F5B028A8C7840049938F /* JalnanOTF.otf */,
 			);
 			path = Fonts;
+			sourceTree = "<group>";
+		};
+		6625937428C33AA30034F4C1 /* SideMenuView(TableView) */ = {
+			isa = PBXGroup;
+			children = (
+				6625937228C33A6B0034F4C1 /* SideMenuNavigation.swift */,
+				6625937528C33ACF0034F4C1 /* SideMenuViewController.swift */,
+				6625937728C3447F0034F4C1 /* SideMenuTableViewCell.swift */,
+				6625937828C3447F0034F4C1 /* SideMenuTableViewCell.xib */,
+			);
+			path = "SideMenuView(TableView)";
 			sourceTree = "<group>";
 		};
 		664B2DA127FC708D00109DFB = {
@@ -250,6 +269,7 @@
 				66C1F7FD28314951001FD2FE /* LoginViewController.swift */,
 				667A9ADE28AD0D8F0068582F /* ChatView(TableView) */,
 				66C9A4E52893A8870073C0C4 /* SettingViewController.swift */,
+				6625937428C33AA30034F4C1 /* SideMenuView(TableView) */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -378,6 +398,7 @@
 				6611979F2831667C0033CB33 /* SCDream3.otf in Resources */,
 				6678F5B128A8C7840049938F /* JalnanOTF.otf in Resources */,
 				667A9AE228AD0DC40068582F /* MyTableViewCell.xib in Resources */,
+				6625937A28C3447F0034F4C1 /* SideMenuTableViewCell.xib in Resources */,
 				6611979B2831667C0033CB33 /* SCDream4.otf in Resources */,
 				66F5BEB72804643D0002240C /* GoogleService-Info.plist in Resources */,
 			);
@@ -438,6 +459,7 @@
 				66D0634D28AE02870024E1AF /* NotiRoomInfo.swift in Sources */,
 				66C1F7FC28314949001FD2FE /* MainViewController.swift in Sources */,
 				666C5C8F28A77E1700991176 /* ChattingViewController.swift in Sources */,
+				6625937628C33ACF0034F4C1 /* SideMenuViewController.swift in Sources */,
 				66C9A4E62893A8870073C0C4 /* SettingViewController.swift in Sources */,
 				66C1F80128314A34001FD2FE /* UIView_Extention.swift in Sources */,
 				664B2DAE27FC708D00109DFB /* AppDelegate.swift in Sources */,
@@ -446,6 +468,7 @@
 				66A126452865D978007B3547 /* LoginRequest.swift in Sources */,
 				669BBB4D28AF658D00EB4DF4 /* RoomInNameRow.swift in Sources */,
 				66F5EEAA287C57350057C285 /* UINavigationController.swift in Sources */,
+				6625937928C3447F0034F4C1 /* SideMenuTableViewCell.swift in Sources */,
 				6611868928326D340002A832 /* LoginViewModel.swift in Sources */,
 				66B8D185283DDA76000EB71B /* Protocol.swift in Sources */,
 				669BBB5328AF6A9200EB4DF4 /* ChatInfoRow.swift in Sources */,
@@ -453,6 +476,7 @@
 				661197A2283174FE0033CB33 /* UITextField_Extention.swift in Sources */,
 				664B2DB027FC708D00109DFB /* SceneDelegate.swift in Sources */,
 				6611868728326CFE0002A832 /* LoginViewPresenter.swift in Sources */,
+				6625937328C33A6B0034F4C1 /* SideMenuNavigation.swift in Sources */,
 				660723D82898CE9B0010A3D4 /* Sql.swift in Sources */,
 				66B195AB28BCAC1A00019892 /* YourTableViewCell.swift in Sources */,
 				669BBB4B28AF551900EB4DF4 /* UITextView_Extention.swift in Sources */,

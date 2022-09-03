@@ -9,8 +9,14 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
+        <array key="SCDream4.otf">
+            <string>S-CoreDream-4Regular</string>
+        </array>
         <array key="SCDream7.otf">
             <string>S-CoreDream-7ExtraBold</string>
+        </array>
+        <array key="SCDream8.otf">
+            <string>S-CoreDream-8Heavy</string>
         </array>
     </customFonts>
     <scenes>
@@ -289,6 +295,88 @@
             </objects>
             <point key="canvasLocation" x="1773.913043478261" y="-549.45652173913049"/>
         </scene>
+        <!--Side Menu Navigation-->
+        <scene sceneID="Xhu-SR-DP8">
+            <objects>
+                <navigationController id="6xq-OO-9sL" customClass="SideMenuNavigation" customModule="Nyang_Village" customModuleProvider="target" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="osK-Of-r8p">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="1oD-DY-9jH" kind="relationship" relationship="rootViewController" id="MuN-9P-KoT"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="VzX-2a-Ctf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1796" y="-1274"/>
+        </scene>
+        <!--Side Menu View Controller-->
+        <scene sceneID="xyb-hp-9Yd">
+            <objects>
+                <viewController storyboardIdentifier="SideMenuViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="1oD-DY-9jH" customClass="SideMenuViewController" customModule="Nyang_Village" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="hWw-Db-czU">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lWZ-wk-jrz">
+                                <rect key="frame" x="0.0" y="697" width="67" height="31"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Button"/>
+                            </button>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="zVk-Bc-Z9D">
+                                <rect key="frame" x="0.0" y="118.66666666666669" width="414" height="578.33333333333326"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="냥빌리지 프로젝트 01반" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cAa-y0-1Sl">
+                                <rect key="frame" x="117.66666666666669" y="44" width="179" height="19.666666666666671"/>
+                                <fontDescription key="fontDescription" name="S-CoreDream-8Heavy" family="S-Core Dream" pointSize="17"/>
+                                <color key="textColor" name="SubjectColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="홍길동 교수님" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UEW-ub-Ih9">
+                                <rect key="frame" x="117.66666666666666" y="71.666666666666671" width="72.666666666666657" height="14"/>
+                                <fontDescription key="fontDescription" name="S-CoreDream-4Regular" family="S-Core Dream" pointSize="12"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="spT-5F-1Nr">
+                                <rect key="frame" x="117.66666666666669" y="110.66666666666667" width="179" height="2"/>
+                                <color key="backgroundColor" name="SideMenuBarColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="2" id="WYW-y1-odU"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="9jK-y1-zOm"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="cAa-y0-1Sl" firstAttribute="centerX" secondItem="hWw-Db-czU" secondAttribute="centerX" id="3cc-dI-b8M"/>
+                            <constraint firstItem="cAa-y0-1Sl" firstAttribute="top" secondItem="9jK-y1-zOm" secondAttribute="top" id="5QO-Sx-O6j"/>
+                            <constraint firstItem="zVk-Bc-Z9D" firstAttribute="top" secondItem="spT-5F-1Nr" secondAttribute="top" constant="8" id="AkN-tz-7An"/>
+                            <constraint firstItem="9jK-y1-zOm" firstAttribute="trailing" secondItem="zVk-Bc-Z9D" secondAttribute="trailing" id="CNh-EZ-t3v"/>
+                            <constraint firstItem="spT-5F-1Nr" firstAttribute="leading" secondItem="cAa-y0-1Sl" secondAttribute="leading" id="DhC-nk-j71"/>
+                            <constraint firstItem="zVk-Bc-Z9D" firstAttribute="leading" secondItem="9jK-y1-zOm" secondAttribute="leading" id="NK4-BC-taW"/>
+                            <constraint firstItem="lWZ-wk-jrz" firstAttribute="top" secondItem="zVk-Bc-Z9D" secondAttribute="bottom" id="Pm2-r6-Fbj"/>
+                            <constraint firstItem="9jK-y1-zOm" firstAttribute="bottom" secondItem="lWZ-wk-jrz" secondAttribute="bottom" constant="8" id="WtW-AO-mFD"/>
+                            <constraint firstItem="spT-5F-1Nr" firstAttribute="top" secondItem="UEW-ub-Ih9" secondAttribute="bottom" constant="25" id="f2o-ok-4hP"/>
+                            <constraint firstItem="UEW-ub-Ih9" firstAttribute="top" secondItem="cAa-y0-1Sl" secondAttribute="bottom" constant="8" id="gT2-Rj-inE"/>
+                            <constraint firstItem="spT-5F-1Nr" firstAttribute="trailing" secondItem="cAa-y0-1Sl" secondAttribute="trailing" id="hGx-4M-dU6"/>
+                            <constraint firstItem="lWZ-wk-jrz" firstAttribute="leading" secondItem="9jK-y1-zOm" secondAttribute="leading" id="kGp-gm-7oz"/>
+                            <constraint firstItem="UEW-ub-Ih9" firstAttribute="leading" secondItem="cAa-y0-1Sl" secondAttribute="leading" id="qkl-8F-C2J"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="X5M-5W-BL1"/>
+                    <connections>
+                        <outlet property="professorNameLabel" destination="UEW-ub-Ih9" id="x49-aq-RlU"/>
+                        <outlet property="sideMenuTableView" destination="zVk-Bc-Z9D" id="LUF-wh-xlc"/>
+                        <outlet property="subjectNameLabel" destination="cAa-y0-1Sl" id="m1d-Pw-KHX"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="K2I-t7-C6L" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2653.6231884057975" y="-1274.1847826086957"/>
+        </scene>
         <!--Setting View Controller-->
         <scene sceneID="uvf-NQ-xUy">
             <objects>
@@ -311,6 +399,12 @@
         <image name="SettingButton" width="20" height="20"/>
         <namedColor name="MainOrangeColor">
             <color red="1" green="0.51800000667572021" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="SideMenuBarColor">
+            <color red="1" green="0.52941176470588236" blue="0.0039215686274509803" alpha="0.55013451986754969" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="SubjectColor">
+            <color red="0.29800000786781311" green="0.28600001335144043" blue="0.28200000524520874" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

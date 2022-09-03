@@ -24,7 +24,7 @@ class ChattingViewController: UIViewController, UITableViewDelegate, UITableView
         self.navigationController?.navigationBar.topItem?.title = ""
         self.navigationController?.navigationBar.tintColor = .white
         
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "line.3.horizontal"), style: .plain, target: self, action: #selector(rightBtnClicked))
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "line.3.horizontal"), style: .plain, target: self, action: #selector(sideBtnClicked))
         
         // 테이블 뷰 라인 삭제
         self.chatTableView.separatorStyle = UITableViewCell.SeparatorStyle.none
@@ -117,11 +117,16 @@ class ChattingViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     // MARK: - IBAction
-    @objc func rightBtnClicked() {
+    @objc func sideBtnClicked() {
         print("click")
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let sideMenuVC: SideMenuViewController = storyboard.instantiateViewController(withIdentifier: "SideMenuViewController") as! SideMenuViewController
+        let menu = SideMenuNavigation(rootViewController: sideMenuVC)
+        present(menu, animated: true, completion: nil)
     }
     
     @IBAction func sendBtnClicked(_ sender: Any) {
+        
         
     }
     
