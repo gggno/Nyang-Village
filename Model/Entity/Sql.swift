@@ -943,7 +943,7 @@ final class Sql {
         
         while(sqlite3_step(createTablePtr) == SQLITE_ROW) {
             let name = String(cString: sqlite3_column_text(createTablePtr, 0))
-            print("name: \(name)")
+            
             let roomInNamesRowST: RoomInNamesRow = RoomInNamesRow(name: name)
             
             roomInNamesRowArr.append(roomInNamesRowST)
