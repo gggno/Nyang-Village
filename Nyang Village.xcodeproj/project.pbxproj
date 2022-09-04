@@ -55,6 +55,7 @@
 		66D0635028AE0E3A0024E1AF /* UserInfoRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66D0634F28AE0E3A0024E1AF /* UserInfoRow.swift */; };
 		66E9800B28C4BC4F00136504 /* OutMessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66E9800928C4BC4F00136504 /* OutMessageTableViewCell.swift */; };
 		66E9800C28C4BC4F00136504 /* OutMessageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 66E9800A28C4BC4F00136504 /* OutMessageTableViewCell.xib */; };
+		66E9800E28C4CDF100136504 /* LaunchScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66E9800D28C4CDF100136504 /* LaunchScreenViewController.swift */; };
 		66F5BEB72804643D0002240C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 66F5BEB62804643D0002240C /* GoogleService-Info.plist */; };
 		66F5EEAA287C57350057C285 /* UINavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66F5EEA9287C57350057C285 /* UINavigationController.swift */; };
 		6E7867EFD964041F86EF3311 /* Pods_Nyang_Village.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D894EDED1EF20D4DC2AF2E62 /* Pods_Nyang_Village.framework */; };
@@ -112,6 +113,7 @@
 		66D0634F28AE0E3A0024E1AF /* UserInfoRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoRow.swift; sourceTree = "<group>"; };
 		66E9800928C4BC4F00136504 /* OutMessageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutMessageTableViewCell.swift; sourceTree = "<group>"; };
 		66E9800A28C4BC4F00136504 /* OutMessageTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OutMessageTableViewCell.xib; sourceTree = "<group>"; };
+		66E9800D28C4CDF100136504 /* LaunchScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchScreenViewController.swift; sourceTree = "<group>"; };
 		66F5BEB62804643D0002240C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		66F5EEA9287C57350057C285 /* UINavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UINavigationController.swift; sourceTree = "<group>"; };
 		859A35855346CD60860891DF /* Pods-Nyang Village.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Nyang Village.release.xcconfig"; path = "Target Support Files/Pods-Nyang Village/Pods-Nyang Village.release.xcconfig"; sourceTree = "<group>"; };
@@ -197,6 +199,7 @@
 				664B2DB327FC708D00109DFB /* Main.storyboard */,
 				664B2DB627FC708E00109DFB /* Assets.xcassets */,
 				664B2DB827FC708E00109DFB /* LaunchScreen.storyboard */,
+				66E9800D28C4CDF100136504 /* LaunchScreenViewController.swift */,
 				66F5BEB62804643D0002240C /* GoogleService-Info.plist */,
 				664B2DBB27FC708E00109DFB /* Info.plist */,
 			);
@@ -470,6 +473,7 @@
 				66C9A4E62893A8870073C0C4 /* SettingViewController.swift in Sources */,
 				66C1F80128314A34001FD2FE /* UIView_Extention.swift in Sources */,
 				664B2DAE27FC708D00109DFB /* AppDelegate.swift in Sources */,
+				66E9800E28C4CDF100136504 /* LaunchScreenViewController.swift in Sources */,
 				66AA9F5B2840B04E00988A60 /* MainTableViewCell.swift in Sources */,
 				66A126472865E48A007B3547 /* LoginResponse.swift in Sources */,
 				66A126452865D978007B3547 /* LoginRequest.swift in Sources */,

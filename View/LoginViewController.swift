@@ -21,9 +21,6 @@ class LoginViewController: UIViewController {
         // 자동 로그인 로직
         if sql.selectUserInfoAutoLogin() == 1 {
             
-            // 루트 뷰 변경
-            
-            
             let mainVC = self.storyboard?.instantiateViewController(withIdentifier: "MainViewController")
             self.navigationController?.pushViewController(mainVC!, animated: false)
             
@@ -34,7 +31,7 @@ class LoginViewController: UIViewController {
         
         loginViewPresenter.makeView(view: self)
         
-        view.GradientColor(color1: UIColor(named: "MainYellowColor")!, color2: UIColor(named: "MainOrangeColor")!)
+        self.view.GradientColor(color1: UIColor(named: "MainYellowColor")!, color2: UIColor(named: "MainOrangeColor")!)
         
         IDTxtSetting()
         PWDTxtSetting()
