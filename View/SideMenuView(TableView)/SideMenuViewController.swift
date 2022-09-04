@@ -11,8 +11,13 @@ class SideMenuViewController: UIViewController, UITableViewDelegate, UITableView
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        view.CornerRadiusLayerSetting(cornerRadius: 40, cornerLayer: [.layerMinXMinYCorner])
+        
         sideMenuTableView.delegate = self
         sideMenuTableView.dataSource = self
+        
+        self.sideMenuTableView.rowHeight = 35
+        self.sideMenuTableView.separatorStyle = UITableViewCell.SeparatorStyle.none
         
         sideMenuTableView.register(UINib(nibName: "SideMenuTableViewCell", bundle: nil), forCellReuseIdentifier: "SideMenuTableViewCell")
     }

@@ -77,7 +77,7 @@ class ChattingViewController: UIViewController, UITableViewDelegate, UITableView
         let keyboardFrame = notiInfo[UIResponder.keyboardFrameEndUserInfoKey] as! CGRect
         let height = keyboardFrame.size.height - self.view.safeAreaInsets.bottom
         
-        sendViewBottomMargin.constant = height + 0 // sendView와 superView 간격이 34라서 추가해줌.
+        sendViewBottomMargin.constant = height + 8 // sendView와 superView 간격이 8이라서 추가해줌.
         
         // 애니메이션 효과를 키보드 애니메이션 시간과 동일하게
         let animationDuration = notiInfo[UIResponder.keyboardAnimationDurationUserInfoKey] as! TimeInterval
@@ -93,7 +93,7 @@ class ChattingViewController: UIViewController, UITableViewDelegate, UITableView
         let notiInfo = notification.userInfo!
         
         let animationDuration = notiInfo[UIResponder.keyboardAnimationDurationUserInfoKey] as! TimeInterval
-        self.sendViewBottomMargin.constant = 0 // sendView와 superView 간격이 34라서 추가해줌.
+        self.sendViewBottomMargin.constant = 8 // sendView와 superView 간격이 8이라서 추가해줌.
         
         // 애니메이션 효과를 키보드 애니메이션 시간과 동일하게
         UIView.animate(withDuration: animationDuration) {
@@ -134,5 +134,5 @@ class ChattingViewController: UIViewController, UITableViewDelegate, UITableView
     @objc func keyboardDownGesture(_ gesture: UITapGestureRecognizer) {
         view.endEditing(true)
     }
-        
+    
 }

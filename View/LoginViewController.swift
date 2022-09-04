@@ -25,7 +25,7 @@ class LoginViewController: UIViewController {
             
             
             let mainVC = self.storyboard?.instantiateViewController(withIdentifier: "MainViewController")
-            self.navigationController?.pushViewController(mainVC!, animated: true)
+            self.navigationController?.pushViewController(mainVC!, animated: false)
             
             print("자동로그인 성공")
         } else {

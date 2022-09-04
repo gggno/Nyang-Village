@@ -7,6 +7,5 @@ class SideMenuNavigation: SideMenuNavigationController {
         super.viewDidLoad()
         
         self.presentationStyle = .menuSlideIn
-        
     }
 }
