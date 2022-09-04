@@ -1,13 +1,15 @@
 import UIKit
 
-class SideMenuTableViewCell: UITableViewCell {
+class OutMessageTableViewCell: UITableViewCell {
 
     // MARK: - IBOutlet
-    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var outMessageBackgroundView: UIView!
+    @IBOutlet weak var outMessageLabel: UILabel!
+    
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        self.outMessageBackgroundView.layer.cornerRadius = 10
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

@@ -5,8 +5,14 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="SCDream6.otf">
+            <string>S-CoreDream-6Bold</string>
+        </array>
+    </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -18,17 +24,17 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1VV-8J-eGJ">
-                        <rect key="frame" x="109.5" y="47" width="309.5" height="164"/>
+                        <rect key="frame" x="109.5" y="45" width="309.5" height="166"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B1L-uM-ROG">
-                                <rect key="frame" x="10" y="10" width="289.5" height="144"/>
+                                <rect key="frame" x="10" y="10" width="289.5" height="146"/>
                                 <string key="text">요약 정리
 오토레이아웃은 뷰에 담긴 콘텐츠 사이즈를 자동으로 계산해서 크기 조건을 설정한다.
 션은 750으로 설정된다.
 
 콘텐츠 사이즈 조건이 서로 충돌할 때는 우선순위를 높이거나 낮춰서 해결한다.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" systemColor="systemGray6Color"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
@@ -47,8 +53,8 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="강아지" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TiB-sb-5hk">
-                        <rect key="frame" x="385" y="25" width="34" height="16"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <rect key="frame" x="384" y="25" width="35" height="14"/>
+                        <fontDescription key="fontDescription" name="S-CoreDream-6Bold" family="S-Core Dream" pointSize="12"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
@@ -78,5 +84,8 @@
         <namedColor name="MyChatBubbleColor">
             <color red="1" green="0.58799999952316284" blue="0.0040000001899898052" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
+        <systemColor name="systemGray6Color">
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
     </resources>
 </document>
