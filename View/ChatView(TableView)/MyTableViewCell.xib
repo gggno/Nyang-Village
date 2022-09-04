@@ -24,16 +24,16 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1VV-8J-eGJ">
-                        <rect key="frame" x="109.5" y="45" width="309.5" height="166"/>
+                        <rect key="frame" x="89.5" y="45" width="329.5" height="166"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B1L-uM-ROG">
-                                <rect key="frame" x="10" y="10" width="289.5" height="146"/>
+                                <rect key="frame" x="10" y="10" width="309.5" height="146"/>
                                 <string key="text">요약 정리
 오토레이아웃은 뷰에 담긴 콘텐츠 사이즈를 자동으로 계산해서 크기 조건을 설정한다.
 션은 750으로 설정된다.
 
 콘텐츠 사이즈 조건이 서로 충돌할 때는 우선순위를 높이거나 낮춰서 해결한다.</string>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <color key="textColor" systemColor="systemGray6Color"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -47,7 +47,7 @@
                         </constraints>
                     </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="800" text="오후 1:14" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wLj-ej-XTy">
-                        <rect key="frame" x="65" y="199" width="39.5" height="12"/>
+                        <rect key="frame" x="45" y="199" width="39.5" height="12"/>
                         <fontDescription key="fontDescription" type="system" pointSize="10"/>
                         <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>

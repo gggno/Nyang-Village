@@ -104,6 +104,11 @@ class ChattingViewController: UIViewController, UITableViewDelegate, UITableView
         }
     }
     
+    // 화면 터치 시 키보드 다운
+    @objc func keyboardDownGesture(_ gesture: UITapGestureRecognizer) {
+        view.endEditing(true)
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 20
     }
@@ -118,10 +123,15 @@ class ChattingViewController: UIViewController, UITableViewDelegate, UITableView
         yourCell.selectionStyle = .none
         outMessageCell.selectionStyle = .none
         
-        return outMessageCell
+        return yourCell
     }
     
     // MARK: - IBAction
+    @IBAction func sendBtnClicked(_ sender: Any) {
+        
+        
+    }
+    
     @objc func sideBtnClicked() {
         print("click")
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
@@ -129,15 +139,6 @@ class ChattingViewController: UIViewController, UITableViewDelegate, UITableView
         let menu = SideMenuNavigation(rootViewController: sideMenuVC)
         present(menu, animated: true, completion: nil)
     }
-    
-    @IBAction func sendBtnClicked(_ sender: Any) {
-        
-        
-    }
-    
-    // 화면 터치 시 키보드 다운
-    @objc func keyboardDownGesture(_ gesture: UITapGestureRecognizer) {
-        view.endEditing(true)
-    }
+   
     
 }
