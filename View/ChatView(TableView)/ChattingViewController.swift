@@ -18,7 +18,6 @@ class ChattingViewController: UIViewController, UITableViewDelegate, UITableView
         
         view.GradientColor(color1: UIColor(named: "MainYellowColor")!, color2: UIColor(named: "MainOrangeColor")!)
         
-        self.title = "냥빌리지 프로젝트 01반"
         self.navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.white]
         
         self.navigationController?.navigationBar.topItem?.title = ""
@@ -136,6 +135,7 @@ class ChattingViewController: UIViewController, UITableViewDelegate, UITableView
         print("click")
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let sideMenuVC: SideMenuViewController = storyboard.instantiateViewController(withIdentifier: "SideMenuViewController") as! SideMenuViewController
+        
         let menu = SideMenuNavigation(rootViewController: sideMenuVC)
         present(menu, animated: true, completion: nil)
     }

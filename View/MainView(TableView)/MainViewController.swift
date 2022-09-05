@@ -78,7 +78,17 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     // 셀 클릭 시 채팅 화면으로 화면 전환
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
         let chatVC = self.storyboard?.instantiateViewController(withIdentifier: "ChattingViewController")
+        
+        if roomInfos.count > 0 { // 자동로그인이 아닐 때
+            if let subjectName = roomInfos[indexPath.row].roomName {
+                chatVC?.title = subjectName
+            }
+        } else { // 자동로그인 일 때
+            chatVC?.title = "\(roomInfoDatas[indexPath.row].roomName)"
+        }
+        
         self.navigationController!.pushViewController(chatVC!, animated: true)
     }
     

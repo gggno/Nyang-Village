@@ -25,7 +25,7 @@
                             </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
-                        <color key="backgroundColor" name="MainOrangeColor"/>
+                        <color key="backgroundColor" name="MyChatBubbleColor"/>
                         <constraints>
                             <constraint firstItem="tK5-Tc-aDM" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="LhV-hn-U4c"/>
                             <constraint firstItem="tK5-Tc-aDM" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="UZf-Lw-Haw"/>
@@ -39,8 +39,8 @@
     </scenes>
     <resources>
         <image name="MainImage" width="431" height="403"/>
-        <namedColor name="MainOrangeColor">
-            <color red="1" green="0.51800000667572021" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        <namedColor name="MyChatBubbleColor">
+            <color red="1" green="0.58799999952316284" blue="0.0040000001899898052" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>
