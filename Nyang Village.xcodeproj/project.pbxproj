@@ -271,11 +271,11 @@
 		66C1F7F928314938001FD2FE /* View */ = {
 			isa = PBXGroup;
 			children = (
-				66A126482865FC59007B3547 /* MainView(TableView) */,
 				66C1F7FD28314951001FD2FE /* LoginViewController.swift */,
+				66A126482865FC59007B3547 /* MainView(TableView) */,
 				667A9ADE28AD0D8F0068582F /* ChatView(TableView) */,
-				66C9A4E52893A8870073C0C4 /* SettingViewController.swift */,
 				6625937428C33AA30034F4C1 /* SideMenuView(TableView) */,
+				66C9A4E52893A8870073C0C4 /* SettingViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";

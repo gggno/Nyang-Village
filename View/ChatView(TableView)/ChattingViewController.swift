@@ -2,6 +2,10 @@ import UIKit
 
 class ChattingViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
+    var roomInfos: [Any] = []
+    var subjectName: String?
+    var professorName: String?
+    
     // MARK: - IBOutlet
     @IBOutlet weak var chatView: UIView!
     
@@ -108,6 +112,10 @@ class ChattingViewController: UIViewController, UITableViewDelegate, UITableView
         view.endEditing(true)
     }
     
+    func dataSend(completion: @escaping () -> Void) {
+        
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 20
     }
@@ -132,10 +140,12 @@ class ChattingViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     @objc func sideBtnClicked() {
-        print("click")
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let sideMenuVC: SideMenuViewController = storyboard.instantiateViewController(withIdentifier: "SideMenuViewController") as! SideMenuViewController
+
+        let sideMenuVC = self.storyboard?.instantiateViewController(withIdentifier: "SideMenuViewController") as! SideMenuViewController
         
+//        sideMenuVC.subjectNameLabel.text = subjectName
+//        sideMenuVC.professorNameLabel.text = professorName
+
         let menu = SideMenuNavigation(rootViewController: sideMenuVC)
         present(menu, animated: true, completion: nil)
     }

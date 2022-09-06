@@ -4,9 +4,9 @@ class SideMenuViewController: UIViewController, UITableViewDelegate, UITableView
     
     // MARK: - IBOutlet
     @IBOutlet weak var sideMenuTableView: UITableView!
+   
     @IBOutlet weak var subjectNameLabel: UILabel!
     @IBOutlet weak var professorNameLabel: UILabel!
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -15,7 +15,7 @@ class SideMenuViewController: UIViewController, UITableViewDelegate, UITableView
         
         sideMenuTableView.delegate = self
         sideMenuTableView.dataSource = self
-        
+                
         self.sideMenuTableView.rowHeight = 35
         self.sideMenuTableView.separatorStyle = UITableViewCell.SeparatorStyle.none
         
@@ -29,6 +29,8 @@ class SideMenuViewController: UIViewController, UITableViewDelegate, UITableView
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = sideMenuTableView.dequeueReusableCell(withIdentifier: "SideMenuTableViewCell", for: indexPath)
         cell.selectionStyle = .none
+        
+        
         
         return cell
     }

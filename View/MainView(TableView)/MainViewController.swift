@@ -10,6 +10,8 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     var roomInfos: [RoomInfos] = []
     var roomInfoDatas: [RoomInfoRow] = []
     
+    var completionHandler: ((String) -> (String))?
+    
     var mainViewPresenter = MainViewPresenter()
     
     let sql = Sql.shared
@@ -79,17 +81,24 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     // 셀 클릭 시 채팅 화면으로 화면 전환
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        let chatVC = self.storyboard?.instantiateViewController(withIdentifier: "ChattingViewController")
+        let chatVC = self.storyboard?.instantiateViewController(withIdentifier: "ChattingViewController") as! ChattingViewController
         
         if roomInfos.count > 0 { // 자동로그인이 아닐 때
+            // 채팅방 별 타이틀(과목 명) 코드
             if let subjectName = roomInfos[indexPath.row].roomName {
-                chatVC?.title = subjectName
+                chatVC.title = subjectName
             }
+            chatVC.subjectName = "\(roomInfos[indexPath.row].roomName)"
+            chatVC.professorName = "\(roomInfos[indexPath.row].professorName)"
+            
         } else { // 자동로그인 일 때
-            chatVC?.title = "\(roomInfoDatas[indexPath.row].roomName)"
+            chatVC.title = "\(roomInfoDatas[indexPath.row].roomName)"
+            
+            chatVC.subjectName = "\(roomInfoDatas[indexPath.row].roomName)"
+            chatVC.professorName = "\(roomInfoDatas[indexPath.row].professorName)"
         }
         
-        self.navigationController!.pushViewController(chatVC!, animated: true)
+        self.navigationController!.pushViewController(chatVC, animated: true)
     }
     
     func initCell(data: [RoomInfos]) {
