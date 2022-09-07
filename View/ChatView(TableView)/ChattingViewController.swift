@@ -112,10 +112,6 @@ class ChattingViewController: UIViewController, UITableViewDelegate, UITableView
         view.endEditing(true)
     }
     
-    func dataSend(completion: @escaping () -> Void) {
-        
-    }
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 20
     }
@@ -143,8 +139,8 @@ class ChattingViewController: UIViewController, UITableViewDelegate, UITableView
 
         let sideMenuVC = self.storyboard?.instantiateViewController(withIdentifier: "SideMenuViewController") as! SideMenuViewController
         
-//        sideMenuVC.subjectNameLabel.text = subjectName
-//        sideMenuVC.professorNameLabel.text = professorName
+        sideMenuVC.subjectName = self.subjectName
+        sideMenuVC.professorName = self.professorName
 
         let menu = SideMenuNavigation(rootViewController: sideMenuVC)
         present(menu, animated: true, completion: nil)

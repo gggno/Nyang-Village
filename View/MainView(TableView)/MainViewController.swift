@@ -58,7 +58,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
             cell.NumberOfParticipantsLabel.text = String(roomInfos[indexPath.row].roomInNames!.count)
             
             return cell
-        } else {
+        } else { // 자동로그인이 아닐 때
             
             cell.SubjectNameLabel.text = roomInfoDatas[indexPath.row].roomName
             cell.ProfessorNameLabel.text = roomInfoDatas[indexPath.row].professorName + " 교수"

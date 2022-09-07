@@ -328,23 +328,23 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="zVk-Bc-Z9D">
-                                <rect key="frame" x="117" y="159.66666666666669" width="180" height="576.33333333333326"/>
+                                <rect key="frame" x="117" y="189.66666666666669" width="180" height="546.33333333333326"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </tableView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="채팅 프로젝트 01반" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cAa-y0-1Sl">
-                                <rect key="frame" x="117" y="44" width="120.33333333333331" height="16.333333333333329"/>
+                                <rect key="frame" x="117" y="74" width="120.33333333333331" height="16.333333333333329"/>
                                 <fontDescription key="fontDescription" name="S-CoreDream-8Heavy" family="S-Core Dream" pointSize="14"/>
                                 <color key="textColor" name="SubjectColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="홍길동 교수님" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UEW-ub-Ih9">
-                                <rect key="frame" x="117" y="68.333333333333329" width="72.666666666666686" height="14"/>
+                                <rect key="frame" x="117" y="98.333333333333329" width="72.666666666666686" height="14"/>
                                 <fontDescription key="fontDescription" name="S-CoreDream-4Regular" family="S-Core Dream" pointSize="12"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="spT-5F-1Nr">
-                                <rect key="frame" x="117" y="107.33333333333333" width="180" height="2"/>
+                                <rect key="frame" x="117" y="137.33333333333334" width="180" height="2"/>
                                 <color key="backgroundColor" name="SideMenuBarColor"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="180" id="LgC-s2-qqt"/>
@@ -352,13 +352,13 @@
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="대화상대 목록" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q91-ps-xpN">
-                                <rect key="frame" x="117" y="134.33333333333334" width="91" height="17.333333333333343"/>
+                                <rect key="frame" x="117" y="164.33333333333334" width="91" height="17.333333333333343"/>
                                 <fontDescription key="fontDescription" name="S-CoreDream-6Bold" family="S-Core Dream" pointSize="15"/>
                                 <color key="textColor" name="SideMenuNameListColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lWZ-wk-jrz">
-                                <rect key="frame" x="280" y="126.66666666666669" width="17" height="21"/>
+                                <rect key="frame" x="280" y="156.66666666666666" width="17" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="17" id="LRl-gh-dW9"/>
                                     <constraint firstAttribute="height" constant="21" id="hC1-64-hww"/>
@@ -371,7 +371,7 @@
                         <viewLayoutGuide key="safeArea" id="9jK-y1-zOm"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="cAa-y0-1Sl" firstAttribute="top" secondItem="9jK-y1-zOm" secondAttribute="top" id="5QO-Sx-O6j"/>
+                            <constraint firstItem="cAa-y0-1Sl" firstAttribute="top" secondItem="9jK-y1-zOm" secondAttribute="top" constant="30" id="5QO-Sx-O6j"/>
                             <constraint firstItem="zVk-Bc-Z9D" firstAttribute="top" secondItem="q91-ps-xpN" secondAttribute="bottom" constant="8" id="AkN-tz-7An"/>
                             <constraint firstItem="lWZ-wk-jrz" firstAttribute="top" secondItem="spT-5F-1Nr" secondAttribute="bottom" constant="17.329999999999998" id="NwW-lJ-qyr"/>
                             <constraint firstItem="9jK-y1-zOm" firstAttribute="bottom" secondItem="zVk-Bc-Z9D" secondAttribute="bottom" id="Pm2-r6-Fbj"/>
