@@ -10,8 +10,6 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     var roomInfos: [RoomInfos] = []
     var roomInfoDatas: [RoomInfoRow] = []
     
-    var completionHandler: ((String) -> (String))?
-    
     var mainViewPresenter = MainViewPresenter()
     
     let sql = Sql.shared
@@ -88,14 +86,21 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
             if let subjectName = roomInfos[indexPath.row].roomName {
                 chatVC.title = subjectName
             }
-            chatVC.subjectName = "\(roomInfos[indexPath.row].roomName)"
-            chatVC.professorName = "\(roomInfos[indexPath.row].professorName)"
+            
+            if let roomName = roomInfos[indexPath.row].roomName {
+                chatVC.subjectName = "\(roomName)"                
+            }
+            if let professorName = roomInfos[indexPath.row].professorName {
+                chatVC.professorName = "\(professorName)"
+            }
+            chatVC.roomId = roomInfos[indexPath.row].roomId
             
         } else { // 자동로그인 일 때
             chatVC.title = "\(roomInfoDatas[indexPath.row].roomName)"
             
             chatVC.subjectName = "\(roomInfoDatas[indexPath.row].roomName)"
             chatVC.professorName = "\(roomInfoDatas[indexPath.row].professorName)"
+            chatVC.roomId = roomInfoDatas[indexPath.row].roomId
         }
         
         self.navigationController!.pushViewController(chatVC, animated: true)

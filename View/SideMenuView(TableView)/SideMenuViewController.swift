@@ -10,6 +10,7 @@ class SideMenuViewController: UIViewController, UITableViewDelegate, UITableView
    
     var subjectName: String?
     var professorName: String?
+    var roomId: Int?
     
     var roomInNames: [RoomInNamesRow] = []
     
@@ -29,9 +30,10 @@ class SideMenuViewController: UIViewController, UITableViewDelegate, UITableView
         self.sideMenuTableView.rowHeight = 35
         self.sideMenuTableView.separatorStyle = UITableViewCell.SeparatorStyle.none
         
+        // 방 안에 사용자 불러오기
+        roomInNames = sql.selectRoomInNames2(roomId: roomId!)
         
         sideMenuTableView.register(UINib(nibName: "SideMenuTableViewCell", bundle: nil), forCellReuseIdentifier: "SideMenuTableViewCell")
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -46,14 +48,14 @@ class SideMenuViewController: UIViewController, UITableViewDelegate, UITableView
         }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return roomInNames.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = sideMenuTableView.dequeueReusableCell(withIdentifier: "SideMenuTableViewCell", for: indexPath)
+        let cell = sideMenuTableView.dequeueReusableCell(withIdentifier: "SideMenuTableViewCell", for: indexPath) as! SideMenuTableViewCell
         cell.selectionStyle = .none
         
-        
+        cell.nameLabel.text = roomInNames[indexPath.row].name
         
         return cell
     }

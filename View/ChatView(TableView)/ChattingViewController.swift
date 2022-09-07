@@ -2,9 +2,9 @@ import UIKit
 
 class ChattingViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-    var roomInfos: [Any] = []
     var subjectName: String?
     var professorName: String?
+    var roomId: Int?
     
     // MARK: - IBOutlet
     @IBOutlet weak var chatView: UIView!
@@ -141,6 +141,7 @@ class ChattingViewController: UIViewController, UITableViewDelegate, UITableView
         
         sideMenuVC.subjectName = self.subjectName
         sideMenuVC.professorName = self.professorName
+        sideMenuVC.roomId = self.roomId
 
         let menu = SideMenuNavigation(rootViewController: sideMenuVC)
         present(menu, animated: true, completion: nil)
