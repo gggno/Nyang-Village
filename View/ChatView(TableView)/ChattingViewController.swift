@@ -1,11 +1,19 @@
 import UIKit
+import StompClientLib
 
-class ChattingViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class ChattingViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, StompClientLibDelegate {
     
     // SideMenuViewController에 데이터 전달을 위한 변수
     var subjectName: String?
     var professorName: String?
     var roomId: Int?
+    
+    let sql = Sql.shared
+    
+    // 소켓 클라이언트 생성
+    var socketClient = StompClientLib()
+    // 소켓 서버 주소
+    let url = URL(string: "ws://13.209.68.42:8087/stomp")!
     
     // MARK: - IBOutlet
     @IBOutlet weak var chatView: UIView!
@@ -29,6 +37,9 @@ class ChattingViewController: UIViewController, UITableViewDelegate, UITableView
         self.navigationController?.navigationBar.tintColor = .white
         
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "line.3.horizontal"), style: .plain, target: self, action: #selector(sideBtnClicked))
+        
+        registerSockect()
+        subscribe()
         
         // 테이블 뷰 라인 삭제
         self.chatTableView.separatorStyle = UITableViewCell.SeparatorStyle.none
@@ -145,10 +156,67 @@ class ChattingViewController: UIViewController, UITableViewDelegate, UITableView
         sideMenuVC.subjectName = self.subjectName
         sideMenuVC.professorName = self.professorName
         sideMenuVC.roomId = self.roomId
-
+        
         let menu = SideMenuNavigation(rootViewController: sideMenuVC)
         present(menu, animated: true, completion: nil)
     }
-   
+    
+    func stompClient(client: StompClientLib!, didReceiveMessageWithJSONBody jsonBody: AnyObject?, akaStringBody stringBody: String?, withHeader header: [String : String]?, withDestination destination: String) {
+        print("stompClient() called")
+    }
+    
+    func stompClientDidDisconnect(client: StompClientLib!) {
+        print("Stomp socket is disconnected")
+        
+    }
+    
+    func stompClientDidConnect(client: StompClientLib!) {
+        print("Stomp socket is connected")
+        
+        subscribe()
+    }
+    
+    func serverDidSendReceipt(client: StompClientLib!, withReceiptId receiptId: String) {
+        print("Receipt : \(receiptId)")
+    }
+    
+    func serverDidSendError(client: StompClientLib!, withErrorMessage description: String, detailedErrorMessage message: String?) {
+        print("Error send : " + description)
+        
+        socketClient.disconnect()
+        registerSockect()
+    }
+    
+    func serverDidSendPing() {
+        print("Server ping")
+        
+    }
+    
+    // Socket Connection
+    func registerSockect() {
+        socketClient.openSocketWithURLRequest(
+            request: NSURLRequest(url: url),
+            delegate: self,
+            connectionHeaders: [ "jwt" : sql.selectUserInfoJwt()]
+        )
+    }
+    
+    func subscribe() {
+        socketClient.subscribe(destination: "/sub/chat/\(roomId)" )
+    }
+    
+    // Publish Message
+//    func sendMessage() {
+//        var payloadObject : [String : Any] = [ Key 1 : Value 1 , ... , Key N, Value N ]
+//
+//        socketClient.sendJSONForDict(
+//            dict: payloadObject as AnyObject,
+//            toDestination: "[publish prefix]/[publish url]")
+//    }
+    
+    // Unsubscribe
+    func disconnect() {
+        socketClient.disconnect()
+    }
     
 }

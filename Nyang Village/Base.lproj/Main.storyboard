@@ -415,7 +415,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="ListMainImage" width="166" height="93"/>
+        <image name="ListMainImage" width="497" height="279"/>
         <image name="MainImage" width="431" height="403"/>
         <image name="SendImage" width="33" height="33"/>
         <image name="SettingButton" width="20" height="20"/>
