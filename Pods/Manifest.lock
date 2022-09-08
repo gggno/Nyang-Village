@@ -790,6 +790,9 @@ PODS:
   - nanopb/encode (2.30909.0)
   - PromisesObjC (2.1.1)
   - SideMenu (6.5.0)
+  - SocketRocket (0.6.0)
+  - StompClientLib (1.4.1):
+    - SocketRocket
 
 DEPENDENCIES:
   - Alamofire
@@ -798,6 +801,7 @@ DEPENDENCIES:
   - Firebase/Firestore
   - Firebase/Messaging
   - SideMenu (~> 6.0)
+  - StompClientLib
 
 SPEC REPOS:
   trunk:
@@ -824,6 +828,8 @@ SPEC REPOS:
     - nanopb
     - PromisesObjC
     - SideMenu
+    - SocketRocket
+    - StompClientLib
 
 SPEC CHECKSUMS:
   abseil: ebe5b5529fb05d93a8bdb7951607be08b7fa71bc
@@ -849,7 +855,9 @@ SPEC CHECKSUMS:
   nanopb: b552cce312b6c8484180ef47159bc0f65a1f0431
   PromisesObjC: ab77feca74fa2823e7af4249b8326368e61014cb
   SideMenu: f583187d21c5b1dd04c72002be544b555a2627a2
+  SocketRocket: fccef3f9c5cedea1353a9ef6ada904fde10d6608
+  StompClientLib: ac40390e9660c574675f1c933bec81c8e2811a4f
 
-PODFILE CHECKSUM: f051dd8c23de0551aba324c6bde6f76e837ac874
+PODFILE CHECKSUM: 246135d2c514116590023df38daac24146d01b20
 
 COCOAPODS: 1.11.2

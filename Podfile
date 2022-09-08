@@ -9,6 +9,7 @@ target 'Nyang Village' do
   # Pods for Nyang Village
 pod 'Alamofire'
 pod 'SideMenu', '~> 6.0'
+pod 'StompClientLib'
 
 # Add the Firebase pod for Google Analytics
 pod 'Firebase/Analytics'
