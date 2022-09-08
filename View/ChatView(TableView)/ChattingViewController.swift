@@ -2,6 +2,7 @@ import UIKit
 
 class ChattingViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
+    // SideMenuViewController에 데이터 전달을 위한 변수
     var subjectName: String?
     var professorName: String?
     var roomId: Int?
@@ -117,9 +118,12 @@ class ChattingViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let myCell = tableView.dequeueReusableCell(withIdentifier: "MyTableViewCell", for: indexPath)
-        let yourCell = tableView.dequeueReusableCell(withIdentifier: "YourTableViewCell", for: indexPath)
-        let outMessageCell = tableView.dequeueReusableCell(withIdentifier: "OutMessageTableViewCell", for: indexPath)
+        // 내 메세지 셀
+        let myCell = tableView.dequeueReusableCell(withIdentifier: "MyTableViewCell", for: indexPath) as! MyTableViewCell
+        // 상대방 메세지 셀
+        let yourCell = tableView.dequeueReusableCell(withIdentifier: "YourTableViewCell", for: indexPath) as! YourTableViewCell
+        // 퇴장 메세지 셀
+        let outMessageCell = tableView.dequeueReusableCell(withIdentifier: "OutMessageTableViewCell", for: indexPath) as! OutMessageTableViewCell
         
         // 클릭 시 회색 하이라이트 제거
         myCell.selectionStyle = .none
@@ -136,7 +140,6 @@ class ChattingViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     @objc func sideBtnClicked() {
-
         let sideMenuVC = self.storyboard?.instantiateViewController(withIdentifier: "SideMenuViewController") as! SideMenuViewController
         
         sideMenuVC.subjectName = self.subjectName
