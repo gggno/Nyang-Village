@@ -128,7 +128,7 @@ class ChattingViewController: UIViewController, UITableViewDelegate, UITableView
         view.endEditing(true)
     }
     
-    // 셀 길게 클릭 시 신고 창 present
+    // 셀 길게 클릭 시 신고 창 팝업
     @objc func longPressGestureRecognized(_ sender: UILongPressGestureRecognizer) {
         if sender.state == .began {
             if let section = self.chatTableView.indexPathForRow(at: sender.location(in: self.chatTableView))?.section {
@@ -138,6 +138,7 @@ class ChattingViewController: UIViewController, UITableViewDelegate, UITableView
                 
                 let reportVC = self.storyboard?.instantiateViewController(withIdentifier: "ReportPopUpViewController") as! ReportPopUpViewController
                 
+                reportVC.modalPresentationStyle = .overCurrentContext
                 present(reportVC, animated: true)
             }
         }

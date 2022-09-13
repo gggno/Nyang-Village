@@ -14,6 +14,7 @@ class ReportPopUpViewController: UIViewController {
         super.viewDidLoad()
 
         self.reportPopUpView.layer.cornerRadius = 15
+        self.reportView.CornerRadiusLayerSetting(cornerRadius: 15, cornerLayer: [.layerMinXMinYCorner, .layerMaxXMinYCorner])
         
         self.reportTextView.layer.cornerRadius = 5
         self.reportTextView.layer.borderWidth = 1
@@ -29,9 +30,15 @@ class ReportPopUpViewController: UIViewController {
     }
     
     // MARK: - IBAction
+    
+    // 취소 버튼 클릭
     @IBAction func cancelBtnClicked(_ sender: Any) {
+        dismiss(animated: true)
     }
+    
+    // 전송 버튼 클릭
     @IBAction func sendBtnClicked(_ sender: Any) {
+        
     }
     
 
