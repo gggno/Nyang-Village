@@ -48,6 +48,10 @@ class ChattingViewController: UIViewController, UITableViewDelegate, UITableView
         let tableViewDownGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(keyboardDownGesture(_:)))
         chatTableView.addGestureRecognizer(tableViewDownGestureRecognizer)
         
+        // 채팅 셀 길게 터치
+        let longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(longPressGestureRecognized(_:)))
+        self.chatTableView.addGestureRecognizer(longPressGesture)
+        
         chatView.CornerRadiusLayerSetting(cornerRadius: 40, cornerLayer: [.layerMinXMinYCorner, .layerMaxXMinYCorner])
         
         // 입력 칸 설정
@@ -124,6 +128,21 @@ class ChattingViewController: UIViewController, UITableViewDelegate, UITableView
         view.endEditing(true)
     }
     
+    // 셀 길게 클릭 시 신고 창 present
+    @objc func longPressGestureRecognized(_ sender: UILongPressGestureRecognizer) {
+        if sender.state == .began {
+            if let section = self.chatTableView.indexPathForRow(at: sender.location(in: self.chatTableView))?.section {
+                let feedbackGenerator = UIImpactFeedbackGenerator(style: .medium)
+                feedbackGenerator.prepare()
+                feedbackGenerator.impactOccurred()
+                
+                let reportVC = self.storyboard?.instantiateViewController(withIdentifier: "ReportPopUpViewController") as! ReportPopUpViewController
+                
+                present(reportVC, animated: true)
+            }
+        }
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 20
     }
@@ -156,7 +175,7 @@ class ChattingViewController: UIViewController, UITableViewDelegate, UITableView
         formatter.dateFormat = "HH시 mm분"
         let time = formatter.string(from: now)
         
-        var sendData: [String: Any] = ["roomId" : roomId, "nickName" : sql.selectRoomInfoInNickname(roomid: roomId), "content" : inputTextView.text, "time" : time, "type" : 2]
+        let sendData: [String: Any] = ["roomId" : roomId, "nickName" : sql.selectRoomInfoInNickname(roomid: roomId), "content" : inputTextView.text, "time" : time, "type" : 2]
         
         socketClient.sendJSONForDict(dict: sendData as AnyObject, toDestination: "/pub/ay/chat")
         
@@ -197,6 +216,7 @@ class ChattingViewController: UIViewController, UITableViewDelegate, UITableView
     
     func serverDidSendReceipt(client: StompClientLib!, withReceiptId receiptId: String) {
         print("Receipt : \(receiptId)")
+        
     }
     
     func serverDidSendError(client: StompClientLib!, withErrorMessage description: String, detailedErrorMessage message: String?) {
@@ -247,11 +267,10 @@ class ChattingViewController: UIViewController, UITableViewDelegate, UITableView
     // 채팅 방 입장할 때
     func chatRoomEntrance() {
         print("chatRoomEntrance() called")
-        guard let roomId = roomId else {
-            return
-        }
         
-        var entranceData: [String: Any] = ["roomId" : roomId, "studentId" : sql.selectUserInfoStudentId(), "token" : sql.selectUserInfoToken(), "version" : 1]
+        guard let roomId = roomId else {return}
+        
+        let entranceData: [String: Any] = ["roomId" : roomId, "studentId" : sql.selectUserInfoStudentId(), "token" : sql.selectUserInfoToken(), "version" : 1]
         
         socketClient.sendJSONForDict(dict: entranceData as AnyObject, toDestination: "/pub/ay/connectchat")
     }

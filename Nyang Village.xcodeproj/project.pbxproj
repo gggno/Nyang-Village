@@ -33,6 +33,7 @@
 		6678F5B128A8C7840049938F /* JalnanOTF.otf in Resources */ = {isa = PBXBuildFile; fileRef = 6678F5B028A8C7840049938F /* JalnanOTF.otf */; };
 		667A9AE128AD0DC40068582F /* MyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 667A9ADF28AD0DC40068582F /* MyTableViewCell.swift */; };
 		667A9AE228AD0DC40068582F /* MyTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 667A9AE028AD0DC40068582F /* MyTableViewCell.xib */; };
+		66992B2E28D06533008E0E7A /* ReportPopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66992B2D28D06533008E0E7A /* ReportPopUpViewController.swift */; };
 		669BBB4B28AF551900EB4DF4 /* UITextView_Extention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 669BBB4A28AF551900EB4DF4 /* UITextView_Extention.swift */; };
 		669BBB4D28AF658D00EB4DF4 /* RoomInNameRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 669BBB4C28AF658D00EB4DF4 /* RoomInNameRow.swift */; };
 		669BBB4F28AF688100EB4DF4 /* RoomInNamesRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 669BBB4E28AF688100EB4DF4 /* RoomInNamesRow.swift */; };
@@ -90,6 +91,7 @@
 		6678F5B028A8C7840049938F /* JalnanOTF.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = JalnanOTF.otf; sourceTree = "<group>"; };
 		667A9ADF28AD0DC40068582F /* MyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTableViewCell.swift; sourceTree = "<group>"; };
 		667A9AE028AD0DC40068582F /* MyTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyTableViewCell.xib; sourceTree = "<group>"; };
+		66992B2D28D06533008E0E7A /* ReportPopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportPopUpViewController.swift; sourceTree = "<group>"; };
 		669BBB4A28AF551900EB4DF4 /* UITextView_Extention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextView_Extention.swift; sourceTree = "<group>"; };
 		669BBB4C28AF658D00EB4DF4 /* RoomInNameRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomInNameRow.swift; sourceTree = "<group>"; };
 		669BBB4E28AF688100EB4DF4 /* RoomInNamesRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomInNamesRow.swift; sourceTree = "<group>"; };
@@ -276,6 +278,7 @@
 				667A9ADE28AD0D8F0068582F /* ChatView(TableView) */,
 				6625937428C33AA30034F4C1 /* SideMenuView(TableView) */,
 				66C9A4E52893A8870073C0C4 /* SettingViewController.swift */,
+				66992B2D28D06533008E0E7A /* ReportPopUpViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -469,6 +472,7 @@
 				6625937628C33ACF0034F4C1 /* SideMenuViewController.swift in Sources */,
 				66C9A4E62893A8870073C0C4 /* SettingViewController.swift in Sources */,
 				66C1F80128314A34001FD2FE /* UIView_Extention.swift in Sources */,
+				66992B2E28D06533008E0E7A /* ReportPopUpViewController.swift in Sources */,
 				664B2DAE27FC708D00109DFB /* AppDelegate.swift in Sources */,
 				66AA9F5B2840B04E00988A60 /* MainTableViewCell.swift in Sources */,
 				66A126472865E48A007B3547 /* LoginResponse.swift in Sources */,
