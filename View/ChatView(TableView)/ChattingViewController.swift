@@ -29,6 +29,9 @@ class ChattingViewController: UIViewController, UITableViewDelegate, UITableView
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // 소켓 연결
+        registerSockect()
+        
         view.GradientColor(color1: UIColor(named: "MainYellowColor")!, color2: UIColor(named: "MainOrangeColor")!)
         
         self.navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.white]
@@ -37,9 +40,6 @@ class ChattingViewController: UIViewController, UITableViewDelegate, UITableView
         self.navigationController?.navigationBar.tintColor = .white
         
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "line.3.horizontal"), style: .plain, target: self, action: #selector(sideBtnClicked))
-        
-        registerSockect()
-        subscribe()
         
         // 테이블 뷰 라인 삭제
         self.chatTableView.separatorStyle = UITableViewCell.SeparatorStyle.none
@@ -147,7 +147,20 @@ class ChattingViewController: UIViewController, UITableViewDelegate, UITableView
     // MARK: - IBAction
     @IBAction func sendBtnClicked(_ sender: Any) {
         
+        guard let roomId = roomId else {
+            return
+        }
         
+        let now = Date()
+        let formatter = DateFormatter()
+        formatter.dateFormat = "HH시 mm분"
+        let time = formatter.string(from: now)
+        
+        var sendData: [String: Any] = ["roomId" : roomId, "nickName" : sql.selectRoomInfoInNickname(roomid: roomId), "content" : inputTextView.text, "time" : time, "type" : 2]
+        
+        socketClient.sendJSONForDict(dict: sendData as AnyObject, toDestination: "/pub/ay/chat")
+        
+        inputTextView.text = ""
     }
     
     @objc func sideBtnClicked() {
@@ -161,8 +174,13 @@ class ChattingViewController: UIViewController, UITableViewDelegate, UITableView
         present(menu, animated: true, completion: nil)
     }
     
+    // 구독 중인 토픽에서 Publish되면 실행되는 함수
     func stompClient(client: StompClientLib!, didReceiveMessageWithJSONBody jsonBody: AnyObject?, akaStringBody stringBody: String?, withHeader header: [String : String]?, withDestination destination: String) {
         print("stompClient() called")
+        
+        print("Destination : \(destination)")
+        print("JSON Body : \(String(describing: jsonBody))")
+        print("String Body : \(stringBody ?? "nil")")
     }
     
     func stompClientDidDisconnect(client: StompClientLib!) {
@@ -174,6 +192,7 @@ class ChattingViewController: UIViewController, UITableViewDelegate, UITableView
         print("Stomp socket is connected")
         
         subscribe()
+        chatRoomEntrance()
     }
     
     func serverDidSendReceipt(client: StompClientLib!, withReceiptId receiptId: String) {
@@ -188,7 +207,7 @@ class ChattingViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     func serverDidSendPing() {
-        print("Server ping")
+        print("serverDidSendPing() called")
         
     }
     
@@ -199,24 +218,42 @@ class ChattingViewController: UIViewController, UITableViewDelegate, UITableView
             delegate: self,
             connectionHeaders: [ "jwt" : sql.selectUserInfoJwt()]
         )
+        print("registerSockect() called")
     }
     
     func subscribe() {
-        socketClient.subscribe(destination: "/sub/chat/\(roomId)" )
+        print("subscribe() called")
+        
+        guard let roomId = roomId else {
+            return
+        }
+        socketClient.subscribe(destination: "/sub/chat/\(roomId)")
     }
     
     // Publish Message
-//    func sendMessage() {
-//        var payloadObject : [String : Any] = [ Key 1 : Value 1 , ... , Key N, Value N ]
-//
-//        socketClient.sendJSONForDict(
-//            dict: payloadObject as AnyObject,
-//            toDestination: "[publish prefix]/[publish url]")
-//    }
+    //    func sendMessage() {
+    //        var payloadObject : [String : Any] = [ Key 1 : Value 1 , ... , Key N, Value N ]
+    //
+    //        socketClient.sendJSONForDict(
+    //            dict: payloadObject as AnyObject,
+    //            toDestination: "[publish prefix]/[publish url]")
+    //    }
     
     // Unsubscribe
     func disconnect() {
         socketClient.disconnect()
+    }
+    
+    // 채팅 방 입장할 때
+    func chatRoomEntrance() {
+        print("chatRoomEntrance() called")
+        guard let roomId = roomId else {
+            return
+        }
+        
+        var entranceData: [String: Any] = ["roomId" : roomId, "studentId" : sql.selectUserInfoStudentId(), "token" : sql.selectUserInfoToken(), "version" : 1]
+        
+        socketClient.sendJSONForDict(dict: entranceData as AnyObject, toDestination: "/pub/ay/connectchat")
     }
     
 }
