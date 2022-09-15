@@ -143,6 +143,7 @@ class LoginViewController: UIViewController {
                     // 사용자 수강 과목 정보를 내부 db에 저장
                     self.sql.insertRoomInfos(subjectData: result)
                     self.sql.insertRoomInNames(subjectData: result)
+                    self.sql.insertChatInfos(subjectData: result)
                     
                     self.activityIndicator.stopAnimating()
                     let main = vc as! MainViewController
@@ -158,6 +159,7 @@ class LoginViewController: UIViewController {
                     // 사용자 수강 과목 정보를 내부 db에 저장
                     self.sql.insertRoomInfos(subjectData: result)
                     self.sql.insertRoomInNames(subjectData: result)
+                    self.sql.insertChatInfos(subjectData: result)
                     
                     // 수강 정정 시 변경된 과목 삭제
                     var roomArr: [Int] = []

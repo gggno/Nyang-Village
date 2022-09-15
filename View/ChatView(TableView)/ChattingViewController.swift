@@ -7,6 +7,7 @@ class ChattingViewController: UIViewController, UITableViewDelegate, UITableView
     var subjectName: String?
     var professorName: String?
     var roomId: Int?
+    var nickName: String?
     
     let sql = Sql.shared
     
@@ -31,6 +32,8 @@ class ChattingViewController: UIViewController, UITableViewDelegate, UITableView
         
         // 소켓 연결
         registerSockect()
+        
+        nickName = sql.selectRoomInfoInNickname(roomid: roomId!)
         
         view.GradientColor(color1: UIColor(named: "MainYellowColor")!, color2: UIColor(named: "MainOrangeColor")!)
         
@@ -138,6 +141,7 @@ class ChattingViewController: UIViewController, UITableViewDelegate, UITableView
                 
                 let reportVC = self.storyboard?.instantiateViewController(withIdentifier: "ReportPopUpViewController") as! ReportPopUpViewController
                 
+                // 백그라운드 투명도 처리
                 reportVC.modalPresentationStyle = .overCurrentContext
                 present(reportVC, animated: true)
             }
@@ -177,6 +181,7 @@ class ChattingViewController: UIViewController, UITableViewDelegate, UITableView
         let time = formatter.string(from: now)
         
         let sendData: [String: Any] = ["roomId" : roomId, "nickName" : sql.selectRoomInfoInNickname(roomid: roomId), "content" : inputTextView.text, "time" : time, "type" : 2]
+        sql.insertChatInfo(roomid: roomId, nickName: nickName!, time: time, content: inputTextView.text, type: 2)
         
         socketClient.sendJSONForDict(dict: sendData as AnyObject, toDestination: "/pub/ay/chat")
         
@@ -198,14 +203,51 @@ class ChattingViewController: UIViewController, UITableViewDelegate, UITableView
     func stompClient(client: StompClientLib!, didReceiveMessageWithJSONBody jsonBody: AnyObject?, akaStringBody stringBody: String?, withHeader header: [String : String]?, withDestination destination: String) {
         print("stompClient() called")
         
+        let jsonData = jsonBody as? [String : AnyObject]
+        print("start: \(jsonData!["start"])")
+        
+        if jsonData!["start"] != nil { // 처음에 입장방 들어갈 때의 통신
+            if jsonData!["start"] as! Int == 1 { // 이중로그인
+                print("jsonData[start] 1 일때")
+                chatRoomConfirm()
+            } else if jsonData!["start"] as! Int == 2 { // 정지회원
+                print("jsonData[start] 2 일때")
+                chatRoomConfirm()
+            } else if jsonData!["start"] as! Int == 3 { // 새학기 시작
+                print("jsonData[start] 3 일때")
+                chatRoomConfirm()
+            }
+        } else { // 다른 사용자가 전송 버튼을 눌렀을 때 통신
+            print("jsonData[start]이 nil 일때(전송 버튼 누를 때 통신)")
+            
+            if jsonData!["nickName"] as! String != nickName! {
+                let type = jsonData!["type"]
+                
+                if type as! Int == 0 { // 입장할 때
+                    print("type == 0 입장할 때")
+                    sql.insertRoomInName(roomid: roomId!, name: jsonData!["nickName"] as! String)
+                    sql.insertChatInfo(roomid: roomId!, nickName: "", time: "", content: jsonData!["nickName"] as! String + "입장", type: 1)
+                    
+                } else if type as! Int == 1 { // 퇴장할 때
+                    print("type == 1 퇴장할 때")
+                    sql.deleteRoomInName(roomId: roomId!, name: jsonData!["nickName"] as! String)
+                    sql.insertChatInfo(roomid: roomId!, nickName: "", time: "", content: jsonData!["nickName"] as! String + "퇴장", type: 1)
+                    
+                } else { // 메세지 수신
+                    print("else 메세지 수신")
+                    sql.insertChatInfo(roomid: roomId!, nickName: jsonData!["nickName"] as! String, time: jsonData!["time"] as! String, content: jsonData!["content"] as! String, type: 0)
+                }
+            }
+        }
+        
         print("Destination : \(destination)")
         print("JSON Body : \(String(describing: jsonBody))")
         print("String Body : \(stringBody ?? "nil")")
+        
     }
     
     func stompClientDidDisconnect(client: StompClientLib!) {
         print("Stomp socket is disconnected")
-        
     }
     
     func stompClientDidConnect(client: StompClientLib!) {
@@ -217,7 +259,6 @@ class ChattingViewController: UIViewController, UITableViewDelegate, UITableView
     
     func serverDidSendReceipt(client: StompClientLib!, withReceiptId receiptId: String) {
         print("Receipt : \(receiptId)")
-        
     }
     
     func serverDidSendError(client: StompClientLib!, withErrorMessage description: String, detailedErrorMessage message: String?) {
@@ -229,7 +270,6 @@ class ChattingViewController: UIViewController, UITableViewDelegate, UITableView
     
     func serverDidSendPing() {
         print("serverDidSendPing() called")
-        
     }
     
     // Socket Connection
@@ -274,6 +314,17 @@ class ChattingViewController: UIViewController, UITableViewDelegate, UITableView
         let entranceData: [String: Any] = ["roomId" : roomId, "studentId" : sql.selectUserInfoStudentId(), "token" : sql.selectUserInfoToken(), "version" : 1]
         
         socketClient.sendJSONForDict(dict: entranceData as AnyObject, toDestination: "/pub/ay/connectchat")
+    }
+    
+    func chatRoomConfirm() {
+        print("chatRoomConfirm() called")
+        
+        sql.deleteAllRoomInfos()
+        sql.deleteAllRoomInNames()
+        sql.deleteChatInfos()
+        sql.updateUserInfoAutoLogin(autoLogin: 0)
+        // 로그인 화면으로 이동 코드
+        self.navigationController?.popToRootViewController(animated: true)
     }
     
 }

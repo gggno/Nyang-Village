@@ -29,6 +29,7 @@ class ReportPopUpViewController: UIViewController {
         self.sendBtn.layer.borderColor = UIColor(named: "MainOrangeColor")?.cgColor
     }
     
+    
     // MARK: - IBAction
     
     // 취소 버튼 클릭

@@ -422,7 +422,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RB8-61-PuF">
-                                <rect key="frame" x="67" y="226.99999999999997" width="280" height="282.33333333333326"/>
+                                <rect key="frame" x="67" y="100" width="280" height="282.33333333333331"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="f36-Gn-Otg">
                                         <rect key="frame" x="0.0" y="0.0" width="280" height="50"/>
@@ -436,7 +436,7 @@
                                         </subviews>
                                         <color key="backgroundColor" name="MyChatBubbleColor"/>
                                         <constraints>
-                                            <constraint firstItem="RJa-7a-uFw" firstAttribute="centerX" secondItem="f36-Gn-Otg" secondAttribute="centerX" id="DZB-3z-s5m"/>
+                                            <constraint firstItem="RJa-7a-uFw" firstAttribute="centerX" secondItem="f36-Gn-Otg" secondAttribute="centerX" id="8WK-oz-3PY"/>
                                             <constraint firstAttribute="height" constant="50" id="Mjr-wl-qXk"/>
                                             <constraint firstItem="RJa-7a-uFw" firstAttribute="top" secondItem="f36-Gn-Otg" secondAttribute="top" constant="15" id="hNt-Fy-Td0"/>
                                         </constraints>
@@ -448,13 +448,13 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="강아지" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="21U-uP-15G">
-                                        <rect key="frame" x="30" y="97.333333333333314" width="220" height="17"/>
+                                        <rect key="frame" x="30" y="97.333333333333343" width="220" height="17"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <color key="textColor" systemColor="systemRedColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="신고사유는 ...어쩌구어쩌구어쩌구어쩌구어쩌구어쩌구어쩌구어쩌구어쩌구어쩌구어쩌구어쩌구어쩌구어쩌구어쩌구어쩌구어쩌구어쩌" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="PGn-5Y-URf">
-                                        <rect key="frame" x="16" y="119.33333333333331" width="248" height="100"/>
+                                        <rect key="frame" x="16" y="119.33333333333334" width="248" height="100"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="100" id="87K-Th-CTD"/>
@@ -517,7 +517,7 @@
                         <color key="backgroundColor" red="0.031950347125530243" green="0.027650598436594009" blue="0.053936727344989777" alpha="0.20418563741721854" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="RB8-61-PuF" firstAttribute="centerX" secondItem="TgH-jm-HaU" secondAttribute="centerX" id="4uZ-UC-ug8"/>
-                            <constraint firstItem="RB8-61-PuF" firstAttribute="centerY" secondItem="TgH-jm-HaU" secondAttribute="centerY" id="Uy7-Hy-cKv"/>
+                            <constraint firstItem="RB8-61-PuF" firstAttribute="top" secondItem="xFF-pn-aoX" secondAttribute="top" constant="100" id="n4O-0m-sHK"/>
                         </constraints>
                     </view>
                     <connections>

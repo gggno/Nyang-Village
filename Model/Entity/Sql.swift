@@ -960,7 +960,7 @@ final class Sql {
     func insertChatInfo(roomid: Int, nickName: String, time: String, content: String, type: Int) {
 
         var createTablePtr : OpaquePointer? = nil
-        let insertQeury: String = "INSERT INTO ChatInfo (roomid, nickname, time, content, type) VALUES (?,?,?,?,?,?);"
+        let insertQeury: String = "INSERT INTO ChatInfo (roomid, nickname, time, content, type) VALUES (?,?,?,?,?);"
         
         if sqlite3_prepare(db, insertQeury, -1, &createTablePtr, nil) != SQLITE_OK {
             let errMsg = String(cString: sqlite3_errmsg(db)!)
@@ -971,35 +971,35 @@ final class Sql {
         
         let SQLITE_TRANSIENT = unsafeBitCast(-1, to: sqlite3_destructor_type.self)
         
-        if sqlite3_bind_int(createTablePtr, 2, Int32(roomid)) != SQLITE_OK {
+        if sqlite3_bind_int(createTablePtr, 1, Int32(roomid)) != SQLITE_OK {
             let errMsg = String(cString : sqlite3_errmsg(db)!)
             print("failture binding name: \(errMsg)")
             sqlite3_finalize(createTablePtr)
             return
         }
         
-        if sqlite3_bind_text(createTablePtr, 3, nickName, -1, SQLITE_TRANSIENT) != SQLITE_OK {
+        if sqlite3_bind_text(createTablePtr, 2, nickName, -1, SQLITE_TRANSIENT) != SQLITE_OK {
             let errMsg = String(cString : sqlite3_errmsg(db)!)
             print("failture binding name: \(errMsg)")
             sqlite3_finalize(createTablePtr)
             return
         }
         
-        if sqlite3_bind_text(createTablePtr, 4, time, -1, SQLITE_TRANSIENT) != SQLITE_OK {
+        if sqlite3_bind_text(createTablePtr, 3, time, -1, SQLITE_TRANSIENT) != SQLITE_OK {
             let errMsg = String(cString : sqlite3_errmsg(db)!)
             print("failture binding name: \(errMsg)")
             sqlite3_finalize(createTablePtr)
             return
         }
         
-        if sqlite3_bind_text(createTablePtr, 5, content, -1, SQLITE_TRANSIENT) != SQLITE_OK {
+        if sqlite3_bind_text(createTablePtr, 4, content, -1, SQLITE_TRANSIENT) != SQLITE_OK {
             let errMsg = String(cString : sqlite3_errmsg(db)!)
             print("failture binding name: \(errMsg)")
             sqlite3_finalize(createTablePtr)
             return
         }
         
-        if sqlite3_bind_int(createTablePtr, 6, Int32(type)) != SQLITE_OK {
+        if sqlite3_bind_int(createTablePtr, 5, Int32(type)) != SQLITE_OK {
             let errMsg = String(cString : sqlite3_errmsg(db)!)
             print("failture binding name: \(errMsg)")
             sqlite3_finalize(createTablePtr)
@@ -1016,6 +1016,12 @@ final class Sql {
         }
         
         sqlite3_finalize(createTablePtr)
+    }
+    
+    func insertChatInfos(subjectData: SubjectInfo) {
+        for roomData in subjectData.roomInfos! {
+            insertChatInfo(roomid: roomData.roomId!, nickName: "", time: "", content: "안양대 오픈 채팅방에 오신 걸 환영합니다.\n도배, 욕설 등 불편한 언어 사용 시 상대방의 채팅 메시지를 길게 누르시면 신고하실 수 있습니다.", type: 1)
+        }
     }
     
     //    let numbers = arr.map{ "\($0)" }
