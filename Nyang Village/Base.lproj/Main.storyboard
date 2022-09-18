@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="wdL-UU-xyB">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21225" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="wdL-UU-xyB">
     <device id="retina5_5" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -405,9 +406,24 @@
                     <view key="view" contentMode="scaleToFill" id="EFO-hJ-SAJ">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="oBy-b6-BgC">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="i2h-cS-NaC"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="i2h-cS-NaC" firstAttribute="bottom" secondItem="oBy-b6-BgC" secondAttribute="bottom" id="5dy-6O-JnV"/>
+                            <constraint firstItem="oBy-b6-BgC" firstAttribute="top" secondItem="i2h-cS-NaC" secondAttribute="top" id="D8r-Ez-1X4"/>
+                            <constraint firstItem="oBy-b6-BgC" firstAttribute="leading" secondItem="i2h-cS-NaC" secondAttribute="leading" id="KrG-7g-8Dw"/>
+                            <constraint firstItem="i2h-cS-NaC" firstAttribute="trailing" secondItem="oBy-b6-BgC" secondAttribute="trailing" id="Vv9-6v-iY2"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="settingTableView" destination="oBy-b6-BgC" id="H4S-4V-DHf"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="D7t-YR-7YD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -422,7 +438,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RB8-61-PuF">
-                                <rect key="frame" x="67" y="100" width="280" height="282.33333333333331"/>
+                                <rect key="frame" x="67" y="100" width="280" height="285.66666666666669"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="f36-Gn-Otg">
                                         <rect key="frame" x="0.0" y="0.0" width="280" height="50"/>
@@ -464,7 +480,7 @@
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TVn-sZ-NzN">
-                                        <rect key="frame" x="16" y="235.33333333333331" width="100" height="31"/>
+                                        <rect key="frame" x="16" y="235.33333333333331" width="100" height="34.333333333333314"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="100" id="ZCz-xn-ppJ"/>
                                         </constraints>
@@ -476,7 +492,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pq6-RT-ZB5">
-                                        <rect key="frame" x="164" y="235.33333333333331" width="100" height="31"/>
+                                        <rect key="frame" x="164" y="235.33333333333331" width="100" height="34.333333333333314"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="100" id="UQJ-O4-5hb"/>
                                         </constraints>
@@ -539,7 +555,7 @@
         <image name="MainImage" width="431" height="403"/>
         <image name="SendImage" width="33" height="33"/>
         <image name="SettingButton" width="20" height="20"/>
-        <image name="bell.fill" catalog="system" width="128" height="124"/>
+        <image name="bell.fill" catalog="system" width="123" height="128"/>
         <namedColor name="MainOrangeColor">
             <color red="1" green="0.51800000667572021" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
@@ -556,7 +572,7 @@
             <color red="0.29800000786781311" green="0.28600001335144043" blue="0.28200000524520874" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="labelColor">
-            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="opaqueSeparatorColor">
             <color red="0.77647058823529413" green="0.77647058823529413" blue="0.78431372549019607" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

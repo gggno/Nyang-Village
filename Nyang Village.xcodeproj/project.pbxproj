@@ -58,6 +58,8 @@
 		66E9800C28C4BC4F00136504 /* OutMessageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 66E9800A28C4BC4F00136504 /* OutMessageTableViewCell.xib */; };
 		66F5BEB72804643D0002240C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 66F5BEB62804643D0002240C /* GoogleService-Info.plist */; };
 		66F5EEAA287C57350057C285 /* UINavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66F5EEA9287C57350057C285 /* UINavigationController.swift */; };
+		66FB085D28D73E8000901880 /* SettingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66FB085B28D73E8000901880 /* SettingTableViewCell.swift */; };
+		66FB085E28D73E8000901880 /* SettingTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 66FB085C28D73E8000901880 /* SettingTableViewCell.xib */; };
 		6E7867EFD964041F86EF3311 /* Pods_Nyang_Village.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D894EDED1EF20D4DC2AF2E62 /* Pods_Nyang_Village.framework */; };
 /* End PBXBuildFile section */
 
@@ -116,6 +118,8 @@
 		66E9800A28C4BC4F00136504 /* OutMessageTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OutMessageTableViewCell.xib; sourceTree = "<group>"; };
 		66F5BEB62804643D0002240C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		66F5EEA9287C57350057C285 /* UINavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UINavigationController.swift; sourceTree = "<group>"; };
+		66FB085B28D73E8000901880 /* SettingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTableViewCell.swift; sourceTree = "<group>"; };
+		66FB085C28D73E8000901880 /* SettingTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingTableViewCell.xib; sourceTree = "<group>"; };
 		859A35855346CD60860891DF /* Pods-Nyang Village.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Nyang Village.release.xcconfig"; path = "Target Support Files/Pods-Nyang Village/Pods-Nyang Village.release.xcconfig"; sourceTree = "<group>"; };
 		D894EDED1EF20D4DC2AF2E62 /* Pods_Nyang_Village.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Nyang_Village.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DCBC9BD51F0D33329EA76414 /* Pods-Nyang Village.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Nyang Village.debug.xcconfig"; path = "Target Support Files/Pods-Nyang Village/Pods-Nyang Village.debug.xcconfig"; sourceTree = "<group>"; };
@@ -278,6 +282,8 @@
 				667A9ADE28AD0D8F0068582F /* ChatView(TableView) */,
 				6625937428C33AA30034F4C1 /* SideMenuView(TableView) */,
 				66C9A4E52893A8870073C0C4 /* SettingViewController.swift */,
+				66FB085B28D73E8000901880 /* SettingTableViewCell.swift */,
+				66FB085C28D73E8000901880 /* SettingTableViewCell.xib */,
 				66992B2D28D06533008E0E7A /* ReportPopUpViewController.swift */,
 			);
 			path = View;
@@ -410,6 +416,7 @@
 				667A9AE228AD0DC40068582F /* MyTableViewCell.xib in Resources */,
 				6625937A28C3447F0034F4C1 /* SideMenuTableViewCell.xib in Resources */,
 				6611979B2831667C0033CB33 /* SCDream4.otf in Resources */,
+				66FB085E28D73E8000901880 /* SettingTableViewCell.xib in Resources */,
 				66F5BEB72804643D0002240C /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -463,6 +470,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				66FB085D28D73E8000901880 /* SettingTableViewCell.swift in Sources */,
 				66C1F7FE28314951001FD2FE /* LoginViewController.swift in Sources */,
 				669BBB4F28AF688100EB4DF4 /* RoomInNamesRow.swift in Sources */,
 				66B530842844C1770064B490 /* MainViewPresenter.swift in Sources */,
