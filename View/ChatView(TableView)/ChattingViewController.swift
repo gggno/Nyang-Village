@@ -210,13 +210,16 @@ class ChattingViewController: UIViewController, UITableViewDelegate, UITableView
         if jsonData!["start"] != nil { // 처음에 입장방 들어갈 때의 통신
             if jsonData!["start"] as! Int == 1 { // 이중로그인
                 print("jsonData[start] 1 일때(이중로그인으로 인한 처리)")
-                chatRoomConfirm()
+                logoutAlert(title: "이중로그인", message: "이중로그인으로 인해 로그아웃 됩니다. 다시 로그인 해주세요.")
+//                chatRoomConfirm()
             } else if jsonData!["start"] as! Int == 2 { // 정지회원
                 print("jsonData[start] 2 일때(정지회원으로 인한 처리)")
-                chatRoomConfirm()
+                logoutAlert(title: "정지 회원", message: "정지 회원입니다.")
+//                chatRoomConfirm()
             } else if jsonData!["start"] as! Int == 3 { // 새학기 시작
                 print("jsonData[start] 3 일때(새학기 시작으로 인한 처리)")
-                chatRoomConfirm()
+                logoutAlert(title: "새 학기 시작", message: "새 학기 시작으로 인해 로그아웃 됩니다. 다시 로그인 해주세요.")
+//                chatRoomConfirm()
             }
         } else { // 다른 사용자가 전송 버튼을 눌렀을 때 통신
             print("jsonData[start]이 nil 일때(전송 버튼 누를 때 통신)")
@@ -324,9 +327,20 @@ class ChattingViewController: UIViewController, UITableViewDelegate, UITableView
         sql.deleteAllRoomInfos()
         sql.deleteAllRoomInNames()
         sql.deleteChatInfos()
-        sql.updateUserInfoAutoLogin(autoLogin: 0)
+//        sql.updateUserInfoAutoLogin(autoLogin: 0)
         // 로그인 화면으로 이동 코드
-        self.navigationController?.popToRootViewController(animated: true)
+        self.navigationController?.popToRootViewController(animated: false)
+    }
+    
+    func logoutAlert(title: String, message: String) {
+        
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        
+        let alertAction = UIAlertAction(title: "확인", style: .default) {(_) in
+            self.chatRoomConfirm()
+        }
+        alert.addAction(alertAction)
+        self.present(alert, animated: true)
     }
     
 }
