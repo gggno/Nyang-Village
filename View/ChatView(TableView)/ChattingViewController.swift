@@ -33,6 +33,7 @@ class ChattingViewController: UIViewController, UITableViewDelegate, UITableView
         // 소켓 연결
         registerSockect()
         
+        // 채팅방 별 닉네임 가져오기
         nickName = sql.selectRoomInfoInNickname(roomid: roomId!)
         
         view.GradientColor(color1: UIColor(named: "MainYellowColor")!, color2: UIColor(named: "MainOrangeColor")!)
@@ -208,13 +209,13 @@ class ChattingViewController: UIViewController, UITableViewDelegate, UITableView
         
         if jsonData!["start"] != nil { // 처음에 입장방 들어갈 때의 통신
             if jsonData!["start"] as! Int == 1 { // 이중로그인
-                print("jsonData[start] 1 일때")
+                print("jsonData[start] 1 일때(이중로그인으로 인한 처리)")
                 chatRoomConfirm()
             } else if jsonData!["start"] as! Int == 2 { // 정지회원
-                print("jsonData[start] 2 일때")
+                print("jsonData[start] 2 일때(정지회원으로 인한 처리)")
                 chatRoomConfirm()
             } else if jsonData!["start"] as! Int == 3 { // 새학기 시작
-                print("jsonData[start] 3 일때")
+                print("jsonData[start] 3 일때(새학기 시작으로 인한 처리)")
                 chatRoomConfirm()
             }
         } else { // 다른 사용자가 전송 버튼을 눌렀을 때 통신
@@ -319,6 +320,7 @@ class ChattingViewController: UIViewController, UITableViewDelegate, UITableView
     func chatRoomConfirm() {
         print("chatRoomConfirm() called")
         
+        sql.deleteUserInfo()
         sql.deleteAllRoomInfos()
         sql.deleteAllRoomInNames()
         sql.deleteChatInfos()
