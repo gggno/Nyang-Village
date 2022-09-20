@@ -16,17 +16,21 @@ class SettingViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         settingTableView.delegate = self
         settingTableView.dataSource = self
-        settingTableView.register(UINib(nibName: "SettingTableViewCell", bundle: nil), forCellReuseIdentifier: "SettingTableViewCell")
+        settingTableView.register(UINib(nibName: "SettingLogoutTableViewCell", bundle: nil), forCellReuseIdentifier: "SettingLogoutTableViewCell")
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "SettingTableViewCell", for: indexPath) as! SettingTableViewCell
+        let logoutcell = tableView.dequeueReusableCell(withIdentifier: "SettingLogoutTableViewCell", for: indexPath) as! SettingLogoutTableViewCell
         
-        return cell
+        if indexPath.row == 0 { // 로그아웃 셀
+            return logoutcell
+        }
+        
+        return logoutcell
     }
     
 }

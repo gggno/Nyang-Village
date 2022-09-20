@@ -24,6 +24,8 @@
 		6625937628C33ACF0034F4C1 /* SideMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6625937528C33ACF0034F4C1 /* SideMenuViewController.swift */; };
 		6625937928C3447F0034F4C1 /* SideMenuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6625937728C3447F0034F4C1 /* SideMenuTableViewCell.swift */; };
 		6625937A28C3447F0034F4C1 /* SideMenuTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6625937828C3447F0034F4C1 /* SideMenuTableViewCell.xib */; };
+		664AB73E28D8A52000D753DF /* Type1TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 664AB73C28D8A52000D753DF /* Type1TableViewCell.swift */; };
+		664AB73F28D8A52000D753DF /* Type1TableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 664AB73D28D8A52000D753DF /* Type1TableViewCell.xib */; };
 		664B2DAE27FC708D00109DFB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 664B2DAD27FC708D00109DFB /* AppDelegate.swift */; };
 		664B2DB027FC708D00109DFB /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 664B2DAF27FC708D00109DFB /* SceneDelegate.swift */; };
 		664B2DB527FC708D00109DFB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 664B2DB327FC708D00109DFB /* Main.storyboard */; };
@@ -59,7 +61,7 @@
 		66F5BEB72804643D0002240C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 66F5BEB62804643D0002240C /* GoogleService-Info.plist */; };
 		66F5EEAA287C57350057C285 /* UINavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66F5EEA9287C57350057C285 /* UINavigationController.swift */; };
 		66FB085D28D73E8000901880 /* SettingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66FB085B28D73E8000901880 /* SettingTableViewCell.swift */; };
-		66FB085E28D73E8000901880 /* SettingTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 66FB085C28D73E8000901880 /* SettingTableViewCell.xib */; };
+		66FB085E28D73E8000901880 /* SettingLogoutTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 66FB085C28D73E8000901880 /* SettingLogoutTableViewCell.xib */; };
 		6E7867EFD964041F86EF3311 /* Pods_Nyang_Village.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D894EDED1EF20D4DC2AF2E62 /* Pods_Nyang_Village.framework */; };
 /* End PBXBuildFile section */
 
@@ -81,6 +83,8 @@
 		6625937528C33ACF0034F4C1 /* SideMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuViewController.swift; sourceTree = "<group>"; };
 		6625937728C3447F0034F4C1 /* SideMenuTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuTableViewCell.swift; sourceTree = "<group>"; };
 		6625937828C3447F0034F4C1 /* SideMenuTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SideMenuTableViewCell.xib; sourceTree = "<group>"; };
+		664AB73C28D8A52000D753DF /* Type1TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Type1TableViewCell.swift; sourceTree = "<group>"; };
+		664AB73D28D8A52000D753DF /* Type1TableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Type1TableViewCell.xib; sourceTree = "<group>"; };
 		664B2DAA27FC708D00109DFB /* Nyang Village.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Nyang Village.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		664B2DAD27FC708D00109DFB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		664B2DAF27FC708D00109DFB /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -119,7 +123,7 @@
 		66F5BEB62804643D0002240C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		66F5EEA9287C57350057C285 /* UINavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UINavigationController.swift; sourceTree = "<group>"; };
 		66FB085B28D73E8000901880 /* SettingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTableViewCell.swift; sourceTree = "<group>"; };
-		66FB085C28D73E8000901880 /* SettingTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingTableViewCell.xib; sourceTree = "<group>"; };
+		66FB085C28D73E8000901880 /* SettingLogoutTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingLogoutTableViewCell.xib; sourceTree = "<group>"; };
 		859A35855346CD60860891DF /* Pods-Nyang Village.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Nyang Village.release.xcconfig"; path = "Target Support Files/Pods-Nyang Village/Pods-Nyang Village.release.xcconfig"; sourceTree = "<group>"; };
 		D894EDED1EF20D4DC2AF2E62 /* Pods_Nyang_Village.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Nyang_Village.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DCBC9BD51F0D33329EA76414 /* Pods-Nyang Village.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Nyang Village.debug.xcconfig"; path = "Target Support Files/Pods-Nyang Village/Pods-Nyang Village.debug.xcconfig"; sourceTree = "<group>"; };
@@ -219,6 +223,8 @@
 				66B195AA28BCAC1A00019892 /* YourTableViewCell.xib */,
 				66E9800928C4BC4F00136504 /* OutMessageTableViewCell.swift */,
 				66E9800A28C4BC4F00136504 /* OutMessageTableViewCell.xib */,
+				664AB73C28D8A52000D753DF /* Type1TableViewCell.swift */,
+				664AB73D28D8A52000D753DF /* Type1TableViewCell.xib */,
 			);
 			path = "ChatView(TableView)";
 			sourceTree = "<group>";
@@ -283,7 +289,7 @@
 				6625937428C33AA30034F4C1 /* SideMenuView(TableView) */,
 				66C9A4E52893A8870073C0C4 /* SettingViewController.swift */,
 				66FB085B28D73E8000901880 /* SettingTableViewCell.swift */,
-				66FB085C28D73E8000901880 /* SettingTableViewCell.xib */,
+				66FB085C28D73E8000901880 /* SettingLogoutTableViewCell.xib */,
 				66992B2D28D06533008E0E7A /* ReportPopUpViewController.swift */,
 			);
 			path = View;
@@ -415,8 +421,9 @@
 				6678F5B128A8C7840049938F /* JalnanOTF.otf in Resources */,
 				667A9AE228AD0DC40068582F /* MyTableViewCell.xib in Resources */,
 				6625937A28C3447F0034F4C1 /* SideMenuTableViewCell.xib in Resources */,
+				664AB73F28D8A52000D753DF /* Type1TableViewCell.xib in Resources */,
 				6611979B2831667C0033CB33 /* SCDream4.otf in Resources */,
-				66FB085E28D73E8000901880 /* SettingTableViewCell.xib in Resources */,
+				66FB085E28D73E8000901880 /* SettingLogoutTableViewCell.xib in Resources */,
 				66F5BEB72804643D0002240C /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -481,6 +488,7 @@
 				66C9A4E62893A8870073C0C4 /* SettingViewController.swift in Sources */,
 				66C1F80128314A34001FD2FE /* UIView_Extention.swift in Sources */,
 				66992B2E28D06533008E0E7A /* ReportPopUpViewController.swift in Sources */,
+				664AB73E28D8A52000D753DF /* Type1TableViewCell.swift in Sources */,
 				664B2DAE27FC708D00109DFB /* AppDelegate.swift in Sources */,
 				66AA9F5B2840B04E00988A60 /* MainTableViewCell.swift in Sources */,
 				66A126472865E48A007B3547 /* LoginResponse.swift in Sources */,

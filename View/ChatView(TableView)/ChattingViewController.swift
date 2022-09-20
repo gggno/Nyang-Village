@@ -8,6 +8,7 @@ class ChattingViewController: UIViewController, UITableViewDelegate, UITableView
     var professorName: String?
     var roomId: Int?
     var nickName: String?
+    var chatInfoDatas: [ChatInfoRow] = []
     
     let sql = Sql.shared
     
@@ -32,6 +33,8 @@ class ChattingViewController: UIViewController, UITableViewDelegate, UITableView
         
         // 소켓 연결
         registerSockect()
+        
+        chatInfoData()
         
         // 채팅방 별 닉네임 가져오기
         nickName = sql.selectRoomInfoInNickname(roomid: roomId!)
@@ -69,7 +72,7 @@ class ChattingViewController: UIViewController, UITableViewDelegate, UITableView
         // 셀 등록
         chatTableView.register(UINib(nibName: "MyTableViewCell", bundle: nil), forCellReuseIdentifier: "MyTableViewCell")
         chatTableView.register(UINib(nibName: "YourTableViewCell", bundle: nil), forCellReuseIdentifier: "YourTableViewCell")
-        chatTableView.register(UINib(nibName: "OutMessageTableViewCell", bundle: nil), forCellReuseIdentifier: "OutMessageTableViewCell")
+        chatTableView.register(UINib(nibName: "Type1TableViewCell", bundle: nil), forCellReuseIdentifier: "Type1TableViewCell")
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -97,34 +100,59 @@ class ChattingViewController: UIViewController, UITableViewDelegate, UITableView
     @objc func keyboardWillShowHandling(notification: NSNotification) {
         print("chattingVC - keyboardWillShowHandling() called")
         
-        let notiInfo = notification.userInfo!
+//        if let keyboardFrame: NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
+//                let keyboardRectangle = keyboardFrame.cgRectValue
+//                let keyboardHeight = keyboardRectangle.height
+//            self.view.frame.origin.y -= keyboardHeight
+//            }
+    
         
+        let notiInfo = notification.userInfo!
+
         // 키보드 높이를 가져옴
         let keyboardFrame = notiInfo[UIResponder.keyboardFrameEndUserInfoKey] as! CGRect
         let height = keyboardFrame.size.height - self.view.safeAreaInsets.bottom
-        
+
         sendViewBottomMargin.constant = height + 8 // sendView와 superView 간격이 8이라서 추가해줌.
-        
+
         // 애니메이션 효과를 키보드 애니메이션 시간과 동일하게
         let animationDuration = notiInfo[UIResponder.keyboardAnimationDurationUserInfoKey] as! TimeInterval
         UIView.animate(withDuration: animationDuration) {
             self.view.layoutIfNeeded()
         }
+        
+//        if let keyboardFrame:NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
+//               let keyboardRectangle = keyboardFrame.cgRectValue
+//
+//                UIView.animate(
+//                    withDuration: 0.3
+//                    , animations: {
+//                        self.view.transform = CGAffineTransform(translationX: 0, y: -keyboardRectangle.height)
+//                    }
+//                )
+//            }
     }
     
     // 키보드 내려갈 때 호출되는 메서드
     @objc func keyboardWillHideHandling(notification: NSNotification) {
         print("chattingVC - keyboardWillHideHandling() called")
         
-        let notiInfo = notification.userInfo!
+//        if let keyboardFrame: NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
+//                let keyboardRectangle = keyboardFrame.cgRectValue
+//                let keyboardHeight = keyboardRectangle.height
+//                self.view.frame.origin.y += keyboardHeight
+//            }
         
+        let notiInfo = notification.userInfo!
+
         let animationDuration = notiInfo[UIResponder.keyboardAnimationDurationUserInfoKey] as! TimeInterval
         self.sendViewBottomMargin.constant = 8 // sendView와 superView 간격이 8이라서 추가해줌.
-        
-        // 애니메이션 효과를 키보드 애니메이션 시간과 동일하게
-        UIView.animate(withDuration: animationDuration) {
-            self.view.layoutIfNeeded()
-        }
+//
+//        // 애니메이션 효과를 키보드 애니메이션 시간과 동일하게
+//        UIView.animate(withDuration: animationDuration) {
+//            self.view.layoutIfNeeded()
+//        }
+//        self.view.transform = .identity
     }
     
     // 화면 터치 시 키보드 다운
@@ -149,6 +177,12 @@ class ChattingViewController: UIViewController, UITableViewDelegate, UITableView
         }
     }
     
+    // sql로 chatInfo들의 데이터를 chatInfoDatas에 저장
+    func chatInfoData() {
+        chatInfoDatas = sql.selectChatInfo(roomId: roomId!)
+        print("chatInfoDatas: \(chatInfoDatas)")
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 20
     }
@@ -158,13 +192,13 @@ class ChattingViewController: UIViewController, UITableViewDelegate, UITableView
         let myCell = tableView.dequeueReusableCell(withIdentifier: "MyTableViewCell", for: indexPath) as! MyTableViewCell
         // 상대방 메세지 셀
         let yourCell = tableView.dequeueReusableCell(withIdentifier: "YourTableViewCell", for: indexPath) as! YourTableViewCell
-        // 퇴장 메세지 셀
-        let outMessageCell = tableView.dequeueReusableCell(withIdentifier: "OutMessageTableViewCell", for: indexPath) as! OutMessageTableViewCell
+        // type1 메세지 셀
+        let type1Cell = tableView.dequeueReusableCell(withIdentifier: "Type1TableViewCell", for: indexPath) as! Type1TableViewCell
         
         // 클릭 시 회색 하이라이트 제거
         myCell.selectionStyle = .none
         yourCell.selectionStyle = .none
-        outMessageCell.selectionStyle = .none
+        type1Cell.selectionStyle = .none
         
         return yourCell
     }
@@ -172,13 +206,12 @@ class ChattingViewController: UIViewController, UITableViewDelegate, UITableView
     // MARK: - IBAction
     @IBAction func sendBtnClicked(_ sender: Any) {
         
-        guard let roomId = roomId else {
-            return
-        }
+        guard let roomId = roomId else {return}
         
+        // 현재시간 구하기
         let now = Date()
         let formatter = DateFormatter()
-        formatter.dateFormat = "a hh시 mm분"
+        formatter.dateFormat = "a hh:mm"
         formatter.locale = Locale(identifier: "ko_KR")
         let time = formatter.string(from: now)
         
@@ -201,7 +234,8 @@ class ChattingViewController: UIViewController, UITableViewDelegate, UITableView
         present(menu, animated: true, completion: nil)
     }
     
-    // 구독 중인 토픽에서 Publish되면 실행되는 함수
+    // 구독 중인 토픽에서 Publish되면 실행되는 함수. 모든 통신이 여기서 이루어짐.
+    // 신고버튼을 누를 때(구현 예정)
     func stompClient(client: StompClientLib!, didReceiveMessageWithJSONBody jsonBody: AnyObject?, akaStringBody stringBody: String?, withHeader header: [String : String]?, withDestination destination: String) {
         print("stompClient() called")
         
@@ -211,7 +245,7 @@ class ChattingViewController: UIViewController, UITableViewDelegate, UITableView
         if jsonData!["start"] != nil { // 처음에 입장방 들어갈 때의 통신
             if jsonData!["start"] as! Int == 1 { // 이중로그인
                 print("jsonData[start] 1 일때(이중로그인으로 인한 처리)")
-                logoutAlert(title: "이중로그인", message: "이중로그인으로 인해 로그아웃 됩니다. ")
+                logoutAlert(title: "중복 로그인", message: "중복 로그인이 감지되어 해당 기기는 로그아웃 됩니다. ")
                 
             } else if jsonData!["start"] as! Int == 2 { // 정지회원
                 print("jsonData[start] 2 일때(정지회원으로 인한 처리)")
@@ -221,14 +255,16 @@ class ChattingViewController: UIViewController, UITableViewDelegate, UITableView
                 print("jsonData[start] 3 일때(새학기 시작으로 인한 처리)")
                 logoutAlert(title: "새 학기 시작", message: "새 학기 시작으로 인해 로그아웃 됩니다.")
             }
-        } else { // 다른 사용자가 전송 버튼을 눌렀을 때 통신
-            print("jsonData[start]이 nil 일때(전송 버튼 누를 때 통신)")
+        }
+        
+        else {
+            print("jsonData[start]이 nil 일때")
             
             if jsonData!["nickName"] as! String != nickName! {
                 let type = jsonData!["type"]
                 
                 if type as! Int == 0 { // 입장할 때
-                    print("type == 0 입장할 때")
+                    print("type == 0 입장할 때") // jsonData["type"]이랑 type은 변수 명만 같고 다른 데이터 임
                     sql.insertRoomInName(roomid: roomId!, name: jsonData!["nickName"] as! String)
                     sql.insertChatInfo(roomid: roomId!, nickName: "", time: "", content: jsonData!["nickName"] as! String + "입장", type: 1)
                     
@@ -247,7 +283,6 @@ class ChattingViewController: UIViewController, UITableViewDelegate, UITableView
         print("Destination : \(destination)")
         print("JSON Body : \(String(describing: jsonBody))")
         print("String Body : \(stringBody ?? "nil")")
-        
     }
     
     func stompClientDidDisconnect(client: StompClientLib!) {
@@ -289,20 +324,9 @@ class ChattingViewController: UIViewController, UITableViewDelegate, UITableView
     func subscribe() {
         print("subscribe() called")
         
-        guard let roomId = roomId else {
-            return
-        }
+        guard let roomId = roomId else {return}
         socketClient.subscribe(destination: "/sub/chat/\(roomId)")
     }
-    
-    // Publish Message
-    //    func sendMessage() {
-    //        var payloadObject : [String : Any] = [ Key 1 : Value 1 , ... , Key N, Value N ]
-    //
-    //        socketClient.sendJSONForDict(
-    //            dict: payloadObject as AnyObject,
-    //            toDestination: "[publish prefix]/[publish url]")
-    //    }
     
     // Unsubscribe
     func disconnect() {
@@ -328,6 +352,7 @@ class ChattingViewController: UIViewController, UITableViewDelegate, UITableView
         sql.deleteAllRoomInNames()
         sql.deleteChatInfos()
 //        sql.updateUserInfoAutoLogin(autoLogin: 0)
+        
         // 로그인 화면으로 이동 코드
         self.navigationController?.popToRootViewController(animated: false)
     }

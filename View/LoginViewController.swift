@@ -10,7 +10,7 @@ class LoginViewController: UIViewController {
     
     var loginViewPresenter = LoginViewPresenter()
 
-    var sql = Sql.shared
+    let sql = Sql.shared
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -170,6 +170,9 @@ class LoginViewController: UIViewController {
                     let convertResult = "(\(convertNum.joined(separator: ",")))"
                     
                     self.sql.deleteRoomInfos(roomids: convertResult)
+                    
+                    self.IDTxt.text?.removeAll()
+                    self.PWDTxt.text?.removeAll()
                     
                     self.activityIndicator.stopAnimating()
                     let main = vc as! MainViewController

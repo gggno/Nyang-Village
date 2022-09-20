@@ -249,7 +249,7 @@ final class Sql {
             let roomInfoRowST: RoomInfoRow = RoomInfoRow(roomId: Int(roomid), roomName: roomName, nickName: nickName, professorName: professorName, position: Int(position), noti: Int(noti))
             
             roomInfoRowArr.append(roomInfoRowST)
-            print(roomInfoRowArr)
+            print("selectRoomInfo() called \(roomInfoRowArr)")
         }
         
         sqlite3_finalize(createTablePtr)
