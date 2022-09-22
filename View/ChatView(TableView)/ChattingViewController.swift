@@ -73,6 +73,11 @@ class ChattingViewController: UIViewController, UITableViewDelegate, UITableView
         chatTableView.register(UINib(nibName: "MyTableViewCell", bundle: nil), forCellReuseIdentifier: "MyTableViewCell")
         chatTableView.register(UINib(nibName: "YourTableViewCell", bundle: nil), forCellReuseIdentifier: "YourTableViewCell")
         chatTableView.register(UINib(nibName: "Type1TableViewCell", bundle: nil), forCellReuseIdentifier: "Type1TableViewCell")
+        
+        // 채팅 방 처음 입장 시 맨 아래(최근)로 화면 이동
+        let firstLastIndexPath = IndexPath(row: chatInfoDatas.count - 1, section: 0)
+        print("firstlast: \(firstLastIndexPath)")
+        chatTableView.scrollToRow(at: firstLastIndexPath, at: UITableView.ScrollPosition.bottom, animated: true)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -100,59 +105,58 @@ class ChattingViewController: UIViewController, UITableViewDelegate, UITableView
     @objc func keyboardWillShowHandling(notification: NSNotification) {
         print("chattingVC - keyboardWillShowHandling() called")
         
-//        if let keyboardFrame: NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
-//                let keyboardRectangle = keyboardFrame.cgRectValue
-//                let keyboardHeight = keyboardRectangle.height
-//            self.view.frame.origin.y -= keyboardHeight
-//            }
-    
+        //        if let keyboardFrame: NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
+        //                let keyboardRectangle = keyboardFrame.cgRectValue
+        //                let keyboardHeight = keyboardRectangle.height
+        //            self.view.frame.origin.y -= keyboardHeight
+        //            }
         
         let notiInfo = notification.userInfo!
-
+        
         // 키보드 높이를 가져옴
         let keyboardFrame = notiInfo[UIResponder.keyboardFrameEndUserInfoKey] as! CGRect
         let height = keyboardFrame.size.height - self.view.safeAreaInsets.bottom
-
+        
         sendViewBottomMargin.constant = height + 8 // sendView와 superView 간격이 8이라서 추가해줌.
-
+        
         // 애니메이션 효과를 키보드 애니메이션 시간과 동일하게
         let animationDuration = notiInfo[UIResponder.keyboardAnimationDurationUserInfoKey] as! TimeInterval
         UIView.animate(withDuration: animationDuration) {
             self.view.layoutIfNeeded()
         }
         
-//        if let keyboardFrame:NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
-//               let keyboardRectangle = keyboardFrame.cgRectValue
-//
-//                UIView.animate(
-//                    withDuration: 0.3
-//                    , animations: {
-//                        self.view.transform = CGAffineTransform(translationX: 0, y: -keyboardRectangle.height)
-//                    }
-//                )
-//            }
+        //        if let keyboardFrame:NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
+        //               let keyboardRectangle = keyboardFrame.cgRectValue
+        //
+        //                UIView.animate(
+        //                    withDuration: 0.3
+        //                    , animations: {
+        //                        self.view.transform = CGAffineTransform(translationX: 0, y: -keyboardRectangle.height)
+        //                    }
+        //                )
+        //            }
     }
     
     // 키보드 내려갈 때 호출되는 메서드
     @objc func keyboardWillHideHandling(notification: NSNotification) {
         print("chattingVC - keyboardWillHideHandling() called")
         
-//        if let keyboardFrame: NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
-//                let keyboardRectangle = keyboardFrame.cgRectValue
-//                let keyboardHeight = keyboardRectangle.height
-//                self.view.frame.origin.y += keyboardHeight
-//            }
+        //        if let keyboardFrame: NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
+        //                let keyboardRectangle = keyboardFrame.cgRectValue
+        //                let keyboardHeight = keyboardRectangle.height
+        //                self.view.frame.origin.y += keyboardHeight
+        //            }
         
         let notiInfo = notification.userInfo!
-
+        
         let animationDuration = notiInfo[UIResponder.keyboardAnimationDurationUserInfoKey] as! TimeInterval
         self.sendViewBottomMargin.constant = 8 // sendView와 superView 간격이 8이라서 추가해줌.
-//
-//        // 애니메이션 효과를 키보드 애니메이션 시간과 동일하게
-//        UIView.animate(withDuration: animationDuration) {
-//            self.view.layoutIfNeeded()
-//        }
-//        self.view.transform = .identity
+        //
+        //        // 애니메이션 효과를 키보드 애니메이션 시간과 동일하게
+        //        UIView.animate(withDuration: animationDuration) {
+        //            self.view.layoutIfNeeded()
+        //        }
+        //        self.view.transform = .identity
     }
     
     // 화면 터치 시 키보드 다운
@@ -217,40 +221,41 @@ class ChattingViewController: UIViewController, UITableViewDelegate, UITableView
             
             return myCell
         }
-        
-        
-        return yourCell
     }
     
     // MARK: - IBAction
     @IBAction func sendBtnClicked(_ sender: Any) {
         
-        guard let roomId = roomId else {return}
+        if inputTextView.text != "" { // inputTextView에 글자가 있을 때만 실행
+            
+            guard let roomId = roomId else {return}
+            
+            // 현재시간 구하기
+            let now = Date()
+            let formatter = DateFormatter()
+            formatter.dateFormat = "a hh:mm"
+            formatter.locale = Locale(identifier: "ko_KR")
+            let time = formatter.string(from: now)
+            
+            let sendData: [String: Any] = ["roomId" : roomId, "nickName" : sql.selectRoomInfoInNickname(roomid: roomId), "content" : inputTextView.text, "time" : time, "type" : 2]
+            sql.insertChatInfo(roomid: roomId, nickName: nickName!, time: time, content: inputTextView.text, type: 2)
+            
+            // 자신이 입력하여 전송버튼을 누르면 chatInfoDatas에 추가 되어 출력되는 코드
+            let myCellDatas = ChatInfoRow(roomId: roomId, nickName: nickName!, time: time, content: inputTextView.text, type: 2)
+            chatInfoDatas.append(myCellDatas)
+            
+            let lastIndexPath = IndexPath(row: chatInfoDatas.count - 1, section: 0)
+            
+            chatTableView.insertRows(at: [lastIndexPath], with: UITableView.RowAnimation.none)
+            
+            // 맨 아래로 스크롤 내리기
+            chatTableView.scrollToRow(at: lastIndexPath, at: UITableView.ScrollPosition.bottom, animated: false)
+            
+            socketClient.sendJSONForDict(dict: sendData as AnyObject, toDestination: "/pub/ay/chat")
+            
+            inputTextView.text = ""
+        }
         
-        // 현재시간 구하기
-        let now = Date()
-        let formatter = DateFormatter()
-        formatter.dateFormat = "a hh:mm"
-        formatter.locale = Locale(identifier: "ko_KR")
-        let time = formatter.string(from: now)
-        
-        let sendData: [String: Any] = ["roomId" : roomId, "nickName" : sql.selectRoomInfoInNickname(roomid: roomId), "content" : inputTextView.text, "time" : time, "type" : 2]
-        sql.insertChatInfo(roomid: roomId, nickName: nickName!, time: time, content: inputTextView.text, type: 2)
-        
-        
-        // 자신이 입력하여 전송버튼을 누르면 chatInfoDatas에 추가 되어 출력되는 코드
-        let myCellDatas = ChatInfoRow(roomId: roomId, nickName: nickName!, time: time, content: inputTextView.text, type: 2)
-        chatInfoDatas.append(myCellDatas)
-        
-        let lastIndexPath = IndexPath(row: chatInfoDatas.count - 1, section: 0)
-        
-        chatTableView.insertRows(at: [lastIndexPath], with: UITableView.RowAnimation.automatic)
-        
-        chatTableView.scrollToRow(at: lastIndexPath, at: UITableView.ScrollPosition.bottom, animated: true)
-        
-        socketClient.sendJSONForDict(dict: sendData as AnyObject, toDestination: "/pub/ay/chat")
-        
-        inputTextView.text = ""
     }
     
     @objc func sideBtnClicked() {
@@ -280,7 +285,7 @@ class ChattingViewController: UIViewController, UITableViewDelegate, UITableView
             } else if jsonData!["start"] as! Int == 2 { // 정지회원
                 print("jsonData[start] 2 일때(정지회원으로 인한 처리)")
                 logoutAlert(title: "정지 회원", message: "정지 회원입니다.")
-           
+                
             } else if jsonData!["start"] as! Int == 3 { // 새학기 시작
                 print("jsonData[start] 3 일때(새학기 시작으로 인한 처리)")
                 logoutAlert(title: "새 학기 시작", message: "새 학기 시작으로 인해 로그아웃 됩니다.")
@@ -381,7 +386,7 @@ class ChattingViewController: UIViewController, UITableViewDelegate, UITableView
         sql.deleteAllRoomInfos()
         sql.deleteAllRoomInNames()
         sql.deleteChatInfos()
-//        sql.updateUserInfoAutoLogin(autoLogin: 0)
+        //        sql.updateUserInfoAutoLogin(autoLogin: 0)
         
         // 로그인 화면으로 이동 코드
         self.navigationController?.popToRootViewController(animated: false)
