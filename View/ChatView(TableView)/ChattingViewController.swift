@@ -184,7 +184,7 @@ class ChattingViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 20
+        return chatInfoDatas.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -194,11 +194,30 @@ class ChattingViewController: UIViewController, UITableViewDelegate, UITableView
         let yourCell = tableView.dequeueReusableCell(withIdentifier: "YourTableViewCell", for: indexPath) as! YourTableViewCell
         // type1 메세지 셀
         let type1Cell = tableView.dequeueReusableCell(withIdentifier: "Type1TableViewCell", for: indexPath) as! Type1TableViewCell
-        
+        print("cell Called: \(chatInfoDatas.count)")
         // 클릭 시 회색 하이라이트 제거
         myCell.selectionStyle = .none
         yourCell.selectionStyle = .none
         type1Cell.selectionStyle = .none
+        
+        if chatInfoDatas[indexPath.row].type == 0 { // 상대방 메세지 셀 일 때
+            yourCell.bubbleContentsLabel.text = chatInfoDatas[indexPath.row].content
+            yourCell.nameLabel.text = chatInfoDatas[indexPath.row].nickName
+            yourCell.timeLabel.text = chatInfoDatas[indexPath.row].time
+            
+            return yourCell
+        } else if chatInfoDatas[indexPath.row].type == 1 { // 안내문 메세지(type1) 셀 일 때
+            type1Cell.type1Label.text = chatInfoDatas[indexPath.row].content
+            
+            return type1Cell
+        } else { // 내 메세지 일 때
+            myCell.bubbleContentsLabel.text = chatInfoDatas[indexPath.row].content
+            myCell.nameLabel.text = chatInfoDatas[indexPath.row].nickName
+            myCell.timeLabel.text = chatInfoDatas[indexPath.row].time
+            
+            return myCell
+        }
+        
         
         return yourCell
     }
@@ -217,6 +236,17 @@ class ChattingViewController: UIViewController, UITableViewDelegate, UITableView
         
         let sendData: [String: Any] = ["roomId" : roomId, "nickName" : sql.selectRoomInfoInNickname(roomid: roomId), "content" : inputTextView.text, "time" : time, "type" : 2]
         sql.insertChatInfo(roomid: roomId, nickName: nickName!, time: time, content: inputTextView.text, type: 2)
+        
+        
+        // 자신이 입력하여 전송버튼을 누르면 chatInfoDatas에 추가 되어 출력되는 코드
+        let myCellDatas = ChatInfoRow(roomId: roomId, nickName: nickName!, time: time, content: inputTextView.text, type: 2)
+        chatInfoDatas.append(myCellDatas)
+        
+        let lastIndexPath = IndexPath(row: chatInfoDatas.count - 1, section: 0)
+        
+        chatTableView.insertRows(at: [lastIndexPath], with: UITableView.RowAnimation.automatic)
+        
+        chatTableView.scrollToRow(at: lastIndexPath, at: UITableView.ScrollPosition.bottom, animated: true)
         
         socketClient.sendJSONForDict(dict: sendData as AnyObject, toDestination: "/pub/ay/chat")
         
