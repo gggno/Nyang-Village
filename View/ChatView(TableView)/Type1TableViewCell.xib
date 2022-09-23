@@ -4,39 +4,62 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="136" id="KGk-i7-Jjw" customClass="Type1TableViewCell" customModule="Nyang_Village" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="390" height="136"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="65" id="KGk-i7-Jjw" customClass="Type1TableViewCell" customModule="Nyang_Village" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="390" height="65"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="390" height="136"/>
+                <rect key="frame" x="0.0" y="0.0" width="390" height="65"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="안양대 오픈 채팅방에 오신 걸 환영합니다. 도배, 욕설 등 불편한 언어 사용 시 상대방의 채팅 메시지를 길게 누르시면 신고하실 수 있습니다." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6P9-yt-AiJ">
-                        <rect key="frame" x="44.333333333333343" y="56.333333333333336" width="301.33333333333326" height="23.333333333333336"/>
-                        <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="10"/>
-                        <nil key="textColor"/>
-                        <nil key="highlightedColor"/>
-                    </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="STK-Jf-Au4">
+                        <rect key="frame" x="36.333333333333343" y="10" width="317.33333333333326" height="45"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="안양대 오픈 채팅방에 오신 걸 환영합니다. 도배, 욕설 등 불편한 언어 사용 시 상대방의 채팅 메시지를 길게 누르시면 신고하실 수 있습니다." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6P9-yt-AiJ">
+                                <rect key="frame" x="8" y="2" width="301.33333333333331" height="41"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="10"/>
+                                <color key="textColor" name="Type1MessageColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" name="Type1MessageBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="6P9-yt-AiJ" firstAttribute="leading" secondItem="STK-Jf-Au4" secondAttribute="leading" constant="8" id="2mV-Bc-8Wt"/>
+                            <constraint firstAttribute="trailing" secondItem="6P9-yt-AiJ" secondAttribute="trailing" constant="8" id="Civ-4g-b5B"/>
+                            <constraint firstItem="6P9-yt-AiJ" firstAttribute="top" secondItem="STK-Jf-Au4" secondAttribute="top" constant="2" id="wAV-fs-bNM"/>
+                            <constraint firstAttribute="bottom" secondItem="6P9-yt-AiJ" secondAttribute="bottom" constant="2" id="yri-cj-fEp"/>
+                        </constraints>
+                    </view>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="6P9-yt-AiJ" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="7tI-XF-WS7"/>
-                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="6P9-yt-AiJ" secondAttribute="trailing" constant="30" id="LQv-Y6-hHu"/>
-                    <constraint firstItem="6P9-yt-AiJ" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="ffe-bQ-3WW"/>
-                    <constraint firstItem="6P9-yt-AiJ" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="30" id="hpc-YP-kUL"/>
+                    <constraint firstItem="STK-Jf-Au4" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="1D6-m2-bd2"/>
+                    <constraint firstItem="STK-Jf-Au4" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="30" id="3CP-Ym-Vqa"/>
+                    <constraint firstItem="STK-Jf-Au4" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="8Cr-rM-MQR"/>
+                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="STK-Jf-Au4" secondAttribute="trailing" constant="30" id="hgA-ea-5ts"/>
+                    <constraint firstItem="STK-Jf-Au4" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="i9m-zk-IoT"/>
+                    <constraint firstAttribute="bottom" secondItem="STK-Jf-Au4" secondAttribute="bottom" constant="10" id="tRD-Z1-nVZ"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
+                <outlet property="type1BackgroundView" destination="STK-Jf-Au4" id="vLN-VS-bAj"/>
                 <outlet property="type1Label" destination="6P9-yt-AiJ" id="GsV-ru-Ee0"/>
             </connections>
-            <point key="canvasLocation" x="101.53846153846153" y="-44.7867298578199"/>
+            <point key="canvasLocation" x="101.53846153846153" y="-70.023696682464447"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <namedColor name="Type1MessageBackgroundColor">
+            <color red="0.92199999094009399" green="0.92199999094009399" blue="0.92199999094009399" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="Type1MessageColor">
+            <color red="0.42399999499320984" green="0.42399999499320984" blue="0.42399999499320984" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
 </document>

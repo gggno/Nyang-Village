@@ -74,12 +74,16 @@ class ChattingViewController: UIViewController, UITableViewDelegate, UITableView
         chatTableView.register(UINib(nibName: "YourTableViewCell", bundle: nil), forCellReuseIdentifier: "YourTableViewCell")
         chatTableView.register(UINib(nibName: "Type1TableViewCell", bundle: nil), forCellReuseIdentifier: "Type1TableViewCell")
         
-        // 채팅 방 처음 입장 시 맨 아래(최근)로 화면 이동
-        let firstLastIndexPath = IndexPath(row: chatInfoDatas.count - 1, section: 0)
-        print("firstlast: \(firstLastIndexPath)")
-        chatTableView.scrollToRow(at: firstLastIndexPath, at: UITableView.ScrollPosition.bottom, animated: true)
+        scrollToBottom()
     }
-    
+    // 채팅방 처음에 입장할 때 맨 아래(가장 최근 채팅)로 이동하는 함수
+    func scrollToBottom() {
+        DispatchQueue.main.async {
+            let indexPath = IndexPath(row: self.chatInfoDatas.count-1, section: 0)
+            self.chatTableView.scrollToRow(at: indexPath, at: .bottom, animated: false)
+        }
+    }
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         print("chattingVC viewWillAppear() called")
@@ -198,7 +202,7 @@ class ChattingViewController: UIViewController, UITableViewDelegate, UITableView
         let yourCell = tableView.dequeueReusableCell(withIdentifier: "YourTableViewCell", for: indexPath) as! YourTableViewCell
         // type1 메세지 셀
         let type1Cell = tableView.dequeueReusableCell(withIdentifier: "Type1TableViewCell", for: indexPath) as! Type1TableViewCell
-        print("cell Called: \(chatInfoDatas.count)")
+        
         // 클릭 시 회색 하이라이트 제거
         myCell.selectionStyle = .none
         yourCell.selectionStyle = .none
