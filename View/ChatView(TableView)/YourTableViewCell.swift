@@ -13,7 +13,7 @@ class YourTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        self.bubbleBackgroundView.layer.cornerRadius = 15
+        self.bubbleBackgroundView.layer.cornerRadius = 13
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
