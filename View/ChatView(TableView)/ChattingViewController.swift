@@ -45,6 +45,7 @@ class ChattingViewController: UIViewController, UITableViewDelegate, UITableView
         
         self.navigationController?.navigationBar.topItem?.title = ""
         self.navigationController?.navigationBar.tintColor = .white
+//        self.navigationController?.navigationBar.backgroundColor = .black
         
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "line.3.horizontal"), style: .plain, target: self, action: #selector(sideBtnClicked))
         
@@ -76,6 +77,7 @@ class ChattingViewController: UIViewController, UITableViewDelegate, UITableView
         
         scrollToBottom()
     }
+    
     // 채팅방 처음에 입장할 때 맨 아래(가장 최근 채팅)로 이동하는 함수
     func scrollToBottom() {
         DispatchQueue.main.async {
@@ -83,7 +85,7 @@ class ChattingViewController: UIViewController, UITableViewDelegate, UITableView
             self.chatTableView.scrollToRow(at: indexPath, at: .bottom, animated: false)
         }
     }
-
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         print("chattingVC viewWillAppear() called")
@@ -109,12 +111,6 @@ class ChattingViewController: UIViewController, UITableViewDelegate, UITableView
     @objc func keyboardWillShowHandling(notification: NSNotification) {
         print("chattingVC - keyboardWillShowHandling() called")
         
-        //        if let keyboardFrame: NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
-        //                let keyboardRectangle = keyboardFrame.cgRectValue
-        //                let keyboardHeight = keyboardRectangle.height
-        //            self.view.frame.origin.y -= keyboardHeight
-        //            }
-        
         let notiInfo = notification.userInfo!
         
         // 키보드 높이를 가져옴
@@ -129,39 +125,50 @@ class ChattingViewController: UIViewController, UITableViewDelegate, UITableView
             self.view.layoutIfNeeded()
         }
         
-        //        if let keyboardFrame:NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
-        //               let keyboardRectangle = keyboardFrame.cgRectValue
-        //
-        //                UIView.animate(
-        //                    withDuration: 0.3
-        //                    , animations: {
-        //                        self.view.transform = CGAffineTransform(translationX: 0, y: -keyboardRectangle.height)
-        //                    }
-        //                )
-        //            }
+        let indexPath = IndexPath(row: self.chatInfoDatas.count-1, section: 0)
+        self.chatTableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
+        
     }
     
     // 키보드 내려갈 때 호출되는 메서드
     @objc func keyboardWillHideHandling(notification: NSNotification) {
         print("chattingVC - keyboardWillHideHandling() called")
         
-        //        if let keyboardFrame: NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
-        //                let keyboardRectangle = keyboardFrame.cgRectValue
-        //                let keyboardHeight = keyboardRectangle.height
-        //                self.view.frame.origin.y += keyboardHeight
-        //            }
-        
         let notiInfo = notification.userInfo!
         
         let animationDuration = notiInfo[UIResponder.keyboardAnimationDurationUserInfoKey] as! TimeInterval
+        UIView.animate(withDuration: animationDuration) {
+            self.view.layoutIfNeeded()
+        }
         self.sendViewBottomMargin.constant = 8 // sendView와 superView 간격이 8이라서 추가해줌.
-        //
-        //        // 애니메이션 효과를 키보드 애니메이션 시간과 동일하게
-        //        UIView.animate(withDuration: animationDuration) {
-        //            self.view.layoutIfNeeded()
-        //        }
-        //        self.view.transform = .identity
     }
+  
+//    override func viewWillAppear(_ animated: Bool) {
+//        NotificationCenter.default.addObserver(self, selector: #selector(keyboardUp), name: UIResponder.keyboardWillShowNotification, object: nil)
+//        NotificationCenter.default.addObserver(self, selector: #selector(keyboardDown), name: UIResponder.keyboardWillHideNotification, object: nil)
+//    }
+//    override func viewWillDisappear(_ animated: Bool) {
+//        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
+//        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
+//    }
+//    @objc func keyboardUp(notification:NSNotification) {
+//        print("up")
+//        if let keyboardFrame:NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
+//           let keyboardRectangle = keyboardFrame.cgRectValue
+//
+//            UIView.animate(
+//                withDuration: 0.3
+//                , animations: {
+//                    self.view.transform = CGAffineTransform(translationX: 0, y: -keyboardRectangle.height)
+//                }
+//            )
+//        }
+//    }
+//    @objc func keyboardDown() {
+//        print("down")
+//        self.view.transform = .identity
+//
+//    }
     
     // 화면 터치 시 키보드 다운
     @objc func keyboardDownGesture(_ gesture: UITapGestureRecognizer) {
