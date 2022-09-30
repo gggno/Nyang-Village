@@ -100,8 +100,6 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
         completionHandler()
     }
     
-    
-    
 }
 
 extension AppDelegate: MessagingDelegate {

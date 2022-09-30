@@ -135,12 +135,13 @@ class ChattingViewController: UIViewController, UITableViewDelegate, UITableView
         print("chattingVC - keyboardWillHideHandling() called")
         
         let notiInfo = notification.userInfo!
+
+        self.sendViewBottomMargin.constant = 8 // sendView와 superView 간격이 8이라서 추가해줌.
         
         let animationDuration = notiInfo[UIResponder.keyboardAnimationDurationUserInfoKey] as! TimeInterval
         UIView.animate(withDuration: animationDuration) {
             self.view.layoutIfNeeded()
         }
-        self.sendViewBottomMargin.constant = 8 // sendView와 superView 간격이 8이라서 추가해줌.
     }
   
 //    override func viewWillAppear(_ animated: Bool) {
