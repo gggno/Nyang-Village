@@ -56,6 +56,7 @@
 		66C9A4E62893A8870073C0C4 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66C9A4E52893A8870073C0C4 /* SettingViewController.swift */; };
 		66D0634D28AE02870024E1AF /* NotiRoomInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66D0634C28AE02870024E1AF /* NotiRoomInfo.swift */; };
 		66D0635028AE0E3A0024E1AF /* UserInfoRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66D0634F28AE0E3A0024E1AF /* UserInfoRow.swift */; };
+		66E1C78C28E95260002DEF1C /* ConnectChat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66E1C78B28E95260002DEF1C /* ConnectChat.swift */; };
 		66E9800B28C4BC4F00136504 /* OutMessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66E9800928C4BC4F00136504 /* OutMessageTableViewCell.swift */; };
 		66E9800C28C4BC4F00136504 /* OutMessageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 66E9800A28C4BC4F00136504 /* OutMessageTableViewCell.xib */; };
 		66F5BEB72804643D0002240C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 66F5BEB62804643D0002240C /* GoogleService-Info.plist */; };
@@ -118,6 +119,7 @@
 		66C9A4E52893A8870073C0C4 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		66D0634C28AE02870024E1AF /* NotiRoomInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotiRoomInfo.swift; sourceTree = "<group>"; };
 		66D0634F28AE0E3A0024E1AF /* UserInfoRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoRow.swift; sourceTree = "<group>"; };
+		66E1C78B28E95260002DEF1C /* ConnectChat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectChat.swift; sourceTree = "<group>"; };
 		66E9800928C4BC4F00136504 /* OutMessageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutMessageTableViewCell.swift; sourceTree = "<group>"; };
 		66E9800A28C4BC4F00136504 /* OutMessageTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OutMessageTableViewCell.xib; sourceTree = "<group>"; };
 		66F5BEB62804643D0002240C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -303,6 +305,7 @@
 				66C1F7FF28314A15001FD2FE /* Extention */,
 				6611868828326D340002A832 /* LoginViewModel.swift */,
 				66B530852844C1C10064B490 /* MainViewModel.swift */,
+				66E1C78B28E95260002DEF1C /* ConnectChat.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -479,6 +482,7 @@
 			files = (
 				66FB085D28D73E8000901880 /* SettingTableViewCell.swift in Sources */,
 				66C1F7FE28314951001FD2FE /* LoginViewController.swift in Sources */,
+				66E1C78C28E95260002DEF1C /* ConnectChat.swift in Sources */,
 				669BBB4F28AF688100EB4DF4 /* RoomInNamesRow.swift in Sources */,
 				66B530842844C1770064B490 /* MainViewPresenter.swift in Sources */,
 				66D0634D28AE02870024E1AF /* NotiRoomInfo.swift in Sources */,

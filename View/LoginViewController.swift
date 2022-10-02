@@ -127,7 +127,7 @@ class LoginViewController: UIViewController {
     @IBAction func LoginBtnClicked(_ sender: Any) {
         activityIndicator.startAnimating()
         loginViewPresenter.login(requestData: LoginRequest(fcm: loginViewPresenter.getToken(), password: loginViewPresenter.getPwd(), studentId: loginViewPresenter.getId(), version: 1), completion2: { result in
-            // 로그인 signal 구분지어서 코드 재작성 해야 됨.
+            
             if result.signal == 1 { // 앱 업데이트
                 self.activityIndicator.stopAnimating()
                 let alert = UIAlertController(title: "업데이트", message: "업데이트 후 이용해주세요.", preferredStyle: .alert)

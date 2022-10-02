@@ -100,6 +100,16 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
         completionHandler()
     }
     
+    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any]) async -> UIBackgroundFetchResult {
+        print("didReceiveRemoteNotification")
+            
+//        print("userInfo: \(userInfo)")
+
+        
+        
+        return UIBackgroundFetchResult.newData
+    }
+    
 }
 
 extension AppDelegate: MessagingDelegate {

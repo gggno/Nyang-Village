@@ -313,23 +313,56 @@ class ChattingViewController: UIViewController, UITableViewDelegate, UITableView
                 if type as! Int == 0 { // 입장할 때
                     print("type == 0 입장할 때") // jsonData["type"]이랑 type은 변수 명만 같고 다른 데이터 임
                     sql.insertRoomInName(roomid: roomId!, name: jsonData!["nickName"] as! String)
-                    sql.insertChatInfo(roomid: roomId!, nickName: "", time: "", content: jsonData!["nickName"] as! String + "입장", type: 1)
+                    sql.insertChatInfo(roomid: roomId!, nickName: "", time: "", content: jsonData!["nickName"] as! String + "님이 들어왔습니다.", type: 1)
+                    
+                    // 셀 정보 저장
+                    let type1CellDatas = ChatInfoRow(roomId: roomId!, nickName: jsonData!["nickName"] as! String, time: jsonData!["time"] as! String, content: jsonData!["content"] as! String, type: 1)
+                    chatInfoDatas.append(type1CellDatas)
+                    
+                    // 테이블 뷰에 셀 추가
+                    let lastIndexPath = IndexPath(row: chatInfoDatas.count - 1, section: 0)
+                    chatTableView.insertRows(at: [lastIndexPath], with: UITableView.RowAnimation.none)
+                    
+                    let indexPath = IndexPath(row: self.chatInfoDatas.count-1, section: 0)
+                    self.chatTableView.scrollToRow(at: indexPath, at: .bottom, animated: false)
                     
                 } else if type as! Int == 1 { // 퇴장할 때
                     print("type == 1 퇴장할 때")
                     sql.deleteRoomInName(roomId: roomId!, name: jsonData!["nickName"] as! String)
-                    sql.insertChatInfo(roomid: roomId!, nickName: "", time: "", content: jsonData!["nickName"] as! String + "퇴장", type: 1)
+                    sql.insertChatInfo(roomid: roomId!, nickName: "", time: "", content: jsonData!["nickName"] as! String + "님이 나갔습니다.", type: 1)
+                    
+                    // 셀 정보 저장
+                    let type1CellDatas = ChatInfoRow(roomId: roomId!, nickName: jsonData!["nickName"] as! String, time: jsonData!["time"] as! String, content: jsonData!["content"] as! String, type: 1)
+                    chatInfoDatas.append(type1CellDatas)
+                    
+                    // 테이블 뷰에 셀 추가
+                    let lastIndexPath = IndexPath(row: chatInfoDatas.count - 1, section: 0)
+                    chatTableView.insertRows(at: [lastIndexPath], with: UITableView.RowAnimation.none)
+                    
+                    let indexPath = IndexPath(row: self.chatInfoDatas.count-1, section: 0)
+                    self.chatTableView.scrollToRow(at: indexPath, at: .bottom, animated: false)
                     
                 } else { // 메세지 수신
                     print("else 메세지 수신")
                     sql.insertChatInfo(roomid: roomId!, nickName: jsonData!["nickName"] as! String, time: jsonData!["time"] as! String, content: jsonData!["content"] as! String, type: 0)
+                    
+                    // 셀 정보 저장
+                    let yourCellDatas = ChatInfoRow(roomId: roomId!, nickName: jsonData!["nickName"] as! String, time: jsonData!["time"] as! String, content: jsonData!["content"] as! String, type: 0)
+                    chatInfoDatas.append(yourCellDatas)
+                    
+                    // 테이블 뷰에 셀 추가
+                    let lastIndexPath = IndexPath(row: chatInfoDatas.count - 1, section: 0)
+                    chatTableView.insertRows(at: [lastIndexPath], with: UITableView.RowAnimation.none)
+                    
+                    let indexPath = IndexPath(row: self.chatInfoDatas.count-1, section: 0)
+                    self.chatTableView.scrollToRow(at: indexPath, at: .bottom, animated: false)
                 }
             }
         }
         
-        print("Destination : \(destination)")
-        print("JSON Body : \(String(describing: jsonBody))")
-        print("String Body : \(stringBody ?? "nil")")
+//        print("Destination : \(destination)")
+//        print("JSON Body : \(String(describing: jsonBody))")
+//        print("String Body : \(stringBody ?? "nil")")
     }
     
     func stompClientDidDisconnect(client: StompClientLib!) {
@@ -373,11 +406,13 @@ class ChattingViewController: UIViewController, UITableViewDelegate, UITableView
         
         guard let roomId = roomId else {return}
         socketClient.subscribe(destination: "/sub/chat/\(roomId)")
+        ConnectChat.roomId = roomId
     }
     
     // Unsubscribe
     func disconnect() {
         socketClient.disconnect()
+        ConnectChat.roomId = -1
     }
     
     // 채팅 방 입장할 때
