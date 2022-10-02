@@ -65,6 +65,37 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 // 알림처리: FCM은 APN을 통해 Apple 앱을 타겟팅하는 모든 메시지를 전송합니다.
 extension AppDelegate: UNUserNotificationCenterDelegate {
     
+    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any]) async -> UIBackgroundFetchResult {
+        print("didReceiveRemoteNotification")
+        
+        let sql = Sql.shared
+        let roomIdConvert = (userInfo["roomId"] as! NSString).intValue
+
+        let notiDatas : NotiRoomInfo = sql.selectRoomInfoNoti(roomid: Int(roomIdConvert))
+        print(notiDatas.roomName)
+        
+        let pushNotification =  UNMutableNotificationContent()
+        
+        pushNotification.userInfo = userInfo
+        pushNotification.title = notiDatas.roomName
+        pushNotification.subtitle = userInfo["nickName"] as! String
+        pushNotification.body = userInfo["content"] as! String
+        pushNotification.badge = 1
+        pushNotification.sound = UNNotificationSound.default
+        
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 0.01, repeats: false)
+        let request = UNNotificationRequest(identifier: "test", content: pushNotification, trigger: trigger)
+        UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
+        
+        print(type(of: userInfo["roomId"]))
+
+        
+        print("userInfo: \(userInfo)")
+        
+        
+        return UIBackgroundFetchResult.newData
+    }
+    
     // [앱이 foreground 상태 일 때, 알림이 온 경우]
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
         
@@ -72,16 +103,16 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
         
         print("AppDelegate - willPresent called")
         print("설명 :: 앱 포그라운드 상태 푸시 알림 확인")
-//        print("userInfo :: \(notification.request.content.userInfo)") // 푸시 정보 가져옴
-//        print("title :: \(notification.request.content.title)") // 푸시 정보 가져옴
-//        print("body :: \(notification.request.content.body)") // 푸시 정보 가져옴
+                print("userInfo :: \(notification.request.content.userInfo)") // 푸시 정보 가져옴
+                print("title :: \(notification.request.content.title)") // 푸시 정보 가져옴
+                print("body :: \(notification.request.content.body)") // 푸시 정보 가져옴
         // With swizzling disabled you must let Messaging know about the message, for Analytics
         // Messaging.messaging().appDidReceiveMessage(userInfo)
         
         // ...
         
         // Print full message.
-//        print(userInfo)
+        //        print(userInfo)
         
         completionHandler([.banner, .sound, .badge])
     }
@@ -92,22 +123,12 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
         
         print("AppDelegate - didReceive called")
         print("앱 백그라운드 상태 푸시 알림 확인")
-//        print("userInfo :: \(response.notification.request.content.userInfo)") // 푸시 정보 가져옴
-//        print("title :: \(response.notification.request.content.title)") // 푸시 정보 가져옴
-//        print("body :: \(response.notification.request.content.body)") // 푸시 정보 가져옴
+                print("userInfo :: \(response.notification.request.content.userInfo)") // 푸시 정보 가져옴
+                print("title :: \(response.notification.request.content.title)") // 푸시 정보 가져옴
+                print("body :: \(response.notification.request.content.body)") // 푸시 정보 가져옴
         
-        // [completionHandler : 푸시 알림 상태창 표시]
+        
         completionHandler()
-    }
-    
-    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any]) async -> UIBackgroundFetchResult {
-        print("didReceiveRemoteNotification")
-            
-//        print("userInfo: \(userInfo)")
-
-        
-        
-        return UIBackgroundFetchResult.newData
     }
     
 }
