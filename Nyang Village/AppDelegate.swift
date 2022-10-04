@@ -42,21 +42,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // MARK: UISceneSession Lifecycle
     
     func application(_ application: UIApplication, configurationForConnecting connectingSceneSession: UISceneSession, options: UIScene.ConnectionOptions) -> UISceneConfiguration {
-        print("AppDelegate - configurationForConnecting called")
+        
         // Called when a new scene session is being created.
         // Use this method to select a configuration to create the new scene with.
         return UISceneConfiguration(name: "Default Configuration", sessionRole: connectingSceneSession.role)
     }
     
     func application(_ application: UIApplication, didDiscardSceneSessions sceneSessions: Set<UISceneSession>) {
-        print("AppDelegate - didDiscardSceneSessions")
+        
         // Called when the user discards a scene session.
         // If any sessions were discarded while the application was not running, this will be called shortly after application:didFinishLaunchingWithOptions.
         // Use this method to release any resources that were specific to the discarded scenes, as they will not return.
     }
     
     func application(_ application: UIApplication, supportedInterfaceOrientationsFor window: UIWindow?) -> UIInterfaceOrientationMask {
-        print("AppDelegate - supportedInterfaceOrientationsFor")
+        
         // 세로방향 고정
         return UIInterfaceOrientationMask.portrait
     }
@@ -69,64 +69,111 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
         print("didReceiveRemoteNotification")
         
         let sql = Sql.shared
+        // roomId 형 변환
         let roomIdConvert = (userInfo["roomId"] as! NSString).intValue
-
         let notiDatas : NotiRoomInfo = sql.selectRoomInfoNoti(roomid: Int(roomIdConvert))
-        print(notiDatas.roomName)
         
         let pushNotification =  UNMutableNotificationContent()
         
-        pushNotification.userInfo = userInfo
-        pushNotification.title = notiDatas.roomName
-        pushNotification.subtitle = userInfo["nickName"] as! String
-        pushNotification.body = userInfo["content"] as! String
-        pushNotification.badge = 1
-        pushNotification.sound = UNNotificationSound.default
+        // 자신과 보낸사람 닉네임을 비교해서 같지 않다. -> 알림 안 보냄
+//        if sql.selectRoomInfoInNickname(roomid: Int(roomIdConvert)) != userInfo["nickName"] as! String
+//        {
+            pushNotification.userInfo = userInfo
+            pushNotification.title = notiDatas.roomName
+            pushNotification.subtitle = userInfo["nickName"] as! String
+            pushNotification.body = userInfo["content"] as! String
+//            pushNotification.badge = 1
+            pushNotification.sound = UNNotificationSound.default
         
-        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 0.01, repeats: false)
-        let request = UNNotificationRequest(identifier: "test", content: pushNotification, trigger: trigger)
-        UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
-        
-        print(type(of: userInfo["roomId"]))
-
-        
-        print("userInfo: \(userInfo)")
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 0.0001, repeats: false)
+            let request = UNNotificationRequest(identifier: "\(Int(roomIdConvert))", content: pushNotification, trigger: trigger)
+            UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
+//        }
         
         
         return UIBackgroundFetchResult.newData
     }
     
-    // [앱이 foreground 상태 일 때, 알림이 온 경우]
+    // 앱이 실행 중인 경우
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
         
+        let application = UIApplication.shared
         let userInfo = notification.request.content.userInfo
+        
+        // roomId 형 변환
+        let roomIdConvert = (userInfo["roomId"] as! NSString).intValue
         
         print("AppDelegate - willPresent called")
         print("설명 :: 앱 포그라운드 상태 푸시 알림 확인")
-                print("userInfo :: \(notification.request.content.userInfo)") // 푸시 정보 가져옴
-                print("title :: \(notification.request.content.title)") // 푸시 정보 가져옴
-                print("body :: \(notification.request.content.body)") // 푸시 정보 가져옴
-        // With swizzling disabled you must let Messaging know about the message, for Analytics
-        // Messaging.messaging().appDidReceiveMessage(userInfo)
+        print("userInfo :: \(notification.request.content.userInfo)") // 푸시 정보 가져옴
+//        print("title :: \(notification.request.content.title)") // 푸시 정보 가져옴
+//        print("body :: \(notification.request.content.body)") // 푸시 정보 가져옴
         
-        // ...
-        
-        // Print full message.
-        //        print(userInfo)
+//        if application.applicationState == .active {
+//            print(".active")
+//            if notification.request.identifier == "\(Int(roomIdConvert))" {
+//                print("같다.")
+//                NotificationCenter.default.post(name: Notification.Name(pushNotificationName), object: roomIdConvert)
+//            }
+//        }
         
         completionHandler([.banner, .sound, .badge])
     }
     
-    // 알림 온 노티를 눌렀을 때 실행 됨.[앱이 background 상태 일 때, 알림이 온 경우]
+    // 백그라운드인 경우 & 사용자가 푸시를 클릭한 경우
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+        
+//        let rootVC = (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.window?.rootViewController
+//        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        
+        let application = UIApplication.shared
         let userInfo = response.notification.request.content.userInfo
+        
+        // roomId 형 변환
+        let roomIdConvert = (userInfo["roomId"] as! NSString).intValue
         
         print("AppDelegate - didReceive called")
         print("앱 백그라운드 상태 푸시 알림 확인")
-                print("userInfo :: \(response.notification.request.content.userInfo)") // 푸시 정보 가져옴
-                print("title :: \(response.notification.request.content.title)") // 푸시 정보 가져옴
-                print("body :: \(response.notification.request.content.body)") // 푸시 정보 가져옴
         
+//        print("userInfo :: \(response.notification.request.content.userInfo)") // 푸시 정보 가져옴
+//        print("title :: \(response.notification.request.content.title)") // 푸시 정보 가져옴
+//        print("body :: \(response.notification.request.content.body)") // 푸시 정보 가져옴
+        
+        // 앱이 켜져있는 상태에 푸시 알림을 눌렀을 때
+        if application.applicationState == .active {
+            print(".active")
+            if response.notification.request.identifier == "\(Int(roomIdConvert))" {
+                print("같다.")
+                NotificationCenter.default.post(name: Notification.Name(pushNotificationName), object: roomIdConvert)
+//                let chatVC = storyboard.instantiateViewController(withIdentifier: "ChattingViewController") as? ChattingViewController
+//                let naviVC = rootVC as? UINavigationController
+//                
+//                chatVC?.title = "테스트 타이틀"
+//                chatVC?.subjectName = "테스트 과목"
+//                chatVC?.professorName = "테스트 교수"
+//                
+//                chatVC?.roomId = Int(roomIdConvert)
+//                naviVC?.pushViewController(chatVC!, animated: true)
+            }
+        }
+        
+        // 앱이 꺼져있는 상태에 푸시 알림을 눌렀을 때
+        if application.applicationState == .inactive {
+            print(".inactive")
+            if response.notification.request.identifier == "\(Int(roomIdConvert))" {
+                print("같다.")
+                NotificationCenter.default.post(name: Notification.Name(pushNotificationName), object: roomIdConvert)
+//                let chatVC = storyboard.instantiateViewController(withIdentifier: "ChattingViewController") as? ChattingViewController
+//                let naviVC = rootVC as? UINavigationController
+//
+//                chatVC?.title = "테스트 타이틀"
+//                chatVC?.subjectName = "테스트 과목"
+//                chatVC?.professorName = "테스트 교수"
+//
+//                chatVC?.roomId = Int(roomIdConvert)
+//                naviVC?.pushViewController(chatVC!, animated: true)
+            }
+        }
         
         completionHandler()
     }

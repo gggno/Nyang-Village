@@ -5,6 +5,8 @@ class SettingViewController: UIViewController, UITableViewDelegate, UITableViewD
     // MARK: - IBOutlet
     @IBOutlet weak var settingTableView: UITableView!
     
+    let sql = Sql.shared
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -16,7 +18,7 @@ class SettingViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         settingTableView.delegate = self
         settingTableView.dataSource = self
-        settingTableView.register(UINib(nibName: "SettingLogoutTableViewCell", bundle: nil), forCellReuseIdentifier: "SettingLogoutTableViewCell")
+        settingTableView.register(UINib(nibName: "SettingTableViewCell", bundle: nil), forCellReuseIdentifier: "SettingTableViewCell")
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -24,13 +26,28 @@ class SettingViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let logoutcell = tableView.dequeueReusableCell(withIdentifier: "SettingLogoutTableViewCell", for: indexPath) as! SettingLogoutTableViewCell
+        let settingCell = tableView.dequeueReusableCell(withIdentifier: "SettingTableViewCell", for: indexPath) as! SettingTableViewCell
         
         if indexPath.row == 0 { // 로그아웃 셀
-            return logoutcell
+            settingCell.settingLabel.text = "로그아웃"
+            return settingCell
         }
         
-        return logoutcell
+        return settingCell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        if indexPath.row == 0 {
+            sql.deleteUserInfo()
+            sql.deleteAllRoomInfos()
+            sql.deleteAllRoomInNames()
+            sql.deleteChatInfos()
+            //        sql.updateUserInfoAutoLogin(autoLogin: 0)
+            
+            // 로그인 화면으로 이동 코드
+            self.navigationController?.popToRootViewController(animated: false)
+        }
     }
     
 }

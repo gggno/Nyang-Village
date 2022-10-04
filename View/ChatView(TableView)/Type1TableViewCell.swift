@@ -7,7 +7,7 @@ class Type1TableViewCell: UITableViewCell {
     @IBOutlet weak var type1BackgroundView: UIView!
     override func awakeFromNib() {
         super.awakeFromNib()
-        self.type1BackgroundView.layer.cornerRadius = 5
+        self.type1BackgroundView.layer.cornerRadius = 10
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

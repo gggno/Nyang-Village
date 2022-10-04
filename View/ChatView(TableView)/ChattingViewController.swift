@@ -30,6 +30,7 @@ class ChattingViewController: UIViewController, UITableViewDelegate, UITableView
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        print(title, professorName, subjectName)
         
         // 소켓 연결
         registerSockect()
@@ -196,7 +197,7 @@ class ChattingViewController: UIViewController, UITableViewDelegate, UITableView
     // sql로 chatInfo들의 데이터를 chatInfoDatas에 저장
     func chatInfoData() {
         chatInfoDatas = sql.selectChatInfo(roomId: roomId!)
-        print("chatInfoDatas: \(chatInfoDatas)")
+//        print("chatInfoDatas: \(chatInfoDatas)")
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -280,6 +281,10 @@ class ChattingViewController: UIViewController, UITableViewDelegate, UITableView
         let menu = SideMenuNavigation(rootViewController: sideMenuVC)
         present(menu, animated: true, completion: nil)
     }
+    
+    
+    
+    // MARK: - stompFunc
     
     // 구독 중인 토픽에서 Publish되면 실행되는 함수. 모든 통신이 여기서 이루어짐.
     // 신고버튼을 누를 때(구현 예정)
@@ -448,6 +453,11 @@ class ChattingViewController: UIViewController, UITableViewDelegate, UITableView
         }
         alert.addAction(alertAction)
         self.present(alert, animated: true)
+    }
+    
+    deinit {
+        print("ChattingViewController - deinit() called")
+        NotificationCenter.default.removeObserver(self)
     }
     
 }

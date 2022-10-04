@@ -22,7 +22,7 @@
                         <rect key="frame" x="36.333333333333343" y="10" width="317.33333333333326" height="45"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="안양대 오픈 채팅방에 오신 걸 환영합니다. 도배, 욕설 등 불편한 언어 사용 시 상대방의 채팅 메시지를 길게 누르시면 신고하실 수 있습니다." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6P9-yt-AiJ">
-                                <rect key="frame" x="8" y="2" width="301.33333333333331" height="41"/>
+                                <rect key="frame" x="8" y="5" width="301.33333333333331" height="35"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="10"/>
                                 <color key="textColor" name="Type1MessageColor"/>
                                 <nil key="highlightedColor"/>
@@ -32,8 +32,8 @@
                         <constraints>
                             <constraint firstItem="6P9-yt-AiJ" firstAttribute="leading" secondItem="STK-Jf-Au4" secondAttribute="leading" constant="8" id="2mV-Bc-8Wt"/>
                             <constraint firstAttribute="trailing" secondItem="6P9-yt-AiJ" secondAttribute="trailing" constant="8" id="Civ-4g-b5B"/>
-                            <constraint firstItem="6P9-yt-AiJ" firstAttribute="top" secondItem="STK-Jf-Au4" secondAttribute="top" constant="2" id="wAV-fs-bNM"/>
-                            <constraint firstAttribute="bottom" secondItem="6P9-yt-AiJ" secondAttribute="bottom" constant="2" id="yri-cj-fEp"/>
+                            <constraint firstItem="6P9-yt-AiJ" firstAttribute="top" secondItem="STK-Jf-Au4" secondAttribute="top" constant="5" id="wAV-fs-bNM"/>
+                            <constraint firstAttribute="bottom" secondItem="6P9-yt-AiJ" secondAttribute="bottom" constant="5" id="yri-cj-fEp"/>
                         </constraints>
                     </view>
                 </subviews>
