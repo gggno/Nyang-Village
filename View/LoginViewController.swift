@@ -1,6 +1,8 @@
 import UIKit
 import FirebaseMessaging
 
+let pushNotificationName = "pushNotificationClicked"
+
 class LoginViewController: UIViewController {    
     
     //MARK: - IBOutlet
@@ -14,6 +16,8 @@ class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(pushNotificationClicked(_:)), name: Notification.Name(pushNotificationName), object: nil)
         
         // SQL 테스트 용
 //        forTheSqlTest()
@@ -124,6 +128,68 @@ class LoginViewController: UIViewController {
     }
     
     // MARK: - IBAction
+    
+    @objc func pushNotificationClicked(_ notification:Notification) {
+        print("pushNotificationClicked() called")
+        
+        if let object = notification.object {
+            self.navigationController?.popToRootViewController(animated: false)
+            let mainVC = self.storyboard?.instantiateViewController(withIdentifier: "MainViewController") as! MainViewController
+            mainVC.roomId = object as! Int
+            mainVC.title = ""
+            self.navigationController?.pushViewController(mainVC, animated: false)
+        }
+                
+        
+//        if let object = notification.object {
+//
+//            let chatVC = self.storyboard?.instantiateViewController(withIdentifier: "ChattingViewController") as! ChattingViewController
+//
+//            if roomInfos.count > 0 { // 자동로그인이 아닐 때
+//                for cnt in 0...roomInfos.count-1 {
+//                    if roomInfos[cnt].roomId == object as! Int {
+//
+//                        if let subjectName = roomInfos[cnt].roomName {
+//                            chatVC.title = subjectName
+//                        }
+//
+//                        if let roomName = roomInfos[cnt].roomName {
+//                            chatVC.subjectName = "\(roomName)"
+//                        }
+//                        if let professorName = roomInfos[cnt].professorName {
+//                            chatVC.professorName = "\(professorName)"
+//                        }
+//                        chatVC.roomId = roomInfos[cnt].roomId
+//
+//                        break
+//                    }
+//                }
+//            } else { // 자동로그인 일때
+//                for cnt in 0...roomInfoDatas.count-1 { // 채팅방 개수만큼 반복문 돌림
+//                    if roomInfoDatas[cnt].roomId == object as! Int { // 알림 온 roomId랑 비교
+//                        chatVC.title = "\(roomInfoDatas[cnt].roomName)"
+//
+//                        chatVC.subjectName = "\(roomInfoDatas[cnt].roomName)"
+//                        chatVC.professorName = "\(roomInfoDatas[cnt].professorName)"
+//                        chatVC.roomId = roomInfoDatas[cnt].roomId
+//
+//                        break
+//                    }
+//                }
+//            }
+//            // 기존 스택에 쌓여있는 뷰 제거 -> 메인 뷰로 루트 뷰 재설정 -> 채팅방으로 화면 푸시
+////            let rootVC = (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.window?.rootViewController
+////            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+////
+////            let naviVC = rootVC as! UINavigationController
+////            self.navigationController?.popToRootViewController(animated: false)
+////            naviVC.pushViewController(chatVC, animated: true)
+//            self.navigationController!.pushViewController(chatVC, animated: true)
+//        }
+        
+    }
+
+    
     @IBAction func LoginBtnClicked(_ sender: Any) {
         activityIndicator.startAnimating()
         loginViewPresenter.login(requestData: LoginRequest(fcm: loginViewPresenter.getToken(), password: loginViewPresenter.getPwd(), studentId: loginViewPresenter.getId(), version: 1), completion2: { result in

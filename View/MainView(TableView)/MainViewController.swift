@@ -1,7 +1,5 @@
 import UIKit
 
-let pushNotificationName = "pushNotificationClicked"
-
 class MainViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     //MARK: - IBOutlet
@@ -11,7 +9,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     //    var cellArray: [MainTableViewCell] = []
     var roomInfos: [RoomInfos] = []
     var roomInfoDatas: [RoomInfoRow] = []
-    
+    var roomId: Int? = nil
     var mainViewPresenter = MainViewPresenter()
     
     let sql = Sql.shared
@@ -19,15 +17,12 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        NotificationCenter.default.addObserver(self, selector: #selector(pushNotificationClicked(_:)), name: Notification.Name(pushNotificationName), object: nil)
-        
         roomInfoData()
         // 테이블 뷰 높이
         self.MainTableView.rowHeight = 120
         
         // 테이블 뷰 라인 삭제
         self.MainTableView.separatorStyle = UITableViewCell.SeparatorStyle.none
-        
         view.GradientColor(color1: UIColor(named: "MainYellowColor")!, color2: UIColor(named: "MainOrangeColor")!)
         
         // 테이블 뷰 뒤 뷰 cornerRadius 작업
@@ -36,6 +31,34 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         MainTableView.delegate = self
         MainTableView.dataSource = self
         MainTableView.register(UINib(nibName: "MainTableViewCell", bundle: nil), forCellReuseIdentifier: "MainTableViewCell")
+        
+        if roomId != nil { // 푸시 알림을 클릭했을 때(roomId에 값이 있을 때)
+            let chatVC = self.storyboard?.instantiateViewController(withIdentifier: "ChattingViewController") as! ChattingViewController
+            
+            if roomInfos.count > 0 { // 자동로그인이 아닐 때
+                for row in 0...roomInfos.count-1 {
+                    if roomId == roomInfos[row].roomId {
+                        print("최초 로그인일 때 푸시알림 클릭")
+                    }
+                }
+            } else { // 자동로그인 일 때
+                for row in 0...roomInfoDatas.count-1 {
+                    if roomId == roomInfoDatas[row].roomId {
+                        print("자동로그인 일 때 푸시알림 클릭")
+                        chatVC.title = roomInfoDatas[row].roomName
+                        print(chatVC.title!)
+                        // 사이드 메뉴를 위해 채팅뷰로 데이터 전달
+                        chatVC.subjectName = "\(roomInfoDatas[row].roomName)"
+                        chatVC.professorName = "\(roomInfoDatas[row].professorName)"
+                        chatVC.roomId = roomInfoDatas[row].roomId
+                        
+                        break
+                    }
+                }
+            }
+            self.navigationController!.pushViewController(chatVC, animated: true)
+        }
+        
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -53,18 +76,20 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         // 클릭 시 회색 하이라이트 제거
         cell.selectionStyle = .none
         
-        if roomInfos.count > 0 { // 자동로그인 일 때
+        if roomInfos.count > 0 { // 자동로그인이 아닐 때
             
             cell.SubjectNameLabel.text = roomInfos[indexPath.row].roomName
             cell.ProfessorNameLabel.text = roomInfos[indexPath.row].professorName! + " 교수님"
             cell.NumberOfParticipantsLabel.text = String(roomInfos[indexPath.row].roomInNames!.count)
             
             return cell
-        } else { // 자동로그인이 아닐 때
+        } else { // 자동로그인 일 때
+            // sql에서 가져올 때 데이터가 뒤에서부터 들어오니까 역순으로 가져와야함
+            let reverse = (roomInfoDatas.count - indexPath.row) - 1
             
-            cell.SubjectNameLabel.text = roomInfoDatas[indexPath.row].roomName
-            cell.ProfessorNameLabel.text = roomInfoDatas[indexPath.row].professorName + " 교수"
-            cell.NumberOfParticipantsLabel.text = String(roomInCount(roomid: roomInfoDatas[indexPath.row].roomId))
+            cell.SubjectNameLabel.text = roomInfoDatas[reverse].roomName
+            cell.ProfessorNameLabel.text = roomInfoDatas[reverse].professorName + " 교수"
+            cell.NumberOfParticipantsLabel.text = String(roomInCount(roomid: roomInfoDatas[reverse].roomId))
             return cell
         }
     }
@@ -91,6 +116,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
                 chatVC.title = subjectName
             }
             
+            // 사이드 메뉴를 위해 채팅뷰로 데이터 전달
             if let roomName = roomInfos[indexPath.row].roomName {
                 chatVC.subjectName = "\(roomName)"                
             }
@@ -100,11 +126,14 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
             chatVC.roomId = roomInfos[indexPath.row].roomId
             
         } else { // 자동로그인 일 때
-            chatVC.title = "\(roomInfoDatas[indexPath.row].roomName)"
+            let reverse = (roomInfoDatas.count - indexPath.row) - 1
             
-            chatVC.subjectName = "\(roomInfoDatas[indexPath.row].roomName)"
-            chatVC.professorName = "\(roomInfoDatas[indexPath.row].professorName)"
-            chatVC.roomId = roomInfoDatas[indexPath.row].roomId
+            chatVC.title = "\(roomInfoDatas[reverse].roomName)"
+            
+            // 사이드 메뉴를 위해 채팅뷰로 데이터 전달
+            chatVC.subjectName = "\(roomInfoDatas[reverse].roomName)"
+            chatVC.professorName = "\(roomInfoDatas[reverse].professorName)"
+            chatVC.roomId = roomInfoDatas[reverse].roomId
         }
         
         self.navigationController!.pushViewController(chatVC, animated: true)
@@ -142,49 +171,5 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         self.navigationController?.pushViewController(settingVC!, animated: true)
     }
     
-    @objc func pushNotificationClicked(_ notification:Notification) {
-        print("pushNotificationClicked() called")
-        
-        if let object = notification.object {
-            
-            let chatVC = self.storyboard?.instantiateViewController(withIdentifier: "ChattingViewController") as! ChattingViewController
-            
-            if roomInfos.count > 0 { // 자동로그인이 아닐 때
-                for cnt in 0...roomInfos.count-1 {
-                    if roomInfos[cnt].roomId == object as! Int {
-                        
-                        if let subjectName = roomInfos[cnt].roomName {
-                            chatVC.title = subjectName
-                        }
-                        
-                        if let roomName = roomInfos[cnt].roomName {
-                            chatVC.subjectName = "\(roomName)"
-                        }
-                        if let professorName = roomInfos[cnt].professorName {
-                            chatVC.professorName = "\(professorName)"
-                        }
-                        chatVC.roomId = roomInfos[cnt].roomId
-                        
-                        break
-                    }
-                }
-            } else { // 자동로그인 일때
-                for cnt in 0...roomInfoDatas.count-1 { // 채팅방 개수만큼 반복문 돌림
-                    if roomInfoDatas[cnt].roomId == object as! Int { // 알림 온 roomId랑 비교
-                        chatVC.title = "\(roomInfoDatas[cnt].roomName)"
-                        
-                        chatVC.subjectName = "\(roomInfoDatas[cnt].roomName)"
-                        chatVC.professorName = "\(roomInfoDatas[cnt].professorName)"
-                        chatVC.roomId = roomInfoDatas[cnt].roomId
-                        
-                        break
-                    }
-                }
-            }
-            // 기존 스택에 쌓여있는 뷰 제거 -> 루트 뷰 재설정 -> 푸시
-            self.navigationController!.pushViewController(chatVC, animated: true)
-        }
-        
-    }
     
 }

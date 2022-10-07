@@ -30,7 +30,6 @@ class ChattingViewController: UIViewController, UITableViewDelegate, UITableView
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print(title, professorName, subjectName)
         
         // 소켓 연결
         registerSockect()
@@ -107,6 +106,8 @@ class ChattingViewController: UIViewController, UITableViewDelegate, UITableView
         
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: self)
     }
+    
+    
     
     // 키보드 올라갈 때 호출되는 메서드
     @objc func keyboardWillShowHandling(notification: NSNotification) {

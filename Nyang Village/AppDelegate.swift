@@ -71,9 +71,17 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
         let sql = Sql.shared
         // roomId 형 변환
         let roomIdConvert = (userInfo["roomId"] as! NSString).intValue
+        
+//        if ConnectChat.roomId == Int(roomIdConvert) {
+//            print("패스")
+//            return UIBackgroundFetchResult.newData
+//        }
+        
         let notiDatas : NotiRoomInfo = sql.selectRoomInfoNoti(roomid: Int(roomIdConvert))
         
         let pushNotification =  UNMutableNotificationContent()
+            
+        sql.insertChatInfo(roomid: Int(roomIdConvert), nickName: userInfo["nickName"]! as! String, time: userInfo["time"]! as! String, content: userInfo["content"]! as! String, type: 0)
         
         // 자신과 보낸사람 닉네임을 비교해서 같지 않다. -> 알림 안 보냄
 //        if sql.selectRoomInfoInNickname(roomid: Int(roomIdConvert)) != userInfo["nickName"] as! String
@@ -97,9 +105,11 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
     // 앱이 실행 중인 경우
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
         
+        let sql = Sql.shared
         let application = UIApplication.shared
         let userInfo = notification.request.content.userInfo
         
+//        sql.insertChatInfo(roomid: userInfo["roomId"]! as! Int, nickName: userInfo["nickName"]! as! String, time: userInfo["time"]! as! String, content: userInfo["content"]! as! String, type: 2)
         // roomId 형 변환
         let roomIdConvert = (userInfo["roomId"] as! NSString).intValue
         
@@ -125,10 +135,11 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
         
 //        let rootVC = (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.window?.rootViewController
 //        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        
+        let sql = Sql.shared
         let application = UIApplication.shared
         let userInfo = response.notification.request.content.userInfo
         
+//        sql.insertChatInfo(roomid: userInfo["roomId"]! as! Int, nickName: userInfo["nickName"]! as! String, time: userInfo["time"]! as! String, content: userInfo["content"]! as! String, type: 2)
         // roomId 형 변환
         let roomIdConvert = (userInfo["roomId"] as! NSString).intValue
         
@@ -177,6 +188,7 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
         
         completionHandler()
     }
+    
     
 }
 
