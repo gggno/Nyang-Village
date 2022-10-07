@@ -1,5 +1,6 @@
 import UIKit
 import StompClientLib
+import SystemConfiguration
 
 class ChattingViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, StompClientLibDelegate {
     
@@ -45,7 +46,7 @@ class ChattingViewController: UIViewController, UITableViewDelegate, UITableView
         
         self.navigationController?.navigationBar.topItem?.title = ""
         self.navigationController?.navigationBar.tintColor = .white
-//        self.navigationController?.navigationBar.backgroundColor = .black
+        //        self.navigationController?.navigationBar.backgroundColor = .black
         
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "line.3.horizontal"), style: .plain, target: self, action: #selector(sideBtnClicked))
         
@@ -137,7 +138,7 @@ class ChattingViewController: UIViewController, UITableViewDelegate, UITableView
         print("chattingVC - keyboardWillHideHandling() called")
         
         let notiInfo = notification.userInfo!
-
+        
         self.sendViewBottomMargin.constant = 8 // sendView와 superView 간격이 8이라서 추가해줌.
         
         let animationDuration = notiInfo[UIResponder.keyboardAnimationDurationUserInfoKey] as! TimeInterval
@@ -145,33 +146,33 @@ class ChattingViewController: UIViewController, UITableViewDelegate, UITableView
             self.view.layoutIfNeeded()
         }
     }
-  
-//    override func viewWillAppear(_ animated: Bool) {
-//        NotificationCenter.default.addObserver(self, selector: #selector(keyboardUp), name: UIResponder.keyboardWillShowNotification, object: nil)
-//        NotificationCenter.default.addObserver(self, selector: #selector(keyboardDown), name: UIResponder.keyboardWillHideNotification, object: nil)
-//    }
-//    override func viewWillDisappear(_ animated: Bool) {
-//        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
-//        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
-//    }
-//    @objc func keyboardUp(notification:NSNotification) {
-//        print("up")
-//        if let keyboardFrame:NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
-//           let keyboardRectangle = keyboardFrame.cgRectValue
-//
-//            UIView.animate(
-//                withDuration: 0.3
-//                , animations: {
-//                    self.view.transform = CGAffineTransform(translationX: 0, y: -keyboardRectangle.height)
-//                }
-//            )
-//        }
-//    }
-//    @objc func keyboardDown() {
-//        print("down")
-//        self.view.transform = .identity
-//
-//    }
+    
+    //    override func viewWillAppear(_ animated: Bool) {
+    //        NotificationCenter.default.addObserver(self, selector: #selector(keyboardUp), name: UIResponder.keyboardWillShowNotification, object: nil)
+    //        NotificationCenter.default.addObserver(self, selector: #selector(keyboardDown), name: UIResponder.keyboardWillHideNotification, object: nil)
+    //    }
+    //    override func viewWillDisappear(_ animated: Bool) {
+    //        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
+    //        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
+    //    }
+    //    @objc func keyboardUp(notification:NSNotification) {
+    //        print("up")
+    //        if let keyboardFrame:NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
+    //           let keyboardRectangle = keyboardFrame.cgRectValue
+    //
+    //            UIView.animate(
+    //                withDuration: 0.3
+    //                , animations: {
+    //                    self.view.transform = CGAffineTransform(translationX: 0, y: -keyboardRectangle.height)
+    //                }
+    //            )
+    //        }
+    //    }
+    //    @objc func keyboardDown() {
+    //        print("down")
+    //        self.view.transform = .identity
+    //
+    //    }
     
     // 화면 터치 시 키보드 다운
     @objc func keyboardDownGesture(_ gesture: UITapGestureRecognizer) {
@@ -198,7 +199,7 @@ class ChattingViewController: UIViewController, UITableViewDelegate, UITableView
     // sql로 chatInfo들의 데이터를 chatInfoDatas에 저장
     func chatInfoData() {
         chatInfoDatas = sql.selectChatInfo(roomId: roomId!)
-//        print("chatInfoDatas: \(chatInfoDatas)")
+        //        print("chatInfoDatas: \(chatInfoDatas)")
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -239,6 +240,10 @@ class ChattingViewController: UIViewController, UITableViewDelegate, UITableView
     
     // MARK: - IBAction
     @IBAction func sendBtnClicked(_ sender: Any) {
+        
+        if !isInternetAvailable() {
+            return
+        }
         
         if inputTextView.text != "" { // inputTextView에 글자가 있을 때만 실행
             
@@ -366,9 +371,9 @@ class ChattingViewController: UIViewController, UITableViewDelegate, UITableView
             }
         }
         
-//        print("Destination : \(destination)")
-//        print("JSON Body : \(String(describing: jsonBody))")
-//        print("String Body : \(stringBody ?? "nil")")
+        //        print("Destination : \(destination)")
+        //        print("JSON Body : \(String(describing: jsonBody))")
+        //        print("String Body : \(stringBody ?? "nil")")
     }
     
     func stompClientDidDisconnect(client: StompClientLib!) {
@@ -419,7 +424,7 @@ class ChattingViewController: UIViewController, UITableViewDelegate, UITableView
     func disconnect() {
         print("disconnect() called")
         socketClient.disconnect()
-//        ConnectChat.roomId = -1
+        //        ConnectChat.roomId = -1
     }
     
     // 채팅 방 입장할 때
@@ -456,6 +461,34 @@ class ChattingViewController: UIViewController, UITableViewDelegate, UITableView
         alert.addAction(alertAction)
         self.present(alert, animated: true)
     }
+    
+    // 인터넷 연결 체크
+    func isInternetAvailable() -> Bool
+    {
+        var zeroAddress = sockaddr_in()
+        zeroAddress.sin_len = UInt8(MemoryLayout.size(ofValue: zeroAddress))
+        zeroAddress.sin_family = sa_family_t(AF_INET)
+        
+        let defaultRouteReachability = withUnsafePointer(to: &zeroAddress) {
+            $0.withMemoryRebound(to: sockaddr.self, capacity: 1) {zeroSockAddress in
+                SCNetworkReachabilityCreateWithAddress(nil, zeroSockAddress)
+            }
+        }
+        
+        var flags = SCNetworkReachabilityFlags()
+        
+        if !SCNetworkReachabilityGetFlags(defaultRouteReachability!, &flags) {
+            
+            return false
+            
+        }
+        
+        let isReachable = flags.contains(.reachable)
+        let needsConnection = flags.contains(.connectionRequired)
+        
+        return (isReachable && !needsConnection)
+    }
+    
     
     deinit {
         print("ChattingViewController - deinit() called")

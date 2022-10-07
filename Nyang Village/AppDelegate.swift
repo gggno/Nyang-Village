@@ -111,8 +111,6 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
         print("AppDelegate - willPresent called")
         print("설명 :: 앱 포그라운드 상태 푸시 알림 확인")
         print("userInfo :: \(notification.request.content.userInfo)") // 푸시 정보 가져옴
-        //        print("title :: \(notification.request.content.title)") // 푸시 정보 가져옴
-        //        print("body :: \(notification.request.content.body)") // 푸시 정보 가져옴
         
         //        if application.applicationState == .active {
         //            print(".active")
