@@ -73,31 +73,26 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
         let roomIdConvert = (userInfo["roomId"] as! NSString).intValue
         
 //        if ConnectChat.roomId == Int(roomIdConvert) {
-//            print("패스")
+//            print("해당 채팅방에 있을 시 알림 안 울림")
 //            return UIBackgroundFetchResult.newData
 //        }
         
         let notiDatas : NotiRoomInfo = sql.selectRoomInfoNoti(roomid: Int(roomIdConvert))
         
         let pushNotification =  UNMutableNotificationContent()
-            
+        
+        pushNotification.userInfo = userInfo
+        pushNotification.title = notiDatas.roomName
+        pushNotification.subtitle = userInfo["nickName"] as! String
+        pushNotification.body = userInfo["content"] as! String
+        //        pushNotification.badge = 1
+        pushNotification.sound = UNNotificationSound.default
+        
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 1.5, repeats: false)
+        let request = UNNotificationRequest(identifier: "\(Int(roomIdConvert))", content: pushNotification, trigger: trigger)
+        UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
+        
         sql.insertChatInfo(roomid: Int(roomIdConvert), nickName: userInfo["nickName"]! as! String, time: userInfo["time"]! as! String, content: userInfo["content"]! as! String, type: 0)
-        
-        // 자신과 보낸사람 닉네임을 비교해서 같지 않다. -> 알림 안 보냄
-//        if sql.selectRoomInfoInNickname(roomid: Int(roomIdConvert)) != userInfo["nickName"] as! String
-//        {
-            pushNotification.userInfo = userInfo
-            pushNotification.title = notiDatas.roomName
-            pushNotification.subtitle = userInfo["nickName"] as! String
-            pushNotification.body = userInfo["content"] as! String
-//            pushNotification.badge = 1
-            pushNotification.sound = UNNotificationSound.default
-        
-        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 0.0001, repeats: false)
-            let request = UNNotificationRequest(identifier: "\(Int(roomIdConvert))", content: pushNotification, trigger: trigger)
-            UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
-//        }
-        
         
         return UIBackgroundFetchResult.newData
     }
@@ -109,23 +104,23 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
         let application = UIApplication.shared
         let userInfo = notification.request.content.userInfo
         
-//        sql.insertChatInfo(roomid: userInfo["roomId"]! as! Int, nickName: userInfo["nickName"]! as! String, time: userInfo["time"]! as! String, content: userInfo["content"]! as! String, type: 2)
+        //        sql.insertChatInfo(roomid: userInfo["roomId"]! as! Int, nickName: userInfo["nickName"]! as! String, time: userInfo["time"]! as! String, content: userInfo["content"]! as! String, type: 2)
         // roomId 형 변환
         let roomIdConvert = (userInfo["roomId"] as! NSString).intValue
         
         print("AppDelegate - willPresent called")
         print("설명 :: 앱 포그라운드 상태 푸시 알림 확인")
         print("userInfo :: \(notification.request.content.userInfo)") // 푸시 정보 가져옴
-//        print("title :: \(notification.request.content.title)") // 푸시 정보 가져옴
-//        print("body :: \(notification.request.content.body)") // 푸시 정보 가져옴
+        //        print("title :: \(notification.request.content.title)") // 푸시 정보 가져옴
+        //        print("body :: \(notification.request.content.body)") // 푸시 정보 가져옴
         
-//        if application.applicationState == .active {
-//            print(".active")
-//            if notification.request.identifier == "\(Int(roomIdConvert))" {
-//                print("같다.")
-//                NotificationCenter.default.post(name: Notification.Name(pushNotificationName), object: roomIdConvert)
-//            }
-//        }
+        //        if application.applicationState == .active {
+        //            print(".active")
+        //            if notification.request.identifier == "\(Int(roomIdConvert))" {
+        //                print("같다.")
+        //                NotificationCenter.default.post(name: Notification.Name(pushNotificationName), object: roomIdConvert)
+        //            }
+        //        }
         
         completionHandler([.banner, .sound, .badge])
     }
@@ -133,22 +128,16 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
     // 백그라운드인 경우 & 사용자가 푸시를 클릭한 경우
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
         
-//        let rootVC = (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.window?.rootViewController
-//        let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let sql = Sql.shared
         let application = UIApplication.shared
         let userInfo = response.notification.request.content.userInfo
         
-//        sql.insertChatInfo(roomid: userInfo["roomId"]! as! Int, nickName: userInfo["nickName"]! as! String, time: userInfo["time"]! as! String, content: userInfo["content"]! as! String, type: 2)
+        //        sql.insertChatInfo(roomid: userInfo["roomId"]! as! Int, nickName: userInfo["nickName"]! as! String, time: userInfo["time"]! as! String, content: userInfo["content"]! as! String, type: 2)
         // roomId 형 변환
         let roomIdConvert = (userInfo["roomId"] as! NSString).intValue
         
         print("AppDelegate - didReceive called")
         print("앱 백그라운드 상태 푸시 알림 확인")
-        
-//        print("userInfo :: \(response.notification.request.content.userInfo)") // 푸시 정보 가져옴
-//        print("title :: \(response.notification.request.content.title)") // 푸시 정보 가져옴
-//        print("body :: \(response.notification.request.content.body)") // 푸시 정보 가져옴
         
         // 앱이 켜져있는 상태에 푸시 알림을 눌렀을 때
         if application.applicationState == .active {
@@ -156,15 +145,6 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
             if response.notification.request.identifier == "\(Int(roomIdConvert))" {
                 print("같다.")
                 NotificationCenter.default.post(name: Notification.Name(pushNotificationName), object: roomIdConvert)
-//                let chatVC = storyboard.instantiateViewController(withIdentifier: "ChattingViewController") as? ChattingViewController
-//                let naviVC = rootVC as? UINavigationController
-//                
-//                chatVC?.title = "테스트 타이틀"
-//                chatVC?.subjectName = "테스트 과목"
-//                chatVC?.professorName = "테스트 교수"
-//                
-//                chatVC?.roomId = Int(roomIdConvert)
-//                naviVC?.pushViewController(chatVC!, animated: true)
             }
         }
         
@@ -174,15 +154,6 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
             if response.notification.request.identifier == "\(Int(roomIdConvert))" {
                 print("같다.")
                 NotificationCenter.default.post(name: Notification.Name(pushNotificationName), object: roomIdConvert)
-//                let chatVC = storyboard.instantiateViewController(withIdentifier: "ChattingViewController") as? ChattingViewController
-//                let naviVC = rootVC as? UINavigationController
-//
-//                chatVC?.title = "테스트 타이틀"
-//                chatVC?.subjectName = "테스트 과목"
-//                chatVC?.professorName = "테스트 교수"
-//
-//                chatVC?.roomId = Int(roomIdConvert)
-//                naviVC?.pushViewController(chatVC!, animated: true)
             }
         }
         

@@ -417,8 +417,9 @@ class ChattingViewController: UIViewController, UITableViewDelegate, UITableView
     
     // Unsubscribe
     func disconnect() {
+        print("disconnect() called")
         socketClient.disconnect()
-        ConnectChat.roomId = -1
+//        ConnectChat.roomId = -1
     }
     
     // 채팅 방 입장할 때
