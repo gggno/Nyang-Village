@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import StompClientLib
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
@@ -50,6 +51,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Called as the scene transitions from the background to the foreground.
         // Use this method to undo the changes made on entering the background.
         print("sceneWillEnterForeground")
+        // 뱃지 카운트 초기화
+        UIApplication.shared.applicationIconBadgeNumber = 0
     }
 
     func sceneDidEnterBackground(_ scene: UIScene) {

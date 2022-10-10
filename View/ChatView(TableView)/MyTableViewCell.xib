@@ -28,7 +28,7 @@
                         <rect key="frame" x="89.5" y="30" width="329.5" height="196"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B1L-uM-ROG">
-                                <rect key="frame" x="10" y="6" width="309.5" height="184"/>
+                                <rect key="frame" x="10" y="8" width="309.5" height="180"/>
                                 <string key="text">요약 정리
 오토레이아웃은 뷰에 담긴 콘텐츠 사이즈를 자동으로 계산해서 크기 조건을 설정한다.
 션은 750으로 설정된다.
@@ -41,8 +41,8 @@
                         </subviews>
                         <color key="backgroundColor" name="MyChatBubbleColor"/>
                         <constraints>
-                            <constraint firstAttribute="bottom" secondItem="B1L-uM-ROG" secondAttribute="bottom" constant="6" id="0Xg-h6-ckx"/>
-                            <constraint firstItem="B1L-uM-ROG" firstAttribute="top" secondItem="1VV-8J-eGJ" secondAttribute="top" constant="6" id="GGa-JO-ym9"/>
+                            <constraint firstAttribute="bottom" secondItem="B1L-uM-ROG" secondAttribute="bottom" constant="8" id="0Xg-h6-ckx"/>
+                            <constraint firstItem="B1L-uM-ROG" firstAttribute="top" secondItem="1VV-8J-eGJ" secondAttribute="top" constant="8" id="GGa-JO-ym9"/>
                             <constraint firstAttribute="trailing" secondItem="B1L-uM-ROG" secondAttribute="trailing" constant="10" id="aeR-SS-WLm"/>
                             <constraint firstItem="B1L-uM-ROG" firstAttribute="leading" secondItem="1VV-8J-eGJ" secondAttribute="leading" constant="10" id="dbI-og-X9T"/>
                         </constraints>

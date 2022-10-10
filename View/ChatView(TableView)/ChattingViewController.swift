@@ -188,7 +188,7 @@ class ChattingViewController: UIViewController, UITableViewDelegate, UITableView
                 feedbackGenerator.impactOccurred()
                 
                 let reportVC = self.storyboard?.instantiateViewController(withIdentifier: "ReportPopUpViewController") as! ReportPopUpViewController
-                
+                print("reportVC \(nickName)")
                 // 백그라운드 투명도 처리
                 reportVC.modalPresentationStyle = .overCurrentContext
                 present(reportVC, animated: true)
@@ -392,9 +392,9 @@ class ChattingViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     func serverDidSendError(client: StompClientLib!, withErrorMessage description: String, detailedErrorMessage message: String?) {
-        print("Error send : " + description)
-        
-        socketClient.disconnect()
+        print("serverDidSendError() called Error send : " + description)
+        // disconnect하고 registerSokect이 실행되야 하는데 비동기 처리로 인해 disconnect이 더 늦게 처리 됨.
+//        socketClient.disconnect()
         registerSockect()
     }
     
@@ -480,7 +480,6 @@ class ChattingViewController: UIViewController, UITableViewDelegate, UITableView
         if !SCNetworkReachabilityGetFlags(defaultRouteReachability!, &flags) {
             
             return false
-            
         }
         
         let isReachable = flags.contains(.reachable)
@@ -488,7 +487,6 @@ class ChattingViewController: UIViewController, UITableViewDelegate, UITableView
         
         return (isReachable && !needsConnection)
     }
-    
     
     deinit {
         print("ChattingViewController - deinit() called")

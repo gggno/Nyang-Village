@@ -82,12 +82,12 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
         let pushNotification =  UNMutableNotificationContent()
         
         pushNotification.userInfo = userInfo
-        pushNotification.title = notiDatas.roomName
-        pushNotification.subtitle = userInfo["nickName"] as! String
+        pushNotification.title = userInfo["nickName"] as! String
+        pushNotification.subtitle = notiDatas.roomName
         pushNotification.body = userInfo["content"] as! String
-        //        pushNotification.badge = 1
+//        pushNotification.badge = 0
         pushNotification.sound = UNNotificationSound.default
-        
+        application.applicationIconBadgeNumber = application.applicationIconBadgeNumber + 1
         let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 1.5, repeats: false)
         let request = UNNotificationRequest(identifier: "\(Int(roomIdConvert))", content: pushNotification, trigger: trigger)
         UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
@@ -156,6 +156,16 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
         }
         
         completionHandler()
+    }
+    
+    // 앱이 액티브모드로 돌아갈 때
+    func applicationWillEnterForeground(_ application: UIApplication) {
+        print("applicationWillEnterForeground")
+    }
+    
+    func applicationDidBecomeActive(_ application: UIApplication) {
+        print("applicationDidBecomeActive() called")
+        application.applicationIconBadgeNumber = 0
     }
     
     

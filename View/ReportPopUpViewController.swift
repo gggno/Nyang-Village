@@ -6,7 +6,6 @@ class ReportPopUpViewController: UIViewController {
     @IBOutlet weak var reportPopUpView: UIView!
     @IBOutlet weak var reportView: UIView!
     @IBOutlet weak var nickNameLabel: UILabel!
-    @IBOutlet weak var reportTextView: UITextView!
     @IBOutlet weak var cancelBtn: UIButton!
     @IBOutlet weak var sendBtn: UIButton!
     
@@ -15,10 +14,6 @@ class ReportPopUpViewController: UIViewController {
 
         self.reportPopUpView.layer.cornerRadius = 15
         self.reportView.CornerRadiusLayerSetting(cornerRadius: 15, cornerLayer: [.layerMinXMinYCorner, .layerMaxXMinYCorner])
-        
-        self.reportTextView.layer.cornerRadius = 5
-        self.reportTextView.layer.borderWidth = 1
-        self.reportTextView.layer.borderColor = UIColor(named: "MainOrangeColor")?.cgColor
         
         self.cancelBtn.layer.cornerRadius = 5
         self.cancelBtn.layer.borderWidth = 1
