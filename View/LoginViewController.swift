@@ -131,8 +131,9 @@ class LoginViewController: UIViewController {
     
     @objc func pushNotificationClicked(_ notification:Notification) {
         print("pushNotificationClicked() called")
-        
+        print("\(notification.object)")
         if let object = notification.object {
+            UIApplication.shared.applicationIconBadgeNumber = 0
             self.navigationController?.popToRootViewController(animated: false)
             let mainVC = self.storyboard?.instantiateViewController(withIdentifier: "MainViewController") as! MainViewController
             mainVC.roomId = object as! Int

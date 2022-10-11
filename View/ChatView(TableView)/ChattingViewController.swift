@@ -198,6 +198,7 @@ class ChattingViewController: UIViewController, UITableViewDelegate, UITableView
     
     // sql로 chatInfo들의 데이터를 chatInfoDatas에 저장
     func chatInfoData() {
+        print("chatInfoData의 roomId는 \(roomId)")
         chatInfoDatas = sql.selectChatInfo(roomId: roomId!)
         //        print("chatInfoDatas: \(chatInfoDatas)")
     }
@@ -241,7 +242,7 @@ class ChattingViewController: UIViewController, UITableViewDelegate, UITableView
     // MARK: - IBAction
     @IBAction func sendBtnClicked(_ sender: Any) {
         
-        if !isInternetAvailable() {
+        if !isInternetAvailable() { // 네트워크 감지 코드
             return
         }
         

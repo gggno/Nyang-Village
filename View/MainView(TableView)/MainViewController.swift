@@ -31,8 +31,9 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         MainTableView.delegate = self
         MainTableView.dataSource = self
         MainTableView.register(UINib(nibName: "MainTableViewCell", bundle: nil), forCellReuseIdentifier: "MainTableViewCell")
-        
+        print("main roomId= \(roomId)")
         if roomId != nil { // 푸시 알림을 클릭했을 때(roomId에 값이 있을 때)
+            print("푸시 알림을 클릭했을 때(roomId에 값이 있을 때)")
             let chatVC = self.storyboard?.instantiateViewController(withIdentifier: "ChattingViewController") as! ChattingViewController
             
             if roomInfos.count > 0 { // 자동로그인이 아닐 때
