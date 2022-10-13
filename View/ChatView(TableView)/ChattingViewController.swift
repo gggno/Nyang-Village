@@ -35,7 +35,7 @@ class ChattingViewController: UIViewController, UITableViewDelegate, UITableView
         // 소켓 연결
         registerSockect()
         
-        chatInfoData()
+        chatInfoData() // sql에 저장된 채팅 목록 데이터를 가져옴
         
         // 채팅방 별 닉네임 가져오기
         nickName = sql.selectRoomInfoInNickname(roomid: roomId!)
@@ -147,33 +147,6 @@ class ChattingViewController: UIViewController, UITableViewDelegate, UITableView
         }
     }
     
-    //    override func viewWillAppear(_ animated: Bool) {
-    //        NotificationCenter.default.addObserver(self, selector: #selector(keyboardUp), name: UIResponder.keyboardWillShowNotification, object: nil)
-    //        NotificationCenter.default.addObserver(self, selector: #selector(keyboardDown), name: UIResponder.keyboardWillHideNotification, object: nil)
-    //    }
-    //    override func viewWillDisappear(_ animated: Bool) {
-    //        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
-    //        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
-    //    }
-    //    @objc func keyboardUp(notification:NSNotification) {
-    //        print("up")
-    //        if let keyboardFrame:NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
-    //           let keyboardRectangle = keyboardFrame.cgRectValue
-    //
-    //            UIView.animate(
-    //                withDuration: 0.3
-    //                , animations: {
-    //                    self.view.transform = CGAffineTransform(translationX: 0, y: -keyboardRectangle.height)
-    //                }
-    //            )
-    //        }
-    //    }
-    //    @objc func keyboardDown() {
-    //        print("down")
-    //        self.view.transform = .identity
-    //
-    //    }
-    
     // 화면 터치 시 키보드 다운
     @objc func keyboardDownGesture(_ gesture: UITapGestureRecognizer) {
         view.endEditing(true)
@@ -181,14 +154,23 @@ class ChattingViewController: UIViewController, UITableViewDelegate, UITableView
     
     // 셀 길게 클릭 시 신고 창 팝업
     @objc func longPressGestureRecognized(_ sender: UILongPressGestureRecognizer) {
+        var index = chatTableView.indexPathForRow(at: sender.location(in: self.chatTableView))![1]
+        
         if sender.state == .began {
+           
+            if chatInfoDatas[index].type != 0 { // 상대방 셀일 때만 실행
+                print("상대방 셀이 아니라서 리턴")
+                return
+            }
+            
             if let section = self.chatTableView.indexPathForRow(at: sender.location(in: self.chatTableView))?.section {
                 let feedbackGenerator = UIImpactFeedbackGenerator(style: .medium)
                 feedbackGenerator.prepare()
                 feedbackGenerator.impactOccurred()
                 
                 let reportVC = self.storyboard?.instantiateViewController(withIdentifier: "ReportPopUpViewController") as! ReportPopUpViewController
-                print("reportVC \(nickName)")
+                reportVC.nickName = chatInfoDatas[index].nickName
+                
                 // 백그라운드 투명도 처리
                 reportVC.modalPresentationStyle = .overCurrentContext
                 present(reportVC, animated: true)
@@ -200,7 +182,7 @@ class ChattingViewController: UIViewController, UITableViewDelegate, UITableView
     func chatInfoData() {
         print("chatInfoData의 roomId는 \(roomId)")
         chatInfoDatas = sql.selectChatInfo(roomId: roomId!)
-        //        print("chatInfoDatas: \(chatInfoDatas)")
+                print("chatInfoDatas: \(chatInfoDatas)")
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -271,6 +253,7 @@ class ChattingViewController: UIViewController, UITableViewDelegate, UITableView
             // 맨 아래로 스크롤 내리기
             chatTableView.scrollToRow(at: lastIndexPath, at: UITableView.ScrollPosition.bottom, animated: false)
             
+            // 소켓 통신
             socketClient.sendJSONForDict(dict: sendData as AnyObject, toDestination: "/pub/ay/chat")
             
             inputTextView.text = ""
@@ -290,7 +273,6 @@ class ChattingViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     
-    
     // MARK: - stompFunc
     
     // 구독 중인 토픽에서 Publish되면 실행되는 함수. 모든 통신이 여기서 이루어짐.
@@ -301,7 +283,7 @@ class ChattingViewController: UIViewController, UITableViewDelegate, UITableView
         let jsonData = jsonBody as? [String : AnyObject]
         print("start: \(jsonData!["start"])")
         
-        if jsonData!["start"] != nil { // 처음에 입장방 들어갈 때의 통신
+        if jsonData!["start"] != nil { // 처음에 채팅방 들어갈 때의 통신
             if jsonData!["start"] as! Int == 1 { // 이중로그인
                 print("jsonData[start] 1 일때(이중로그인으로 인한 처리)")
                 logoutAlert(title: "중복 로그인", message: "중복 로그인이 감지되어 해당 기기는 로그아웃 됩니다. ")

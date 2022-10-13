@@ -233,7 +233,7 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RUI-vq-q7Z">
                                         <rect key="frame" x="0.0" y="679" width="414" height="34"/>
                                         <subviews>
-                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" keyboardDismissMode="onDrag" text="hello world" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="1UB-eQ-qVl">
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" keyboardDismissMode="onDrag" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="1UB-eQ-qVl">
                                                 <rect key="frame" x="20" y="0.0" width="337" height="34"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
@@ -524,7 +524,7 @@
                     </view>
                     <connections>
                         <outlet property="cancelBtn" destination="TVn-sZ-NzN" id="Mp8-ys-jkD"/>
-                        <outlet property="nickNameLabel" destination="21U-uP-15G" id="vMd-vW-SPD"/>
+                        <outlet property="nickNameLabel" destination="nsg-cu-6r0" id="a2Z-fH-lec"/>
                         <outlet property="reportPopUpView" destination="RB8-61-PuF" id="WxH-eu-LJO"/>
                         <outlet property="reportView" destination="f36-Gn-Otg" id="apM-JO-M13"/>
                         <outlet property="sendBtn" destination="pq6-RT-ZB5" id="NNW-Vn-txo"/>

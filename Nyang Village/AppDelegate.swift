@@ -72,10 +72,10 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
         // roomId 형 변환
         let roomIdConvert = (userInfo["roomId"] as! NSString).intValue
         
-//        if ConnectChat.roomId == Int(roomIdConvert) {
-//            print("해당 채팅방에 있을 시 알림 안 울림")
-//            return UIBackgroundFetchResult.newData
-//        }
+        if ConnectChat.roomId == Int(roomIdConvert) {
+            print("해당 채팅방에 있을 시 알림 안 울림")
+            return UIBackgroundFetchResult.newData
+        }
         
         let notiDatas : NotiRoomInfo = sql.selectRoomInfoNoti(roomid: Int(roomIdConvert))
         

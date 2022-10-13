@@ -1,4 +1,5 @@
 import UIKit
+import StompClientLib
 
 class ReportPopUpViewController: UIViewController {
 
@@ -9,9 +10,11 @@ class ReportPopUpViewController: UIViewController {
     @IBOutlet weak var cancelBtn: UIButton!
     @IBOutlet weak var sendBtn: UIButton!
     
+    var nickName: String?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        self.nickNameLabel.text = nickName!
         self.reportPopUpView.layer.cornerRadius = 15
         self.reportView.CornerRadiusLayerSetting(cornerRadius: 15, cornerLayer: [.layerMinXMinYCorner, .layerMaxXMinYCorner])
         
@@ -24,7 +27,6 @@ class ReportPopUpViewController: UIViewController {
         self.sendBtn.layer.borderColor = UIColor(named: "MainOrangeColor")?.cgColor
     }
     
-    
     // MARK: - IBAction
     
     // 취소 버튼 클릭
@@ -34,6 +36,7 @@ class ReportPopUpViewController: UIViewController {
     
     // 전송 버튼 클릭
     @IBAction func sendBtnClicked(_ sender: Any) {
+        
         
     }
     
