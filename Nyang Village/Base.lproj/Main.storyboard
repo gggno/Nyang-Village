@@ -367,6 +367,9 @@
                                 <color key="tintColor" systemColor="opaqueSeparatorColor"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" image="bell.fill" catalog="system"/>
+                                <connections>
+                                    <action selector="bellClicked:" destination="1oD-DY-9jH" eventType="touchUpInside" id="DaX-h9-Mzh"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="9jK-y1-zOm"/>
@@ -390,6 +393,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="X5M-5W-BL1"/>
                     <connections>
+                        <outlet property="bellBtn" destination="lWZ-wk-jrz" id="aC1-jp-Cch"/>
                         <outlet property="professorNameLabel" destination="UEW-ub-Ih9" id="x49-aq-RlU"/>
                         <outlet property="sideMenuTableView" destination="zVk-Bc-Z9D" id="LUF-wh-xlc"/>
                         <outlet property="subjectNameLabel" destination="cAa-y0-1Sl" id="m1d-Pw-KHX"/>

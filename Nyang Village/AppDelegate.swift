@@ -89,7 +89,7 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
         pushNotification.sound = UNNotificationSound.default
         application.applicationIconBadgeNumber = application.applicationIconBadgeNumber + 1
 
-        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 1.5, repeats: false)
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 0.1, repeats: false)
         let request = UNNotificationRequest(identifier: "\(Int(roomIdConvert))", content: pushNotification, trigger: trigger)
         UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
         
@@ -131,7 +131,6 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
         let application = UIApplication.shared
         let userInfo = response.notification.request.content.userInfo
         
-        //        sql.insertChatInfo(roomid: userInfo["roomId"]! as! Int, nickName: userInfo["nickName"]! as! String, time: userInfo["time"]! as! String, content: userInfo["content"]! as! String, type: 2)
         // roomId 형 변환
         let roomIdConvert = (userInfo["roomId"] as! NSString).intValue
         

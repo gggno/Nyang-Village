@@ -7,7 +7,8 @@ class SideMenuViewController: UIViewController, UITableViewDelegate, UITableView
    
     @IBOutlet weak var subjectNameLabel: UILabel!
     @IBOutlet weak var professorNameLabel: UILabel!
-   
+    @IBOutlet weak var bellBtn: UIButton!
+  
     var subjectName: String?
     var professorName: String?
     var roomId: Int?
@@ -59,5 +60,10 @@ class SideMenuViewController: UIViewController, UITableViewDelegate, UITableView
         
         return cell
     }
+    
+    // 알림 이미지 클릭했을 때
+    @IBAction func bellClicked(_ sender: Any) {
+    }
+    
     
 }

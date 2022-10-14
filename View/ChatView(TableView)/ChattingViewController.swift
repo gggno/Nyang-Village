@@ -169,7 +169,13 @@ class ChattingViewController: UIViewController, UITableViewDelegate, UITableView
                 feedbackGenerator.impactOccurred()
                 
                 let reportVC = self.storyboard?.instantiateViewController(withIdentifier: "ReportPopUpViewController") as! ReportPopUpViewController
-                reportVC.nickName = chatInfoDatas[index].nickName
+                
+                reportVC.reportNickName = chatInfoDatas[index].nickName // 신고대상 닉네임
+                reportVC.reportContent = chatInfoDatas[index].content // 신고대상이 보낸 채팅 메시지
+//                reportVC.reportWhy = // 신고 사유(구현 할지 안할지 보류 중)
+                reportVC.reporterNickname = self.nickName // 신고자 닉네임
+                reportVC.roomName = self.subjectName // 과목명
+                reportVC.professorName = self.professorName // 교수이름
                 
                 // 백그라운드 투명도 처리
                 reportVC.modalPresentationStyle = .overCurrentContext
@@ -180,9 +186,7 @@ class ChattingViewController: UIViewController, UITableViewDelegate, UITableView
     
     // sql로 chatInfo들의 데이터를 chatInfoDatas에 저장
     func chatInfoData() {
-        print("chatInfoData의 roomId는 \(roomId)")
         chatInfoDatas = sql.selectChatInfo(roomId: roomId!)
-                print("chatInfoDatas: \(chatInfoDatas)")
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
