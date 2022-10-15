@@ -442,7 +442,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RB8-61-PuF">
-                                <rect key="frame" x="67" y="100" width="280" height="257"/>
+                                <rect key="frame" x="67" y="100" width="280" height="260"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="f36-Gn-Otg">
                                         <rect key="frame" x="0.0" y="0.0" width="280" height="50"/>
@@ -467,14 +467,8 @@
                                         <color key="textColor" systemColor="systemRedColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="전송버튼을 누르면 신고처리가 완료됩니다." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="21U-uP-15G">
-                                        <rect key="frame" x="30" y="134" width="220" height="33.666666666666657"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TVn-sZ-NzN">
-                                        <rect key="frame" x="16" y="202.66666666666669" width="100" height="34.333333333333343"/>
+                                        <rect key="frame" x="16" y="205.66666666666669" width="100" height="34.333333333333343"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="100" id="ZCz-xn-ppJ"/>
                                         </constraints>
@@ -486,7 +480,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pq6-RT-ZB5">
-                                        <rect key="frame" x="160" y="202.66666666666669" width="100" height="34.333333333333343"/>
+                                        <rect key="frame" x="160" y="205.66666666666669" width="100" height="34.333333333333343"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="100" id="UQJ-O4-5hb"/>
                                         </constraints>
@@ -497,23 +491,28 @@
                                             <action selector="sendBtnClicked:" destination="0Bk-y8-YNF" eventType="touchUpInside" id="rjZ-ku-rBk"/>
                                         </connections>
                                     </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="전송 버튼을 누르면 해당 사용자에 대한 신고 접수가 완료됩니다. 해당 내역은 관리자 검토 후 조치될 예정입니다." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gTM-dD-i5K">
+                                        <rect key="frame" x="20" y="107" width="240" height="81.333333333333314"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstItem="21U-uP-15G" firstAttribute="top" secondItem="nsg-cu-6r0" secondAttribute="bottom" constant="35" id="3Sg-Jl-tRb"/>
                                     <constraint firstAttribute="trailing" secondItem="f36-Gn-Otg" secondAttribute="trailing" id="6wG-Sg-tAf"/>
                                     <constraint firstAttribute="trailing" secondItem="nsg-cu-6r0" secondAttribute="trailing" constant="20" id="8uF-vR-OZ6"/>
-                                    <constraint firstItem="21U-uP-15G" firstAttribute="centerX" secondItem="RB8-61-PuF" secondAttribute="centerX" id="Bep-Oj-8el"/>
                                     <constraint firstItem="f36-Gn-Otg" firstAttribute="top" secondItem="RB8-61-PuF" secondAttribute="top" id="D6a-BY-wNU"/>
                                     <constraint firstAttribute="bottom" secondItem="TVn-sZ-NzN" secondAttribute="bottom" constant="20" id="Djv-Bn-iN0"/>
+                                    <constraint firstAttribute="height" constant="260" id="EX3-ks-nmo"/>
+                                    <constraint firstItem="gTM-dD-i5K" firstAttribute="leading" secondItem="RB8-61-PuF" secondAttribute="leading" constant="20" id="JME-Pk-Mds"/>
                                     <constraint firstItem="TVn-sZ-NzN" firstAttribute="leading" secondItem="RB8-61-PuF" secondAttribute="leading" constant="16" id="KBa-fx-K0i"/>
                                     <constraint firstAttribute="width" constant="280" id="M6u-6K-VX1"/>
                                     <constraint firstItem="nsg-cu-6r0" firstAttribute="leading" secondItem="RB8-61-PuF" secondAttribute="leading" constant="20" id="MCO-dl-J83"/>
-                                    <constraint firstItem="TVn-sZ-NzN" firstAttribute="top" secondItem="21U-uP-15G" secondAttribute="bottom" constant="35" id="Wcl-Cc-Vmo"/>
                                     <constraint firstAttribute="bottom" secondItem="pq6-RT-ZB5" secondAttribute="bottom" constant="20" id="XPu-uy-7wI"/>
                                     <constraint firstItem="nsg-cu-6r0" firstAttribute="top" secondItem="f36-Gn-Otg" secondAttribute="bottom" constant="25" id="a3M-lv-82Q"/>
-                                    <constraint firstAttribute="trailing" secondItem="21U-uP-15G" secondAttribute="trailing" constant="30" id="lOT-e0-4kt"/>
-                                    <constraint firstItem="21U-uP-15G" firstAttribute="leading" secondItem="RB8-61-PuF" secondAttribute="leading" constant="30" id="njw-dA-yRU"/>
+                                    <constraint firstAttribute="trailing" secondItem="gTM-dD-i5K" secondAttribute="trailing" constant="20" id="bjx-4U-s2N"/>
+                                    <constraint firstItem="gTM-dD-i5K" firstAttribute="top" secondItem="nsg-cu-6r0" secondAttribute="bottom" constant="8" id="lPj-cU-DkS"/>
                                     <constraint firstAttribute="trailing" secondItem="pq6-RT-ZB5" secondAttribute="trailing" constant="20" id="vUp-Bu-ggH"/>
                                     <constraint firstItem="f36-Gn-Otg" firstAttribute="leading" secondItem="RB8-61-PuF" secondAttribute="leading" id="zzf-fa-rWZ"/>
                                 </constraints>
