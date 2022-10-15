@@ -1,4 +1,5 @@
 import UIKit
+import SQLite3
 
 class SideMenuViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
@@ -12,10 +13,11 @@ class SideMenuViewController: UIViewController, UITableViewDelegate, UITableView
     var subjectName: String?
     var professorName: String?
     var roomId: Int?
-    
+    var noti: Int?
     var roomInNames: [RoomInNamesRow] = []
     
     let sql = Sql.shared
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,6 +35,8 @@ class SideMenuViewController: UIViewController, UITableViewDelegate, UITableView
         
         // 방 안에 사용자 불러오기
         roomInNames = sql.selectRoomInNames2(roomId: roomId!)
+        // 노티 값 비교
+        noti = sql.selectRoomInfoNoti2(roomid: roomId!)
         
         sideMenuTableView.register(UINib(nibName: "SideMenuTableViewCell", bundle: nil), forCellReuseIdentifier: "SideMenuTableViewCell")
     }
@@ -41,6 +45,11 @@ class SideMenuViewController: UIViewController, UITableViewDelegate, UITableView
         print("SideMenuViewController viewWillAppear() called")
         
         // if sql문에 노티가 1, 0 일때의 이미지 표현
+        if noti == 1 {
+            bellBtn.setImage(UIImage(systemName: "bell.fill"), for: .normal)
+        } else if noti == 0 {
+            bellBtn.setImage(UIImage(systemName: "bell.slash.fill"), for: .normal)
+        }
         
         super.viewWillAppear(animated)
         
@@ -70,11 +79,22 @@ class SideMenuViewController: UIViewController, UITableViewDelegate, UITableView
     // 알림 이미지 클릭했을 때
     @IBAction func bellClicked(_ sender: Any) {
         print("bell clicked")
-        
+        print(noti)
         // if 노티가 1이면 0(알림 허용 -> 해제) 1. sql문에 노티 변경 2. 벨 이미지 변경, 노티가 1이면 0(알림 해제 -> 허용) 1. sql문에 노티 변경 2. 벨 이미지 변경
-        
-        bellBtn.setImage(UIImage(systemName: "bell.slash.fill"), for: .normal)
+        if noti! == 1 { // 허용 -> 해제
+            print("허용 -> 해제")
+            noti = 0
+            sql.updateRoomInfoNoti(noti: 0, roomid: roomId!)
+            bellBtn.setImage(UIImage(systemName: "bell.slash.fill"), for: .normal)
+        } else if noti! == 0 { // 해제 -> 허용
+            print("해제 -> 허용")
+            noti = 1
+            sql.updateRoomInfoNoti(noti: 1, roomid: roomId!)
+            bellBtn.setImage(UIImage(systemName: "bell.fill"), for: .normal)
+        }
     }
     
-    
 }
+
+
+

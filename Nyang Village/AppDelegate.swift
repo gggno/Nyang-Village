@@ -81,19 +81,22 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
         
         let pushNotification =  UNMutableNotificationContent()
         
-        pushNotification.userInfo = userInfo
-        pushNotification.title = userInfo["nickName"] as! String
-        pushNotification.subtitle = notiDatas.roomName
-        pushNotification.body = userInfo["content"] as! String
-
-        pushNotification.sound = UNNotificationSound.default
-        application.applicationIconBadgeNumber = application.applicationIconBadgeNumber + 1
-
-        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 0.1, repeats: false)
-        let request = UNNotificationRequest(identifier: "\(Int(roomIdConvert))", content: pushNotification, trigger: trigger)
-        UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
-        
         sql.insertChatInfo(roomid: Int(roomIdConvert), nickName: userInfo["nickName"]! as! String, time: userInfo["time"]! as! String, content: userInfo["content"]! as! String, type: 0)
+        
+        if notiDatas.noti == 1 {
+            pushNotification.userInfo = userInfo
+            pushNotification.title = userInfo["nickName"] as! String
+            pushNotification.subtitle = notiDatas.roomName
+            pushNotification.body = userInfo["content"] as! String
+
+            pushNotification.sound = UNNotificationSound.default
+
+            let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 0.1, repeats: false)
+            let request = UNNotificationRequest(identifier: "\(Int(roomIdConvert))", content: pushNotification, trigger: trigger)
+            UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
+        }
+        
+        application.applicationIconBadgeNumber = application.applicationIconBadgeNumber + 1
         
         return UIBackgroundFetchResult.newData
     }
@@ -104,22 +107,15 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
         let sql = Sql.shared
         let application = UIApplication.shared
         let userInfo = notification.request.content.userInfo
-        
-        //        sql.insertChatInfo(roomid: userInfo["roomId"]! as! Int, nickName: userInfo["nickName"]! as! String, time: userInfo["time"]! as! String, content: userInfo["content"]! as! String, type: 2)
+       
+        application.applicationIconBadgeNumber = 0
+       
         // roomId 형 변환
         let roomIdConvert = (userInfo["roomId"] as! NSString).intValue
         
         print("AppDelegate - willPresent called")
         print("설명 :: 앱 포그라운드 상태 푸시 알림 확인")
         print("userInfo :: \(notification.request.content.userInfo)") // 푸시 정보 가져옴
-        
-        //        if application.applicationState == .active {
-        //            print(".active")
-        //            if notification.request.identifier == "\(Int(roomIdConvert))" {
-        //                print("같다.")
-        //                NotificationCenter.default.post(name: Notification.Name(pushNotificationName), object: roomIdConvert)
-        //            }
-        //        }
         
         completionHandler([.banner, .sound, .badge])
     }

@@ -101,6 +101,7 @@ class ChattingViewController: UIViewController, UITableViewDelegate, UITableView
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         print("chattingVC viewWillDisAppear() called")
+        ConnectChat.roomId = -1
         
         // 노티피케이션 연결 해제
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
