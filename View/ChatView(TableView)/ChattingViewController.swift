@@ -170,6 +170,9 @@ class ChattingViewController: UIViewController, UITableViewDelegate, UITableView
                 
                 let reportVC = self.storyboard?.instantiateViewController(withIdentifier: "ReportPopUpViewController") as! ReportPopUpViewController
                 
+                // 백그라운드 투명도 처리
+                reportVC.modalPresentationStyle = .overCurrentContext
+                
                 reportVC.reportNickName = chatInfoDatas[index].nickName // 신고대상 닉네임
                 reportVC.reportContent = chatInfoDatas[index].content // 신고대상이 보낸 채팅 메시지
 //                reportVC.reportWhy = // 신고 사유(구현 할지 안할지 보류 중)
@@ -177,8 +180,12 @@ class ChattingViewController: UIViewController, UITableViewDelegate, UITableView
                 reportVC.roomName = self.subjectName // 과목명
                 reportVC.professorName = self.professorName // 교수이름
                 
-                // 백그라운드 투명도 처리
-                reportVC.modalPresentationStyle = .overCurrentContext
+                reportVC.completionHandler = {
+                    let reportDatas: [String: Any] = ["reportName" : reportVC.reportNickName!, "reportContent" : reportVC.reportContent!, "reportWhy" : "hello", "reporter" : reportVC.reporterNickname!, "studentId" : reportVC.studentId!, "roomName" : reportVC.roomName!, "professorName" : reportVC.professorName!,]
+
+                    self.socketClient.sendJSONForDict(dict: reportDatas as AnyObject, toDestination: "/pub/ay/report")
+                }
+
                 present(reportVC, animated: true)
             }
         }
