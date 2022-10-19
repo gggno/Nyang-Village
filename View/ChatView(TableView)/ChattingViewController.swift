@@ -131,7 +131,6 @@ class ChattingViewController: UIViewController, UITableViewDelegate, UITableView
         
         let indexPath = IndexPath(row: self.chatInfoDatas.count-1, section: 0)
         self.chatTableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
-        
     }
     
     // 키보드 내려갈 때 호출되는 메서드
@@ -284,7 +283,6 @@ class ChattingViewController: UIViewController, UITableViewDelegate, UITableView
         present(menu, animated: true, completion: nil)
     }
     
-    
     // MARK: - stompFunc
     
     // 구독 중인 토픽에서 Publish되면 실행되는 함수. 모든 통신이 여기서 이루어짐.
@@ -293,7 +291,6 @@ class ChattingViewController: UIViewController, UITableViewDelegate, UITableView
         print("stompClient() called")
         
         let jsonData = jsonBody as? [String : AnyObject]
-        print("start: \(jsonData!["start"])")
         
         if jsonData!["start"] != nil { // 처음에 채팅방 들어갈 때의 통신
             if jsonData!["start"] as! Int == 1 { // 이중로그인
@@ -365,10 +362,6 @@ class ChattingViewController: UIViewController, UITableViewDelegate, UITableView
                 }
             }
         }
-        
-        //        print("Destination : \(destination)")
-        //        print("JSON Body : \(String(describing: jsonBody))")
-        //        print("String Body : \(stringBody ?? "nil")")
     }
     
     func stompClientDidDisconnect(client: StompClientLib!) {
@@ -440,7 +433,6 @@ class ChattingViewController: UIViewController, UITableViewDelegate, UITableView
         sql.deleteAllRoomInfos()
         sql.deleteAllRoomInNames()
         sql.deleteChatInfos()
-        //        sql.updateUserInfoAutoLogin(autoLogin: 0)
         
         // 로그인 화면으로 이동 코드
         self.navigationController?.popToRootViewController(animated: false)

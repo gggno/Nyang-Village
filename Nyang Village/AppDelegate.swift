@@ -77,6 +77,12 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
             return UIBackgroundFetchResult.newData
         }
         
+        // 채팅을 보내고 나갈 때 roomId가 -1로 바뀌는 속도가 파이어베이스로 가는 속도보다 빨라서 해주는 코드
+        if userInfo["nickName"]! as! String == sql.selectRoomInfoInNickname(roomid: Int(roomIdConvert)) {
+            print("채팅을 보내고 빨리 나갈 때")
+            return UIBackgroundFetchResult.newData
+        }
+        
         let notiDatas : NotiRoomInfo = sql.selectRoomInfoNoti(roomid: Int(roomIdConvert))
         
         let pushNotification =  UNMutableNotificationContent()

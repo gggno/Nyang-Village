@@ -142,7 +142,6 @@ class LoginViewController: UIViewController {
         }
     }
 
-    
     @IBAction func LoginBtnClicked(_ sender: Any) {
         activityIndicator.startAnimating()
         loginViewPresenter.login(requestData: LoginRequest(fcm: loginViewPresenter.getToken(), password: loginViewPresenter.getPwd(), studentId: loginViewPresenter.getId(), version: 1), completion2: { result in

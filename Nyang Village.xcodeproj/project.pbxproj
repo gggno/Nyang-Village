@@ -31,6 +31,7 @@
 		664B2DB527FC708D00109DFB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 664B2DB327FC708D00109DFB /* Main.storyboard */; };
 		664B2DB727FC708E00109DFB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 664B2DB627FC708E00109DFB /* Assets.xcassets */; };
 		664B2DBA27FC708E00109DFB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 664B2DB827FC708E00109DFB /* LaunchScreen.storyboard */; };
+		666BE60429002F7F006705F9 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 666BE60629002F7F006705F9 /* InfoPlist.strings */; };
 		666C5C8F28A77E1700991176 /* ChattingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 666C5C8E28A77E1700991176 /* ChattingViewController.swift */; };
 		6678F5B128A8C7840049938F /* JalnanOTF.otf in Resources */ = {isa = PBXBuildFile; fileRef = 6678F5B028A8C7840049938F /* JalnanOTF.otf */; };
 		667A9AE128AD0DC40068582F /* MyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 667A9ADF28AD0DC40068582F /* MyTableViewCell.swift */; };
@@ -92,6 +93,8 @@
 		664B2DB927FC708E00109DFB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		664B2DBB27FC708E00109DFB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		664F296B280469A100F1D43C /* Nyang Village.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Nyang Village.entitlements"; sourceTree = "<group>"; };
+		666BE60529002F7F006705F9 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		666BE60729002FEB006705F9 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		666C5C8E28A77E1700991176 /* ChattingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChattingViewController.swift; sourceTree = "<group>"; };
 		6678F5B028A8C7840049938F /* JalnanOTF.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = JalnanOTF.otf; sourceTree = "<group>"; };
 		667A9ADF28AD0DC40068582F /* MyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTableViewCell.swift; sourceTree = "<group>"; };
@@ -207,6 +210,7 @@
 				664B2DB827FC708E00109DFB /* LaunchScreen.storyboard */,
 				66F5BEB62804643D0002240C /* GoogleService-Info.plist */,
 				664B2DBB27FC708E00109DFB /* Info.plist */,
+				666BE60629002F7F006705F9 /* InfoPlist.strings */,
 			);
 			path = "Nyang Village";
 			sourceTree = "<group>";
@@ -385,6 +389,7 @@
 			knownRegions = (
 				en,
 				Base,
+				ko,
 			);
 			mainGroup = 664B2DA127FC708D00109DFB;
 			productRefGroup = 664B2DAB27FC708D00109DFB /* Products */;
@@ -402,6 +407,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				661197982831667C0033CB33 /* SCDream2.otf in Resources */,
+				666BE60429002F7F006705F9 /* InfoPlist.strings in Resources */,
 				664B2DBA27FC708E00109DFB /* LaunchScreen.storyboard in Resources */,
 				6611979A2831667C0033CB33 /* SCDream6.otf in Resources */,
 				6611979C2831667C0033CB33 /* SCDream8.otf in Resources */,
@@ -529,6 +535,15 @@
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
 		};
+		666BE60629002F7F006705F9 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				666BE60529002F7F006705F9 /* en */,
+				666BE60729002FEB006705F9 /* ko */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
@@ -536,6 +551,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
@@ -596,6 +612,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
@@ -654,25 +671,28 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "Nyang Village/Nyang Village.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = VMAWA3XBC6;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Nyang Village/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIStatusBarStyle = "";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = "kr.xoul.Nyang-Village";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -687,25 +707,28 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "Nyang Village/Nyang Village.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = VMAWA3XBC6;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Nyang Village/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIStatusBarStyle = "";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = "kr.xoul.Nyang-Village";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;

@@ -89,7 +89,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
             let reverse = (roomInfoDatas.count - indexPath.row) - 1
             
             cell.SubjectNameLabel.text = roomInfoDatas[reverse].roomName
-            cell.ProfessorNameLabel.text = roomInfoDatas[reverse].professorName + " 교수"
+            cell.ProfessorNameLabel.text = roomInfoDatas[reverse].professorName + " 교수님"
             cell.NumberOfParticipantsLabel.text = String(roomInCount(roomid: roomInfoDatas[reverse].roomId))
             return cell
         }
@@ -142,11 +142,6 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     func initCell(data: [RoomInfos]) {
         
-        //        for roomData in data {
-        //            let cell = MainTableViewCell()
-        ////            cell.updateData(data: roomData)
-        //            self.cellArray.append(cell)
-        //        }
         self.roomInfos = data
         MainTableView.reloadData()
     }
@@ -171,6 +166,5 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         let settingVC = self.storyboard?.instantiateViewController(withIdentifier: "SettingViewController")
         self.navigationController?.pushViewController(settingVC!, animated: true)
     }
-    
     
 }
