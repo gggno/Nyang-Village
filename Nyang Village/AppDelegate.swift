@@ -72,17 +72,20 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
         // roomId 형 변환
         let roomIdConvert = (userInfo["roomId"] as! NSString).intValue
         
+        // case 1. 해당 채팅방에 있을 때
         if ConnectChat.roomId == Int(roomIdConvert) {
             print("해당 채팅방에 있을 시 알림 안 울림")
             return UIBackgroundFetchResult.newData
         }
         
+        // case 2.
         // 채팅을 보내고 나갈 때 roomId가 -1로 바뀌는 속도가 파이어베이스로 가는 속도보다 빨라서 해주는 코드
         if userInfo["nickName"]! as! String == sql.selectRoomInfoInNickname(roomid: Int(roomIdConvert)) {
             print("채팅을 보내고 빨리 나갈 때")
             return UIBackgroundFetchResult.newData
         }
         
+        // case 3. 백그라운드 상태일 때(일반적인 경우)
         let notiDatas : NotiRoomInfo = sql.selectRoomInfoNoti(roomid: Int(roomIdConvert))
         
         let pushNotification =  UNMutableNotificationContent()
@@ -109,7 +112,7 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
     
     // 앱이 실행 중인 경우
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
-        
+        print("willPresent")
         let sql = Sql.shared
         let application = UIApplication.shared
         let userInfo = notification.request.content.userInfo
@@ -117,7 +120,7 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
         application.applicationIconBadgeNumber = 0
        
         // roomId 형 변환
-        let roomIdConvert = (userInfo["roomId"] as! NSString).intValue
+//        let roomIdConvert = (userInfo["roomId"] as! NSString).intValue
         
         print("AppDelegate - willPresent called")
         print("설명 :: 앱 포그라운드 상태 푸시 알림 확인")
@@ -128,6 +131,7 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
     
     // 백그라운드인 경우 & 사용자가 푸시를 클릭한 경우
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+        print("didReceive")
         
         let sql = Sql.shared
         let application = UIApplication.shared
