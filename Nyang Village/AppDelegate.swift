@@ -119,7 +119,7 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
 
             pushNotification.sound = UNNotificationSound.default
 
-            let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 0.1, repeats: false)
+            let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 0.001, repeats: false)
             let request = UNNotificationRequest(identifier: "\(Int(roomIdConvert))", content: pushNotification, trigger: trigger)
             UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
         }
