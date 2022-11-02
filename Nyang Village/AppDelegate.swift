@@ -62,6 +62,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 }
 
+extension AppDelegate: MessagingDelegate {
+    
+    // fcm 등록 토큰을 받았을 때
+    func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String?) {
+        print("파베 토큰을 받았다.")
+        print("Appdelegate - firebase registration token: \(String(describing: fcmToken))")
+    }
+    
+    // [원격 알림 앱 등록 : APNS 등록 후 >> apnsToken 매핑]
+    func application(application: UIApplication,
+                     didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+        print("AppDelegate - didRegisterForRemoteNotificationsWithDeviceToken called")
+        print("설명 :: 원격 알림 앱 등록 : APNS 등록 후 >> apnsToken 매핑")
+        
+        Messaging.messaging().apnsToken = deviceToken
+    }
+    
+}
+
 // 알림처리: FCM은 APN을 통해 Apple 앱을 타겟팅하는 모든 메시지를 전송합니다.
 extension AppDelegate: UNUserNotificationCenterDelegate {
     
@@ -113,9 +132,9 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
     // 앱이 실행 중인 경우
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
         print("willPresent")
-        let sql = Sql.shared
+//        let sql = Sql.shared
         let application = UIApplication.shared
-        let userInfo = notification.request.content.userInfo
+//        let userInfo = notification.request.content.userInfo
        
         application.applicationIconBadgeNumber = 0
        
@@ -133,7 +152,7 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
         print("didReceive")
         
-        let sql = Sql.shared
+//      let sql = Sql.shared
         let application = UIApplication.shared
         let userInfo = response.notification.request.content.userInfo
         
@@ -164,25 +183,6 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
         }
         
         completionHandler()
-    }
-    
-}
-
-extension AppDelegate: MessagingDelegate {
-    
-    // fcm 등록 토큰을 받았을 때
-    func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String?) {
-        print("파베 토큰을 받았다.")
-        print("Appdelegate - firebase registration token: \(String(describing: fcmToken))")
-    }
-    
-    // [원격 알림 앱 등록 : APNS 등록 후 >> apnsToken 매핑]
-    func application(application: UIApplication,
-                     didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
-        print("AppDelegate - didRegisterForRemoteNotificationsWithDeviceToken called")
-        print("설명 :: 원격 알림 앱 등록 : APNS 등록 후 >> apnsToken 매핑")
-        
-        Messaging.messaging().apnsToken = deviceToken
     }
     
 }
