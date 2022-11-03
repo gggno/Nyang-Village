@@ -105,6 +105,7 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
         }
         
         // case 3. 백그라운드 상태일 때(일반적인 경우)
+        print("백그라운드 알림 정상 작동")
         let notiDatas : NotiRoomInfo = sql.selectRoomInfoNoti(roomid: Int(roomIdConvert))
         
         let pushNotification =  UNMutableNotificationContent()
@@ -160,7 +161,8 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
         let roomIdConvert = (userInfo["roomId"] as! NSString).intValue
         
         print("AppDelegate - didReceive called")
-        print("앱 백그라운드 상태 푸시 알림 확인")
+        print("사용자가 푸시 클릭 알림 확인 정상 작동")
+        print("userInfo :: \(userInfo)") // 푸시 정보 가져옴
         
         // 앱이 켜져있는 상태에 푸시 알림을 눌렀을 때
         if application.applicationState == .active {
