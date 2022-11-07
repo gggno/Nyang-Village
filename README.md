@@ -12,4 +12,5 @@
 - Swift
 
 ## 데이터 모델링
-https://github.com/gggno/Nyang-Village/issues/1#issue-1411523841
+![177805541-6c77ee41-0126-4e05-a93c-3157aa4febcf](https://user-images.githubusercontent.com/96887941/196181277-e638b430-79cc-41bf-9270-036cf9b997cf.png)
+
