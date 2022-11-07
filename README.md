@@ -14,3 +14,5 @@
 ## 데이터 모델링
 ![177805541-6c77ee41-0126-4e05-a93c-3157aa4febcf](https://user-images.githubusercontent.com/96887941/196181277-e638b430-79cc-41bf-9270-036cf9b997cf.png)
 
+## 화면 흐름도
+<img width="964" alt="스크린샷 2022-10-17 오후 9 52 46" src="https://user-images.githubusercontent.com/96887941/196182006-eba88519-c0e2-46f7-9b95-1599640a6d08.png">
