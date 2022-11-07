@@ -12,3 +12,4 @@
 - Swift
 
 ## 데이터 모델링
+https://github.com/gggno/Nyang-Village/issues/1#issue-1411523841
